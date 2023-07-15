@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   srcDir: 'src/',
   modules: ['@pinia/nuxt', '@unocss/nuxt'],
+  module.exports = {
+    css: ['ant-design-vue/dist/antd.css']
+  },
   experimental: {
     reactivityTransform: true,
   },
