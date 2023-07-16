@@ -1,26 +1,17 @@
-// import Components from 'unplugin-vue-components/vite';
+import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+
 export default defineNuxtConfig({
-  srcDir: 'src/',
-  modules: ['@pinia/nuxt', '@unocss/nuxt'],
-  module.exports = {
-    css: ['ant-design-vue/dist/antd.css']
-  },
+  modules: ['@unocss/nuxt', '@pinia/nuxt'],
   experimental: {
     reactivityTransform: true,
   },
   vite: {
     plugins: [
-      // Components({
-      //   resolvers: [AntDesignVueResolver()],
-      // }),
+      Components({
+        resolvers: [AntDesignVueResolver()],
+      }),
     ],
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@import "@/assets/styles/default.scss";'
-        }
-      }
-    }
   },
   unocss: {
     uno: true,
@@ -28,23 +19,12 @@ export default defineNuxtConfig({
     shortcuts: [{ flexc: 'flex items-center justify-center' }],
     rules: [
       [
-        /^wh-(\d+)$/,
+        /^fs-(\d+)$/,
         ([, d]) => ({
-          width: `${d}px`,
-          height: `${d}px`,
+          'font-size': `${d}px`,
         }),
       ],
     ],
   },
-  // experimental: {
-  //   reactivityTransform: true,
-  // },
-  // vite: {
-  //   plugins: [
-  //     Components({
-  //       resolvers: [AntDesignVueResolver()],
-  //     }),
-  //   ],
-  // },
 });
 
