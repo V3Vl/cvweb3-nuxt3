@@ -34,3 +34,4 @@ npm run build
 ```shell
 npm run preview
 ```
+the ready  template，local service is already configured.

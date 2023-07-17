@@ -1,7 +1,7 @@
 import { $fetch } from 'ohmyfetch';
 import type { FetchRequest, FetchOptions } from 'ohmyfetch';
 
-export const baseUrl = 'http://127.0.0.1:8081';
+export const baseUrl = 'http://127.0.0.1:8080';
 
 const _useApi = $fetch.create({
   baseURL: baseUrl,
