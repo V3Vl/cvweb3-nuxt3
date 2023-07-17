@@ -1,21 +1,21 @@
-# Nuxt3 启动模板
+# Nuxt3+vite+pinia+antdV
+# nodejs+express
 
 # 安装
 
 ```shell
 # yarn
 yarn install
-
-# npm
-npm install
-
 #pnpm
 pnpm install
 ```
 
-# 启动开发服务器
+# 本地api
+进入server文件夹
+```shell
+nodemon app.js
 
-开发服务器默认启动在`http://localhost:3000`
+本地接口服务配置在`http://localhost:8081`
 
 ```shell
 npm run dev

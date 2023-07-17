@@ -3,6 +3,7 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineNuxtConfig({
   modules: ['@unocss/nuxt', '@pinia/nuxt'],
+  // 响应式转换，ref省略.value写法
   experimental: {
     reactivityTransform: true,
   },

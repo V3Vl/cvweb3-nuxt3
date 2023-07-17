@@ -2,7 +2,7 @@ import { createNuxtPersistedState } from 'pinia-plugin-persistedstate/nuxt';
 import { defineNuxtPlugin, useCookie } from '#app';
 
 export default defineNuxtPlugin((nuxtApp) => {
-  //  七天后的时间
+  //  七天后的时间(多久过期)
   const date = new Date();
   date.setDate(date.getDate() + 7);
 

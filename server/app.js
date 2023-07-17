@@ -6,10 +6,10 @@ app.use(cors())
 
 
 app.get('/test', (req, res) => {
-  res.send('请求成功')
+  res.send({model: '奥迪q7 尊享版', carId: '川A '})
 })
 
 
 app.listen(8081, () => {
-  console.log('服务启动在：http://127.0.0.1:8081')
+  console.log('[service start at] >Local: http://127.0.0.1:8081')
 })
