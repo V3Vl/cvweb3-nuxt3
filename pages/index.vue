@@ -1,29 +1,61 @@
 <script lang="ts" setup>
-
-const q7 = ref(1)
-// const data = reactive({price: 790000.00, color: 'bl'})
+import home from "@/layouts/home/index.vue";
+// import headerBar from '@/layouts/header/index.vue'
+import { test } from "../api/test";
+import type { CSSProperties } from "vue";
+// import 'HomeOutlined' from '@ant-design/icons'
 
 // 二次接口封装请求
-import { test } from '../api/test'
-const data = await test()
-console.log('data', data)
+const data = await test();
+const headerStyle: CSSProperties = {
+  textAlign: "center",
+  color: "#fff",
+  height: 64,
+  paddingInline: 50,
+  lineHeight: "64px",
+  backgroundColor: "#7dbcea",
+};
+
+const contentStyle: CSSProperties = {};
+
+const footerStyle: CSSProperties = {
+  textAlign: "center",
+  color: "#fff",
+  backgroundColor: "#7dbcea",
+};
+
+console.log("data", data);
 
 // pinia调试
-const { count, add, multiplyCount } = $(useUser())
+const { count, add, multiplyCount } = $(useUser());
 const addClick = () => {
-  add()
-}
-
+  add();
+};
+onMounted(() => {});
 </script>
 
 <template>
-  <div class="home">
-    <div w-200 h-20 bg-blue color-red fs-30 flexc font-600>cvWeb3</div>
-    <a-button type="primary">按钮</a-button><br />
-    <h1>当前pinia的初始化值：{{ count }}</h1>
-    <a-button @click="addClick">增加</a-button>
-    <h2>当前pinia的计算的值：{{ multiplyCount }}</h2>
+  <!-- 轮播位-主推商品 -->
+  <div class="box-topproduct">
+    <topproduct />
+    <!-- <home /> -->
   </div>
+  <a-layout mt-750px>
+    <!-- 浮动顶部导航 -->
+    <a-layout-header :style="headerStyle">世纪农业网</a-layout-header>
+    <!-- 主体导航列表 -->
+    <a-layout-content :style="contentStyle">
+      <home></home>
+    </a-layout-content>
+    <a-layout-footer :style="footerStyle">Footer</a-layout-footer>
+  </a-layout>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.box-topproduct {
+  position: absolute;
+  top: 0;
+  height: 750px;
+  width: 100%;
+}
+</style>

@@ -10,8 +10,12 @@ yarn install
 pnpm install
 ```
 
-# 本地api
+# 本地api(已独立分离→测试api)
 进入server文件夹
+```shell
+nodemon app.js
+# 测试api
+在cpshop-node
 ```shell
 nodemon app.js
 
