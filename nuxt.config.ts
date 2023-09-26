@@ -1,8 +1,8 @@
-import Components from 'unplugin-vue-components/vite';
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import Components from "unplugin-vue-components/vite";
+import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 
 export default defineNuxtConfig({
-  modules: ['@unocss/nuxt', '@pinia/nuxt'],
+  modules: ["@unocss/nuxt", "@pinia/nuxt"],
   // 响应式转换，ref省略.value写法
   experimental: {
     reactivityTransform: true,
@@ -10,22 +10,34 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       Components({
-        resolvers: [AntDesignVueResolver()],
+        resolvers: [
+          AntDesignVueResolver({ importStyle: "scss", resolveIcons: true }),
+        ],
       }),
     ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          javascriptEnabled: true,
+        },
+      },
+    },
   },
   unocss: {
     uno: true,
     attributify: true,
-    shortcuts: [{ flexc: 'flex items-center justify-center' }],
+    shortcuts: [
+      { flexc: "flex items-center justify-center" },
+      { bd: "border red" },
+    ],
     rules: [
       [
         /^fs-(\d+)$/,
         ([, d]) => ({
-          'font-size': `${d}px`,
+          "font-size": `${d}px`,
         }),
       ],
+      [/^p-(\d+)$/, (match) => ({ padding: `${match[1]}px` })],
     ],
   },
 });
-
