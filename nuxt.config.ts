@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     plugins: [
       Components({
         resolvers: [
-          AntDesignVueResolver({ importStyle: "scss", resolveIcons: true }),
+          AntDesignVueResolver({ importStyle: "css", resolveIcons: true }),
         ],
       }),
     ],
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     attributify: true,
     shortcuts: [
       { flexc: "flex items-center justify-center" },
-      { bd: "border red" },
+      { bd: "border" },
     ],
     rules: [
       [

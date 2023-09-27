@@ -1,5 +1,10 @@
 <script lang="ts" setup>
 const { loginModel } = $(useModel());
+const emit = defineEmits(["cancel"]);
+const closeLoginModal = () => {
+  loginModel.base = false;
+  emit("cancel");
+};
 </script>
 
 <template>
@@ -9,11 +14,11 @@ const { loginModel } = $(useModel());
   <div class="login-modal">
     <div class="content wfull" p="8px 8px">
       <img
-        @click="loginModel.base = false"
+        @click="closeLoginModal"
         src="/images/svg/close_icon.svg"
         class="colse-btn cursor-pointer select-none w-20px! h-20px!"
       />
-      <a-divider orientation="left" style="border-color: #999" dashed
+      <a-divider orientation="left" style="border-color: #e3e3e3"
         ><span fs-22>Login - E Shop</span></a-divider
       >
       <!-- slot 嵌套子组件 -->

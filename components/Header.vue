@@ -1,5 +1,31 @@
 <script setup lang="ts">
 const { loginModel } = $(useModel());
+interface FormState {
+  username: string;
+  nickname: string;
+  password: string;
+  remember: boolean;
+}
+let formState = reactive<FormState>({
+  username: "",
+  nickname: "",
+  password: "",
+  remember: false,
+});
+const onCancel = () => {
+  formState = {} as FormState;
+  console.log("onCancel>>>", formState);
+};
+const onLoginOrReg = () => {
+  // formState = {} as FormState;
+  formState = {
+    username: "",
+    nickname: "",
+    password: "",
+    remember: false,
+  };
+  console.log("onLoginOrReg>>>", formState);
+};
 </script>
 
 <template>
@@ -25,25 +51,13 @@ const { loginModel } = $(useModel());
       </a-button>
     </div>
   </div>
-  <LoginModal v-if="loginModel.base">
-    <LoginForm></LoginForm>
+  <LoginModal v-if="loginModel.base" @cancel="onCancel">
+    <LoginForm :formState="formState" @loginOrReg="onLoginOrReg"></LoginForm>
   </LoginModal>
   <!-- </div> -->
 </template>
 
 <style lang="scss" scoped>
-// .header-container {
-//   display: flex;
-//   flex-basis: 1200px;
-//   min-width: 1200px;
-//   height: 44px;
-//   justify-content: center;
-//   align-items: center;
-//   position: sticky;
-//   top: 0;
-//   z-index: 1000;
-//   background-color: #f5f5f5;
-// }
 .header {
   width: 100%;
   height: 44px;
