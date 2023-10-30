@@ -1,4 +1,5 @@
 <script setup>
+import 'ant-design-vue/es/message/style/css'
 useHead({
   title: "cvweb",
   meta: [

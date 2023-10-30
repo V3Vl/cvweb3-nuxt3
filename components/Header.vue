@@ -4,12 +4,16 @@ interface FormState {
   username: string;
   nickname: string;
   password: string;
+  captcha: string;
+  code: string;
   remember: boolean;
 }
 let formState = reactive<FormState>({
   username: "",
   nickname: "",
   password: "",
+  captcha: "",
+  code: "",
   remember: false,
 });
 const onCancel = () => {
@@ -23,6 +27,8 @@ const onLoginOrReg = () => {
     nickname: "",
     password: "",
     remember: false,
+    captcha: "",
+    code: "",
   };
   console.log("onLoginOrReg>>>", formState);
 };

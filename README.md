@@ -1,8 +1,8 @@
 # Nuxt3+vite+pinia+antdV
 # nodejs+express
+# [2023年10月31日04:10:52][日记14-4]
 
 # 安装
-
 ```shell
 # yarn
 yarn install
@@ -33,9 +33,11 @@ npm run dev
 npm run build
 ```
 
-预览生产环境项目
-
-```shell
-npm run preview
+# tips
+①npm run dev
+②腾讯云redis & navcat
+->docker ps
+->docker exec -it **dockerid** redis-cli
+->pany110
+③node -> nodemon js
 ```
-the ready  template，local service is already configured.
