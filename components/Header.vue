@@ -1,37 +1,37 @@
 <script setup lang="ts">
-const { loginModel } = $(useModel());
+const { loginModel } = $(useModel())
 interface FormState {
-  username: string;
-  nickname: string;
-  password: string;
-  captcha: string;
-  code: string;
-  remember: boolean;
+  username: string
+  nickname: string
+  password: string
+  captcha: string
+  code: string
+  remember: boolean
 }
 let formState = reactive<FormState>({
-  username: "",
-  nickname: "",
-  password: "",
-  captcha: "",
-  code: "",
-  remember: false,
-});
+  username: '',
+  nickname: '',
+  password: '',
+  captcha: '',
+  code: '',
+  remember: false
+})
 const onCancel = () => {
-  formState = {} as FormState;
-  console.log("onCancel>>>", formState);
-};
+  formState = {} as FormState
+  console.log('onCancel>>>', formState)
+}
 const onLoginOrReg = () => {
   // formState = {} as FormState;
   formState = {
-    username: "",
-    nickname: "",
-    password: "",
+    username: '',
+    nickname: '',
+    password: '',
     remember: false,
-    captcha: "",
-    code: "",
-  };
-  console.log("onLoginOrReg>>>", formState);
-};
+    captcha: '',
+    code: ''
+  }
+  console.log('onLoginOrReg>>>', formState)
+}
 </script>
 
 <template>

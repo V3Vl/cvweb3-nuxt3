@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const { loginModel } = $(useModel());
-const emit = defineEmits(["cancel"]);
+const { loginModel } = $(useModel())
+const emit = defineEmits(['cancel'])
 const closeLoginModal = () => {
-  loginModel.base = false;
-  emit("cancel");
-};
+  loginModel.base = false
+  emit('cancel')
+}
 </script>
 
 <template>

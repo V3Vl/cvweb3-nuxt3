@@ -1,27 +1,22 @@
 <script lang="ts" setup>
 let state: {
-  src: string;
-  fallbackSrc: string;
-  jumpToUrl: string;
-};
+  src: string
+  fallbackSrc: string
+  jumpToUrl: string
+}
 state = {
-  src: "https://content.rolex.cn/v7/dam/collection/watches-grid/popin-cards/m126234-0051/m126234-0051_v01.jpg?imwidth=1920",
+  src: 'https://content.rolex.cn/v7/dam/collection/watches-grid/popin-cards/m126234-0051/m126234-0051_v01.jpg?imwidth=1920',
   // src: "https://content.rolex.cn/v7/dam/new-watches/2023/family-collection/cosmograph-daytona/landing-page/professional-watches-cosmograph-daytona-chronometric-precision_m126506-0001_2301ac_002.jpg?imwidth=1920",
-  fallbackSrc: "https://www.antdv.com/#error",
-  jumpToUrl: "",
-};
+  fallbackSrc: 'https://www.antdv.com/#error',
+  jumpToUrl: ''
+}
 const jumpUrl = () => {
   // window.open(state.jumpToUrl);
-};
+}
 </script>
 <template>
   <div class="box-img">
-    <img
-      :preview="false"
-      :src="state.src"
-      :fallback="state.fallbackSrc"
-      @click="jumpUrl"
-    />
+    <img :preview="false" :src="state.src" :fallback="state.fallbackSrc" @click="jumpUrl" />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -32,6 +27,7 @@ const jumpUrl = () => {
   // align-items: center;
   // overflow: hidden;
   width: 100%;
+
   img {
     cursor: pointer;
     height: 540px;
@@ -41,6 +37,7 @@ const jumpUrl = () => {
     object-fit: cover;
   }
 }
+
 // .box-img :global(.ant-image-img) {
 //   max-width: 100%;
 //   max-height: 100%;

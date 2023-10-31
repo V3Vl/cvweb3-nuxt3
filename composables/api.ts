@@ -1,7 +1,7 @@
-import { $fetch } from "ohmyfetch";
-import type { FetchRequest, FetchOptions } from "ohmyfetch";
+import { $fetch } from 'ohmyfetch'
+import type { FetchRequest, FetchOptions } from 'ohmyfetch'
 
-export const baseUrl = "http://127.0.0.1:8080";
+export const baseUrl = 'http://127.0.0.1:8080/api'
 
 const _useApi = $fetch.create({
   baseURL: baseUrl,
@@ -14,17 +14,14 @@ const _useApi = $fetch.create({
   async onResponse({ response }) {
     // 接口请求异常捕获
     // 根据不同的返回状态码，返回不同的提示信息
-    const data = response._data;
+    const data = response._data
     if (data.code !== 0) {
       // 错误时的响应
-      console.log("api.ts里响应拦截器的错误反馈：", data.code);
+      console.log('api.ts里响应拦截器的错误反馈：', data.code)
     }
-  },
-});
+  }
+})
 
-export const useApi = async function (
-  request: FetchRequest,
-  options?: FetchOptions<"json">
-) {
-  return await _useApi(request, options);
-};
+export const useApi = async function (request: FetchRequest, options?: FetchOptions<'json'>) {
+  return await _useApi(request, options)
+}
