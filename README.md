@@ -1,8 +1,11 @@
 # Nuxt3+vite+pinia+antdV
+
 # nodejs+express
-# [2023年10月31日04:10:52][日记14-4]
+
+# [2023 年 10 月 31 日 04:10:52][日记14-4]
 
 # 安装
+
 ```shell
 # yarn
 yarn install
@@ -10,9 +13,11 @@ yarn install
 pnpm install
 ```
 
-# 本地api(已独立分离→测试api)
-进入server文件夹
-```shell
+# 本地 api(已独立分离 → 测试 api)
+
+进入 server 文件夹
+
+````shell
 nodemon app.js
 # 测试api
 在cpshop-node
@@ -23,7 +28,7 @@ nodemon app.js
 
 ```shell
 npm run dev
-```
+````
 
 # 打包生产环境
 
@@ -34,6 +39,8 @@ npm run build
 ```
 
 # tips
+
+```
 ①npm run dev
 ②腾讯云redis & navcat
 ->docker ps
@@ -41,3 +48,10 @@ npm run build
 ->pany110
 ③node -> nodemon js
 ```
+
+# 本机快捷键操作
+
+json 转 interface：
+-> crtl + shift + alt + v
+-> 输入希望生成的接口名
+-> 自动生成 interface
