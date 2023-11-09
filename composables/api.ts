@@ -1,6 +1,7 @@
 import { $fetch } from 'ohmyfetch'
 import type { FetchRequest, FetchOptions } from 'ohmyfetch'
 import { IApiBase } from '../types/api'
+import { message } from 'ant-design-vue'
 
 export const baseUrl = 'http://127.0.0.1:8080/api'
 
@@ -17,8 +18,8 @@ const _useApi = $fetch.create({
     // 根据不同的返回状态码，返回不同的提示信息
     const data = response._data
     if (data.code !== 0) {
-      // 错误时的响应
-      console.log('api.ts里响应拦截器的错误反馈：', data.code)
+      if (data.code === 270004) return
+      // message.error(data.msg)
     }
   }
 })

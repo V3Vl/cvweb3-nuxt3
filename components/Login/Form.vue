@@ -1,15 +1,15 @@
 <script setup lang="ts">
 // import { sendCode } from '~~/api/notify'
 // import { message } from 'ant-design-vue'
-import {
-  SmileOutlined,
-  MobileOutlined,
-  WechatOutlined,
-  GoogleOutlined,
-  FacebookOutlined
-} from '@ant-design/icons-vue'
+// import {
+//   SmileOutlined,
+//   MobileOutlined,
+//   WechatOutlined,
+//   GoogleOutlined,
+//   FacebookOutlined
+// } from '@ant-design/icons-vue'
 
-const emit = defineEmits(['loginOrReg'])
+// const emit = defineEmits(['loginOrReg'])
 interface State {
   isLogin: boolean
   loginType: string
@@ -69,8 +69,7 @@ const rigisterSucc = () => {}
       <!-- 微信扫码登录 -->
       <div v-show="state.loginType === 'wechat'">
         <span>微信登录</span>
-        <LoginInWechat />
-        <!-- <div class="wx-qrcode" w-40 h-40 bd></div> -->
+        <LoginInWechat :parentLoginType="state.loginType" />
       </div>
       <div v-show="state.loginType === 'google'">
         <span>google</span>

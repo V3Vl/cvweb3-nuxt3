@@ -17,8 +17,10 @@ let formState = reactive<FormState>({
   remember: false
 })
 const onCancel = () => {
+  // clearInterval()
+  loginModel.base = false
   formState = {} as FormState
-  console.log('onCancel>>>', formState)
+  console.log('onCancel>>>', loginModel.base, formState)
 }
 const onLoginOrReg = () => {
   // formState = {} as FormState;
@@ -53,7 +55,7 @@ const onLoginOrReg = () => {
     <div class="login-or-registory">
       <a-button @click="loginModel.base = true">
         <template #icon><user-outlined /></template>
-        Sign in
+        登录
       </a-button>
     </div>
   </div>

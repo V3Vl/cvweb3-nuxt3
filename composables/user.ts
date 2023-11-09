@@ -1,20 +1,20 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 export const useUser = defineStore(
   'user',
   () => {
-    let count = ref(1);
-    const add = () => {
-      count.value++;
-    };
-    const multiplyCount = computed(() => count.value * 2);
+    const token = ref('')
+    // 储存登录返回的token
+    const setLoginSuccState = (_token: string) => {
+      console.log('1>>>', _token)
+      token.value = _token
+      console.log('2>>>', token)
+    }
     return {
-      count,
-      add,
-      multiplyCount,
-    };
+      setLoginSuccState,
+      token
+    }
   },
   //持久化储存
   { persist: true }
-);
-
+)
