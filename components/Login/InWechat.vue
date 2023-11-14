@@ -23,6 +23,7 @@ const props = defineProps({
   parentLoginType: String
 })
 const getQrCode = async () => {
+  // 目前会先轮询1次才获取到二维码，待优化为第1次不需要等待轮询
   if (lock) {
     lock = false
     const res = await getWechat()
@@ -30,7 +31,7 @@ const getQrCode = async () => {
       qrcodeUrl = res.data.qrcodeUrl
       lock = true
       // 轮询请求-是否扫码checkScan
-      timer = setInterval(() => watchCheckScan(res.data.ticket), 3000)
+      timer = setInterval(() => watchCheckScan(res.data.ticket), 1500)
     }
   }
 }

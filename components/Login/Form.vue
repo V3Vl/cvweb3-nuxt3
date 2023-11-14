@@ -30,8 +30,8 @@ interface ILoginTypeList {
   type: string
 }
 const loginTypeList: Array<ILoginTypeList> = [
-  { content: '微信二维码登录', iconSrc: 'WechatOutlined', type: 'wechat' },
   { content: '游客登录', iconSrc: 'SmileOutlined', type: 'free' },
+  { content: '微信二维码登录', iconSrc: 'WechatOutlined', type: 'wechat' },
   { content: '手机号登录', iconSrc: 'MobileOutlined', type: 'mobile' },
   { content: 'Sign in Google', iconSrc: 'GoogleOutlined', type: 'google' },
   { content: 'Sign in Facebook', iconSrc: 'FacebookOutlined', type: 'facebook' }
@@ -58,19 +58,20 @@ const rigisterSucc = () => {}
       <!-- 测试登录 -->
       <div v-show="state.loginType === 'free'">
         <span>游客登录</span>
-        <LoginInAcount></LoginInAcount>
+        <LoginInAcount :parentLoginType="state.loginType"></LoginInAcount>
       </div>
-      <!-- 手机号登录 -->
-      <div v-show="state.loginType === 'mobile'">
-        <span>手机号登录</span>
-        <!-- <LoginInWechat /> -->
-        <div class="wx-qrcode" w-40 h-40 bd></div>
-      </div>
-      <!-- 微信扫码登录 -->
       <div v-show="state.loginType === 'wechat'">
         <span>微信登录</span>
         <LoginInWechat :parentLoginType="state.loginType" />
       </div>
+      <!-- 手机号登录 -->
+      <div v-show="state.loginType === 'mobile'">
+        <span>手机号登录</span>
+        <!-- <LoginInPhone /> -->
+        <div class="wx-qrcode" w-40 h-40 bd></div>
+      </div>
+      <!-- 微信扫码登录 -->
+
       <div v-show="state.loginType === 'google'">
         <span>google</span>
         <div class="wx-qrcode" w-40 h-40 bd></div>

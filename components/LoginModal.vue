@@ -19,7 +19,7 @@ const closeLoginModal = () => {
         class="colse-btn cursor-pointer select-none w-20px! h-20px!"
       />
       <a-divider orientation="left" style="border-color: #e3e3e3"
-        ><span fs-22>Login - E Shop</span></a-divider
+        ><span fs-22>登录 - Keyi</span></a-divider
       >
       <!-- slot 嵌套子组件 -->
       <slot />

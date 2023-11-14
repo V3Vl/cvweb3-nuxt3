@@ -50,7 +50,7 @@ const onLoginOrReg = () => {
     </div>
     <NuxtLink class="logo" to="/" felxc>
       <!-- <img src="/images/logo.png" m-2 alt="磐石东方精品国际商城" /> -->
-      <span>eShop.com</span>
+      <span>Keyi.com</span>
     </NuxtLink>
     <div class="login-or-registory">
       <a-button @click="loginModel.base = true">
