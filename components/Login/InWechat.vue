@@ -8,7 +8,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { toNumber } from '@vue/shared'
 import { message } from 'ant-design-vue'
 import { getWechat, checkScan } from '~/api/wechat'
 const { loginModel } = $(useModel())

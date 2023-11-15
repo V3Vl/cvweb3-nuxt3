@@ -6,9 +6,8 @@ export const useUser = defineStore(
     const token = ref('')
     // 储存登录返回的token
     const setLoginSuccState = (_token: string) => {
-      console.log('1>>>', _token)
       token.value = _token
-      console.log('2>>>', token)
+      console.log('token>>>', token)
     }
     return {
       setLoginSuccState,

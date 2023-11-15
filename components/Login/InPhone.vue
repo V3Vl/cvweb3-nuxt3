@@ -2,6 +2,9 @@
 import { register, login, forget } from '../../api/account'
 import { sendCode } from '~/api/notify'
 import { message } from 'ant-design-vue'
+const { loginModel } = $(useModel())
+const { setLoginSuccState } = $(useUser())
+
 interface IState {
   isLogin: boolean
   isPwd: boolean
@@ -83,8 +86,8 @@ const getCode = async () => {
   }
   if (!formState.captcha) return message.warn('请输入图形验证码')
   const type: string = state.forgetPwd ? 'change' : state.isLogin ? 'login' : 'register'
-  const data = await sendCode(formState.username, formState.captcha, type)
-  if (data.code === 0) {
+  const res = await sendCode(formState.username, formState.captcha, type)
+  if (res.code === 0) {
     isDisable = true
     countDownFunc()
     message.success('验证码发送成功')
@@ -104,7 +107,6 @@ const countDownFunc = () => {
 }
 const onFinish = (values: any) => {
   registerBtn()
-  console.log('Success:', values)
 }
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo)
@@ -112,15 +114,15 @@ const onFinishFailed = (errorInfo: any) => {
 // 注册
 const registerBtn = async () => {
   // 待补充 判断
-  const data = await register({
+  const res = await register({
     phone: formState.username,
     code: formState.code,
     type: state.isLogin ? 'login' : 'register'
   })
-  if (data.code === 0) {
-    console.log('注册成功', data)
+  if (res.code === 0) {
+    console.log('注册成功', res)
   } else {
-    console.log('注册失败', data)
+    console.log('注册失败', res)
   }
 }
 // 登录
@@ -130,7 +132,12 @@ const loginBtn = async () => {
     password: formState.password,
     code: formState.code
   }
-  const data = await login(params)
+  const res = await login(params)
+  if (res.code === 0) {
+    loginModel.base = false
+    setLoginSuccState(res.data)
+    message.success('登录成功')
+  }
 }
 const saveUserBtn = async () => {
   const params = {
@@ -138,7 +145,12 @@ const saveUserBtn = async () => {
     password: formState.password,
     code: formState.code
   }
-  const data = await forget(params)
+  const res = await forget(params)
+  if (res.code === 0) {
+    state.isLogin = true
+    state.isPwd = true
+    message.success('登录成功')
+  }
 }
 onBeforeMount(() => {
   clearInterval(timer)
