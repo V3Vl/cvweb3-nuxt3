@@ -1,43 +1,17 @@
 <script setup lang="ts">
 const { loginModel } = $(useModel())
-interface FormState {
-  username: string
-  nickname: string
-  password: string
-  captcha: string
-  code: string
-  remember: boolean
-}
-let formState = reactive<FormState>({
-  username: '',
-  nickname: '',
-  password: '',
-  captcha: '',
-  code: '',
-  remember: false
-})
+const { token, isLogin, personalInfo } = $(useUser())
 const onCancel = () => {
-  // clearInterval()
   loginModel.base = false
-  formState = {} as FormState
-  console.log('onCancel>>>', loginModel.base, formState)
 }
-const onLoginOrReg = () => {
-  // formState = {} as FormState;
-  formState = {
-    username: '',
-    nickname: '',
-    password: '',
-    remember: false,
-    captcha: '',
-    code: ''
-  }
-  console.log('onLoginOrReg>>>', formState)
+console.log('token', token)
+console.log('已有', personalInfo)
+const getUserInfo = () => {
+  console.log('获取', personalInfo)
 }
 </script>
 
 <template>
-  <!-- <div class="header-container"> -->
   <div class="header">
     <div class="center-tab">
       <NuxtLink to="/">目录</NuxtLink>
@@ -53,16 +27,17 @@ const onLoginOrReg = () => {
       <span>Keyi.com</span>
     </NuxtLink>
     <div class="login-or-registory">
-      <a-button @click="loginModel.base = true">
+      <!-- 待补充：isLogin判断显示登录或者个人头像 -->
+      <a-button v-if="!isLogin" @click="loginModel.base = true">
         <template #icon><user-outlined /></template>
         登录
       </a-button>
+      <div v-if="isLogin" @click="getUserInfo">个人信息</div>
     </div>
   </div>
   <LoginModal v-if="loginModel.base" @cancel="onCancel">
-    <LoginForm :formState="formState" @loginOrReg="onLoginOrReg"></LoginForm>
+    <LoginForm></LoginForm>
   </LoginModal>
-  <!-- </div> -->
 </template>
 
 <style lang="scss" scoped>
