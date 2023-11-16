@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 useHead({
-  title: '小滴课堂 - 首页'
+  title: '可以服饰 - 首页'
 })
 </script>
 
