@@ -9,12 +9,9 @@ const tabBarStyle = ref({
   textAlign: 'center'
 })
 // const mode = ref<TabsProps['tabPosition']>('left')
-const callback: TabsProps['onTabScroll'] = (val) => {
-  console.log(val)
-}
+const callback: TabsProps['onTabScroll'] = (val) => {}
 // 待优化 增加判断 防止接口异常时渲染也异常
 const categoryList = (await getCategory()).data
-console.log(categoryList)
 </script>
 
 <template>

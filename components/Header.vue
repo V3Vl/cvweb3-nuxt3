@@ -34,6 +34,7 @@ const onCancel = () => {
 
 <style lang="scss" scoped>
 .header {
+  z-index: 999;
   position: fixed;
   top: 0;
   width: 100%;
