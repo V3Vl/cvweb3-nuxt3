@@ -8,8 +8,11 @@ export const baseUrl = 'http://127.0.0.1:8080/api'
 const _useApi = $fetch.create({
   baseURL: baseUrl,
   // 请求拦截器
-  async onRequest() {
-    // 请求头传如token
+  async onRequest({ options }) {
+    // 请求头headers 如token
+    const { token } = $(useUser())
+    options.headers = new Headers(options.headers)
+    if (token) options.headers.set('authorization', token)
   },
 
   // 响应拦截器

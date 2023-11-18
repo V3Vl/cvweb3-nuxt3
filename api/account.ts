@@ -1,3 +1,5 @@
+import { IUserInfo } from '~/types/api'
+
 export const register = async (options: { code: string; phone: string; type: string }) => {
   return await useApi('/user/v1/register', {
     method: 'post',
@@ -5,18 +7,17 @@ export const register = async (options: { code: string; phone: string; type: str
   })
 }
 // 待补充 验证码/密码
-export const login = async (options: { phone: string; code: string; password: string }) => {
+export const login = async (options: { phone: string; code?: string; password?: string }) => {
   return await useApi('/user/v1/login', {
     method: 'post',
-    body: { phone: options.phone, code: options.code, password: options.password }
+    body: options
   })
 }
-import { IUserInfo } from '~/types/api'
 
 export const forget = async (options: { phone: string; code: string; password: string }) => {
-  return await useApi('/user/v1/forget', {
+  return await useApi<null>('/user/v1/forget', {
     method: 'post',
-    body: { phone: options.phone, code: options.code, password: options.password }
+    body: options
   })
 }
 // export const getUserInfo = async () => {

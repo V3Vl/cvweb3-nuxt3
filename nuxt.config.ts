@@ -10,12 +10,12 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       Components({
-        resolvers: [AntDesignVueResolver({ importStyle: 'css', resolveIcons: true })]
+        resolvers: [AntDesignVueResolver({ importStyle: 'less', resolveIcons: true })]
       })
     ],
     css: {
       preprocessorOptions: {
-        scss: {
+        less: {
           javascriptEnabled: true
         }
       }

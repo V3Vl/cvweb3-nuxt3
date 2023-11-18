@@ -1,39 +1,31 @@
 <script setup lang="ts">
 const { loginModel } = $(useModel())
-const { token, isLogin, personalInfo } = $(useUser())
+const { personalInfo } = $(useUser())
+import { message } from 'ant-design-vue'
+import { getUserInfo } from '~/api/account'
 const onCancel = () => {
   loginModel.base = false
-}
-console.log('token', token)
-console.log('已有', personalInfo)
-const getUserInfo = () => {
-  console.log('获取', personalInfo)
 }
 </script>
 
 <template>
   <div class="header">
     <div class="center-tab">
-      <NuxtLink to="/">目录</NuxtLink>
-      <div class="tab-a" flexc>
+      <NuxtLink to="/">
+        <menu-outlined style="font-size: 22px" />
+      </NuxtLink>
+      <!-- <div class="tab-a" flexc>
         <NuxtLink target="_blank">链接1</NuxtLink>
         <NuxtLink target="_blank">链接2</NuxtLink>
         <NuxtLink target="_blank">链接3</NuxtLink>
-      </div>
+      </div> -->
       <HeaderSearch />
     </div>
     <NuxtLink class="logo" to="/" felxc>
       <!-- <img src="/images/logo.png" m-2 alt="磐石东方精品国际商城" /> -->
-      <span>Keyi.com</span>
+      <span>K e y i</span>
     </NuxtLink>
-    <div class="login-or-registory">
-      <!-- 待补充：isLogin判断显示登录或者个人头像 -->
-      <a-button v-if="!isLogin" @click="loginModel.base = true">
-        <template #icon><user-outlined /></template>
-        登录
-      </a-button>
-      <div v-if="isLogin" @click="getUserInfo">个人信息</div>
-    </div>
+    <HeaderUser />
   </div>
   <LoginModal v-if="loginModel.base" @cancel="onCancel">
     <LoginForm></LoginForm>
@@ -42,14 +34,16 @@ const getUserInfo = () => {
 
 <style lang="scss" scoped>
 .header {
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 44px;
+  height: 50px;
   padding: 0 10px;
   // flex-basis: 1200px;
   display: flex;
   font-size: 16px;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: rgba(0, 0, 0, 0);
 }
 .center-tab {
   flex: 0.4;
@@ -71,8 +65,11 @@ a:hover {
 }
 .logo {
   flex: 0.2;
+  border-radius: 22px;
+  line-height: 36px;
   align-items: center;
   text-align: center;
+  background-color: rgba(250, 250, 250, 0.1);
   img {
     width: 34px;
     height: 34px;
@@ -81,15 +78,14 @@ a:hover {
     font-size: 24px;
     margin: auto 0;
     line-height: 34px;
+    font-weight: 1000;
+    color: #fff;
   }
 }
-
-.login-or-registory {
-  flex: 0.4;
-  display: flex;
-  justify-content: flex-end;
+.logo:hover {
+  background-color: rgba(250, 250, 250, 0.16);
 }
-.active {
-  color: #f38e48;
+.header:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 </style>

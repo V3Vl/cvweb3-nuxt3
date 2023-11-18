@@ -5,7 +5,11 @@ let state: {
   jumpToUrl: string
 }
 state = {
-  src: 'https://content.rolex.cn/v7/dam/collection/watches-grid/popin-cards/m126234-0051/m126234-0051_v01.jpg?imwidth=1920',
+  // 罗意威list
+  // https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_STILL_LIFE_RGB_CROPPED_2880x1620_10.jpg
+  // https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_THEMES_RGB_CROPPED_2880X1620_38.jpg
+  // https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_STILL_LIFE_RGB_CROPPED_2250x3000_28.jpg
+  src: 'https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_STILL_LIFE_RGB_CROPPED_2880X1620_33.jpg',
   // src: "https://content.rolex.cn/v7/dam/new-watches/2023/family-collection/cosmograph-daytona/landing-page/professional-watches-cosmograph-daytona-chronometric-precision_m126506-0001_2301ac_002.jpg?imwidth=1920",
   fallbackSrc: 'https://www.antdv.com/#error',
   jumpToUrl: ''
@@ -21,6 +25,8 @@ const jumpUrl = () => {
 </template>
 <style lang="scss" scoped>
 .box-img {
+  background-color: #f2f4f5;
+  height: 75vh;
   // position: relative;
   // display: flex;
   // justify-content: center;
@@ -30,8 +36,8 @@ const jumpUrl = () => {
 
   img {
     cursor: pointer;
-    height: 540px;
-    max-width: 1027px;
+    height: 100%;
+    width: 100%;
     display: block;
     margin: 0 auto;
     object-fit: cover;

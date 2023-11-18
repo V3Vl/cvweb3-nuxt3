@@ -1,20 +1,24 @@
 <script lang="ts" setup>
+import IndexMenu from './index/IndexMenu.vue'
 useHead({
   title: '可以服饰 - 首页'
 })
 </script>
 
 <template>
-  <div style="width: 1200px; min-width: 1200px">
-    <div class="main">
-      <!-- 顶部导航 -->
-      <div class="menu"></div>
-      <!-- 个人信息 -->
-      <div class="userInfo"></div>
-      <!-- 轮播图 -->
-      <div class="swiper"></div>
-    </div>
+  <div class="main">
+    <!-- banner -->
+    <TopProduct border></TopProduct>
+    <!-- 轮播图 -->
+    <div class="swiper"></div>
+    <!-- 下端导航 -->
+    <IndexMenu></IndexMenu>
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.main {
+  width: 100%;
+  min-width: 1200px;
+}
+</style>

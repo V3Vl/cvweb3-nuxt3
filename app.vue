@@ -1,12 +1,12 @@
 <script setup>
 import 'ant-design-vue/es/message/style/css'
 useHead({
-  title: "cvweb",
+  title: 'cvweb',
   meta: [
-    { name: "description", content: "cvweb3" },
-    { name: "keywords", content: "123456" },
-  ],
-});
+    { name: 'description', content: 'cvweb3' },
+    { name: 'keywords', content: '123456' }
+  ]
+})
 </script>
 
 <template>
@@ -15,4 +15,8 @@ useHead({
   </NuxtLayout>
 </template>
 
-<style></style>
+<style>
+::-webkit-scrollbar {
+  display: none;
+}
+</style>

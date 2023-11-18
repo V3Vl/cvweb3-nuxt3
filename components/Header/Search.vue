@@ -3,11 +3,8 @@
 </script>
 
 <template>
-  <div class="search">
-    <a-auto-complete
-      placeholder="请输入搜索内容"
-      class="w-220px! rounded-119px"
-    />
+  <div class="search" ml-2>
+    <a-auto-complete placeholder="请输入搜索内容" class="w-220px! rounded-119px" />
     <div absolute flexc z-100 top-5px right-7px>
       <img src="/images/svg/search.svg" w-5 />
       <!-- <search-outlined /> -->
@@ -17,7 +14,6 @@
 
 <style lang="scss" scoped>
 .search {
-  margin-left: 26px;
   position: relative;
   width: 220px;
   :deep(.ant-select-selector) {

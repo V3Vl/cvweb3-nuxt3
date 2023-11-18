@@ -41,7 +41,8 @@ export const useUser = defineStore(
     }
     const logout = () => {
       clearInfo()
-      message.success('退出登录成功')
+      // 已迁走统一提示 方便自定义操作
+      // message.success('退出登录成功')
     }
     const clearInfo = () => {
       token.value = ''

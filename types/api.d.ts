@@ -31,7 +31,7 @@ export interface ICategoryList {
   pid: number
   gmt_create: string
   gmt_modified: string
-  level: string
+  level: number
   subCategoryList?: ICategoryList[]
 }
 /**
