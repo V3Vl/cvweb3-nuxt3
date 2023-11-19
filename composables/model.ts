@@ -2,6 +2,7 @@
 
 import { defineStore } from 'pinia'
 export const useModel = defineStore('model', () => {
+  const indexType = ref<number>(0)
   // 注册框展示
   const loginModel = reactive({
     base: false, //注册初始页
@@ -13,6 +14,7 @@ export const useModel = defineStore('model', () => {
     loginModel.finish = true
   }
   return {
+    indexType,
     loginModel,
     changeToFinish
   }

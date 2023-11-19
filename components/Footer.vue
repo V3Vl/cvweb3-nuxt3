@@ -4,14 +4,14 @@ import { message } from 'ant-design-vue'
 
 <template>
   <div class="footer">
-    <div wfull flexc>
+    <!-- <div wfull flexc>
       <div w-1200px class="grid-three footer-href">
         <a @click="message.warn('敬请期待')">链接1</a>
         <a @click="message.warn('敬请期待')">链接2</a>
         <a @click="message.warn('敬请期待')">链接3</a>
         <a @click="message.warn('敬请期待')">链接4</a>
       </div>
-    </div>
+    </div> -->
     <a-divider />
     <div class="copyright">
       Copyright © 2023 Company,lnc.
@@ -27,7 +27,7 @@ import { message } from 'ant-design-vue'
   // position: absolute;
   // bottom: 0;
   width: 100%;
-  height: 60px;
+  // height: 60px;
   background-color: #f1efef;
 
   .footer-href a:hover {

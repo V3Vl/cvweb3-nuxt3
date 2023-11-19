@@ -16,6 +16,7 @@
 .search {
   position: relative;
   width: 220px;
+  margin-left: 180px;
   :deep(.ant-select-selector) {
     border-radius: 119px;
   }

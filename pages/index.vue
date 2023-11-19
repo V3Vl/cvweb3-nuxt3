@@ -1,24 +1,37 @@
 <script lang="ts" setup>
 import IndexMenu from './index/IndexMenu.vue'
+import BuyerShowList from './buyer/BuyerShowList.vue'
+const { indexType } = $(useModel())
 useHead({
-  title: '可以服饰 - 首页'
+  title: indexType == 1 ? '可以服饰 - 首页' : '可以服饰 - 买家秀'
 })
 </script>
 
 <template>
-  <div class="main">
-    <!-- banner -->
-    <TopProduct border></TopProduct>
+  <div v-if="indexType == 1" class="main-index">
     <!-- 轮播图 -->
-    <div class="swiper"></div>
+    <TopProduct></TopProduct>
     <!-- 下端导航 -->
-    <IndexMenu></IndexMenu>
+    <div style="position: relative">
+      <div>
+        <IndexMenu></IndexMenu>
+      </div>
+    </div>
+  </div>
+  <div v-if="indexType == 2" pt-56px style="height: 100vh">
+    <BuyerShowList></BuyerShowList>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.main {
+::-webkit-scrollbar {
+  display: none;
+}
+
+.main-index {
+  position: relative;
   width: 100%;
   min-width: 1200px;
+  overflow-y: scroll;
 }
 </style>

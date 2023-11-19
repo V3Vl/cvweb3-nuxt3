@@ -3,10 +3,10 @@ import { getCategory } from '~/api/category'
 import type { TabsProps } from 'ant-design-vue'
 const activeKey = ref(0)
 const tabBarStyle = ref({
-  // backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  // color: '#fff',
+  width: '160px',
   height: '25vh',
-  textAlign: 'center'
+  textAlign: 'center',
+  backgroundColor: '#000'
 })
 // const mode = ref<TabsProps['tabPosition']>('left')
 const callback: TabsProps['onTabScroll'] = (val) => {}
@@ -15,23 +15,36 @@ const categoryList = (await getCategory()).data
 </script>
 
 <template>
-  <div class="menu" border>
+  <div class="menu">
     <a-tabs
+      tabBarGutter="0"
       v-model:activeKey="activeKey"
       tab-position="left"
       :tabBarStyle="tabBarStyle"
       @tabScroll="callback"
+      style="background-color: #ececec"
+      animated
     >
       <a-tab-pane
         color="#fff"
-        style="background-color: #fff"
         v-for="(item, index) in categoryList"
         :key="index"
         :tab="`${item.name}`"
       >
-        <template v-for="itemBtn in item.subCategoryList">
-          <a-button> {{ itemBtn.name }} </a-button>
-        </template>
+        <a-card>
+          <a-card-grid
+            v-for="itemBtn in item.subCategoryList"
+            hoverable
+            style="width: 150px; text-align: center"
+          >
+            {{ itemBtn.name }}
+            <img
+              alt="example"
+              style="width: 150px; height: 160px"
+              src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+            />
+          </a-card-grid>
+        </a-card>
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -40,13 +53,35 @@ const categoryList = (await getCategory()).data
 <style lang="scss" scoped>
 .menu {
   height: 25vh;
-  width: 100%;
-  // background-color: #0b1127;
-}
-::v-deep(.ant-tabs-tab) {
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 150px;
-  height: 40px;
-  margin: 0;
+  // position: relative;
+
+  :deep(.ant-tabs-tab) {
+    height: 8.33vh;
+    width: 160px !important;
+    background-color: #000;
+  }
+  :deep(.ant-tabs-tab-active) {
+    width: 160px !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  :deep(.ant-tabs-tab:hover) {
+    color: #fff;
+  }
+  :deep(.ant-tabs-left > .ant-tabs-content-holder) {
+    padding: 10px 0;
+  }
+  :deep(.ant-card-body) {
+    background-color: #ececec;
+  }
+  :deep(.ant-card-grid) {
+    margin: auto 35px;
+    height: 200px;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    background-color: #fff;
+  }
 }
 </style>

@@ -14,12 +14,11 @@ useHead({
 
 <template>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage :key="$route.fullPath" />
   </NuxtLayout>
 </template>
 
 <style>
-::-webkit-scrollbar {
-  display: none;
-}
+/* page {
+} */
 </style>
