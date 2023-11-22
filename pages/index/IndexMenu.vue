@@ -35,14 +35,10 @@ const categoryList = (await getCategory()).data
           <a-card-grid
             v-for="itemBtn in item.subCategoryList"
             hoverable
+            class="grid-item"
             style="width: 150px; text-align: center"
           >
             {{ itemBtn.name }}
-            <img
-              alt="example"
-              style="width: 150px; height: 160px"
-              src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-            />
           </a-card-grid>
         </a-card>
       </a-tab-pane>
@@ -74,14 +70,25 @@ const categoryList = (await getCategory()).data
     background-color: #ececec;
   }
   :deep(.ant-card-grid) {
-    margin: auto 35px;
-    height: 200px;
+    margin: auto 15px;
     cursor: pointer;
-    font-size: 16px;
-    letter-spacing: 3px;
+    font-size: 1rem;
     font-weight: bold;
-    padding: 10px 0 0 0;
+    letter-spacing: 3px;
+    border-radius: 8px;
+    // font-weight: bold;
+    color: #fff;
+    background-color: #f89f60;
+  }
+  :deep(.ant-card-grid):hover {
+    font-size: 1.2rem;
+    color: #000;
     background-color: #fff;
+    transition: color 0.3s ease-in-out;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    transition-property: color;
   }
 }
 </style>

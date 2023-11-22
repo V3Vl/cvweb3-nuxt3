@@ -15,29 +15,24 @@ yarn install
 pnpm install
 ```
 
-# 本地 api(已独立分离 → 测试 api)
-
-进入 server 文件夹
-
-````shell
-nodemon app.js
-# 测试api
-在cpshop-node
-```shell
-nodemon app.js
-
-本地接口服务配置在`http://localhost:8081`
-
-```shell
-npm run dev
-````
-
 # 打包生产环境
 
 将你的代码进行打包
 
 ```shell
-npm run build
+打包构建：yarn build
+```
+
+```
+访问命令 - 生成的是打包后的本地链接：node .output/server/index.mjs
+```
+
+```
+docker构建命令：docker build -f cvweb3-nuxt3.build.Dockerfile . -t cvweb3-nuxt3-image
+```
+
+```
+查看构建后存储的文件位置 命令：pwd
 ```
 
 # tips

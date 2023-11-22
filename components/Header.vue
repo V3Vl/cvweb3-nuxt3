@@ -28,7 +28,10 @@ const onCancel = () => {
       <HeaderSearch />
     </div>
     <NuxtLink class="logo" to="/" felxc>
-      <span>K e y i</span>
+      <!-- <dot-chart-outlined /> -->
+      <span>K e </span>
+      <yahoo-outlined />
+      <!-- <span> i</span> -->
     </NuxtLink>
     <HeaderUser />
   </div>
@@ -62,15 +65,24 @@ const onCancel = () => {
   text-align: center;
   background-color: rgba(250, 250, 250, 0.1);
   span {
-    font-size: 24px;
+    color: rgb(247, 248, 234);
+    font-size: 1.8rem;
     margin: auto 0;
     line-height: 34px;
     font-weight: 1000;
-    color: #fff;
   }
 }
 .logo:hover {
-  background-color: rgba(250, 250, 250, 0.16);
+  span {
+    color: #fff;
+    font-size: 1.85rem;
+  }
+  background-color: rgba(250, 250, 250, 0.3);
+  transition: color 0.3s ease-in-out;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  transition-property: color;
 }
 .header:hover {
   background-color: rgba(0, 0, 0, 1);

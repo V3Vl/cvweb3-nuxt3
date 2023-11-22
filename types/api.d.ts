@@ -43,11 +43,15 @@ export interface IUserInfo {
   head_img: string
   phone: string
   pwd: string
-  position: null
+  position: number
   slogan: string
   sex: string
   city: null
   role: null
   read_time: null
   openid: null
+}
+export interface IRoles {
+  name: string
+  permissions: number
 }

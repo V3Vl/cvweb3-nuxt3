@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { message } from 'ant-design-vue'
 import { getUserInfo } from '~/api/account'
-
+// 存在问题 手动清除浏览器缓存时 login状态异常
 export const useUser = defineStore(
   'user',
   () => {
@@ -16,7 +16,7 @@ export const useUser = defineStore(
       pwd: '',
       position: null,
       slogan: '',
-      sex: '1',
+      sex: '',
       role: null,
       city: null,
       read_time: null,
@@ -29,7 +29,7 @@ export const useUser = defineStore(
     }
     // 同步登录信息
     const asyncUserInfo = async () => {
-      if (token.value === '') {
+      if (token.value == '') {
         isLogin.value = false
         return
       }
@@ -41,6 +41,7 @@ export const useUser = defineStore(
     }
     const logout = () => {
       clearInfo()
+      navigateTo('/')
       // 已迁走统一提示 方便自定义操作
       // message.success('退出登录成功')
     }
