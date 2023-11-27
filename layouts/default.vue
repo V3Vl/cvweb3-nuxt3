@@ -1,9 +1,11 @@
 <script setup lang="ts">
 const tabPosition = ref<any['tabPosition']>('top')
-const activeKey = ref('1')
-const activeKeyEmitTo = ref<string>('0')
+const activeKey = ref('0')
+const activeKeyEmitTo = ref<number>(0)
 let { indexType } = $(useModel())
-indexType = 1
+const route = useRoute()
+
+const tabBarTit = ref(['首页', '买家广场'])
 const tabBarStyleCSS = {
   position: 'fixed',
   top: 0,
@@ -13,10 +15,35 @@ const tabBarStyleCSS = {
   borderRadius: '0 0 20px 0',
   backgroundColor: 'rgba(0, 0, 0, 0.4)'
 }
-const tapTabs = (evt) => {
-  activeKeyEmitTo.value = evt
-  indexType = evt
+
+const tapTabs = (evt: number) => {
+  if (route.path != '/') {
+    if (evt == 0) {
+      navigateTo('/')
+    }
+  } else {
+    activeKeyEmitTo.value = evt
+    indexType = evt
+  }
 }
+watch(
+  () => route.path,
+  (newValue) => {
+    if (newValue != '/') {
+      tabBarTit.value = ['首页']
+    } else {
+      tabBarTit.value = ['首页', '买家广场']
+    }
+  }
+)
+onMounted(() => {
+  if (route.path != '/') {
+    tabBarTit.value = ['首页']
+  } else {
+    activeKeyEmitTo.value = 0
+    tabBarTit.value = ['首页', '买家广场']
+  }
+})
 </script>
 
 <template>
@@ -30,17 +57,23 @@ const tapTabs = (evt) => {
       animated
       @tabClick="tapTabs"
     >
-      <a-tab-pane key="1" tab="首 页">
+      <a-tab-pane key="0" tab="首 页">
         <div>
           <slot />
         </div>
         <Footer />
       </a-tab-pane>
-      <a-tab-pane key="2" tab="买家广场">
+      <a-tab-pane key="1" tab="买家广场">
         <div>
           <slot />
         </div>
       </a-tab-pane>
+      <!-- <a-tab-pane v-for="(item, index) in tabBarTit" :key="index" :tab="item">
+        <div>
+          <slot />
+        </div>
+      </a-tab-pane> -->
+      <Footer />
     </a-tabs>
   </div>
 </template>

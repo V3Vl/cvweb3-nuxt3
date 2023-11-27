@@ -3,12 +3,12 @@ import IndexMenu from './index/IndexMenu.vue'
 import BuyerShowList from './buyer/BuyerShowList.vue'
 const { indexType } = $(useModel())
 useHead({
-  title: indexType == 1 ? '可以服饰 - 首页' : '可以服饰 - 买家秀'
+  title: '可以服饰 - 首页'
 })
 </script>
 
 <template>
-  <div v-if="indexType == 1" class="main-index">
+  <div v-if="indexType == 0" class="main-index">
     <!-- 轮播图 -->
     <TopProduct></TopProduct>
     <!-- 下端导航 -->
@@ -18,7 +18,7 @@ useHead({
       </div>
     </div>
   </div>
-  <div v-if="indexType == 2" pt-56px style="height: 100vh">
+  <div v-if="indexType == 1" pt-56px style="height: 100vh">
     <BuyerShowList></BuyerShowList>
   </div>
 </template>

@@ -2,25 +2,53 @@
 const { loginModel } = $(useModel())
 const { personalInfo } = $(useUser())
 const props = defineProps({
-  activeKeyEmit: String
+  activeKeyEmit: Number
 })
-const activeKeyEmitOn = ref(props.activeKeyEmit)
+const topTips = ref('修复完善中！敬请期待！')
+const headBgColor = ref('rgba(0, 0, 0, 0)')
+const route = useRoute()
 watch(
   () => props.activeKeyEmit,
-  (newValue, oldValue) => {
-    activeKeyEmitOn.value = newValue
+  (newValue) => {
+    if (route.path === '/') {
+      console.log('>>>', newValue)
+      if (newValue == 1) {
+        headBgColor.value = '#000'
+      } else headBgColor.value = 'rgba(0, 0, 0, 0)'
+    }
+  }
+)
+watch(
+  () => route.path,
+  (newValue) => {
+    if (newValue != '/') {
+      topTips.value = '视频弹幕demo'
+      headBgColor.value = '#000'
+    } else {
+      headBgColor.value = 'rgba(0, 0, 0, 0)'
+      topTips.value = '修复完善中！敬请期待！'
+    }
   }
 )
 const onCancel = () => {
   loginModel.base = false
 }
+onMounted(() => {
+  if (route.path == '/') {
+    headBgColor.value = 'rgba(0, 0, 0, 0)'
+    topTips.value = '修复完善中！敬请期待！'
+  } else {
+    topTips.value = '视频弹幕demo'
+    headBgColor.value = '#000'
+  }
+})
 </script>
 
 <template>
   <div
     :style="{
       position: 'fixed',
-      backgroundColor: activeKeyEmitOn === '2' ? '#000' : 'rgba(0, 0, 0, 0)'
+      backgroundColor: headBgColor
     }"
     class="header"
   >
@@ -28,10 +56,7 @@ const onCancel = () => {
       <HeaderSearch />
     </div>
     <NuxtLink class="logo" to="/" felxc>
-      <!-- <dot-chart-outlined /> -->
-      <span>K e </span>
-      <yahoo-outlined />
-      <!-- <span> i</span> -->
+      <span>{{ topTips }}</span>
     </NuxtLink>
     <HeaderUser />
   </div>

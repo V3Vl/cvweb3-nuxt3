@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getCategory } from '~/api/category'
 import type { TabsProps } from 'ant-design-vue'
-const activeKey = ref(0)
+const activeKey = ref(1)
 const tabBarStyle = ref({
   width: '160px',
   height: '25vh',
@@ -12,6 +12,9 @@ const tabBarStyle = ref({
 const callback: TabsProps['onTabScroll'] = (val) => {}
 // 待优化 增加判断 防止接口异常时渲染也异常
 const categoryList = (await getCategory()).data
+const toVideoPage = () => {
+  navigateTo(`/videoPage/videoDemoPage`)
+}
 </script>
 
 <template>
@@ -40,6 +43,10 @@ const categoryList = (await getCategory()).data
           >
             {{ itemBtn.name }}
           </a-card-grid>
+          <div>
+            <!-- 临时demo演示 -->
+            <a-button size="large" @click="toVideoPage">视频功能demo</a-button>
+          </div>
         </a-card>
       </a-tab-pane>
     </a-tabs>
