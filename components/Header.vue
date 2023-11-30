@@ -4,58 +4,26 @@ const { personalInfo } = $(useUser())
 const props = defineProps({
   activeKeyEmit: Number
 })
-const topTips = ref('修复完善中！敬请期待！')
+const topTips = ref('删库，重新认识Nuxt')
 const headBgColor = ref('rgba(0, 0, 0, 0)')
 const route = useRoute()
-watch(
-  () => props.activeKeyEmit,
-  (newValue) => {
-    if (route.path === '/') {
-      console.log('>>>', newValue)
-      if (newValue == 1) {
-        headBgColor.value = '#000'
-      } else headBgColor.value = 'rgba(0, 0, 0, 0)'
-    }
-  }
-)
-watch(
-  () => route.path,
-  (newValue) => {
-    if (newValue != '/') {
-      topTips.value = '视频弹幕demo'
-      headBgColor.value = '#000'
-    } else {
-      headBgColor.value = 'rgba(0, 0, 0, 0)'
-      topTips.value = '修复完善中！敬请期待！'
-    }
-  }
-)
 const onCancel = () => {
   loginModel.base = false
 }
-onMounted(() => {
-  if (route.path == '/') {
-    headBgColor.value = 'rgba(0, 0, 0, 0)'
-    topTips.value = '修复完善中！敬请期待！'
-  } else {
-    topTips.value = '视频弹幕demo'
-    headBgColor.value = '#000'
-  }
-})
 </script>
 
 <template>
-  <div
-    :style="{
-      position: 'fixed',
-      backgroundColor: headBgColor
-    }"
-    class="header"
-  >
-    <div class="center-tab">
+  <div class="header" border>
+    <div class="tab-left">
+      <nav>
+        <a href="#">首页</a>
+        <a href="#">关于我们</a>
+        <a href="#">服务</a>
+        <a href="#">联系我们</a>
+      </nav>
       <HeaderSearch />
     </div>
-    <NuxtLink class="logo" to="/" felxc>
+    <NuxtLink class="logo" to="/" felxc border>
       <span>{{ topTips }}</span>
     </NuxtLink>
     <HeaderUser />
@@ -72,12 +40,12 @@ onMounted(() => {
   right: 0;
   width: 100%;
   height: 50px;
-  padding: 0 10px;
+  // padding: 0 10px;
   display: flex;
   font-size: 16px;
   align-items: center;
 }
-.center-tab {
+.tab-left {
   flex: 0.4;
   align-items: center;
   display: flex;
@@ -90,26 +58,17 @@ onMounted(() => {
   text-align: center;
   background-color: rgba(250, 250, 250, 0.1);
   span {
-    color: rgb(247, 248, 234);
     font-size: 1.8rem;
-    margin: auto 0;
     line-height: 34px;
     font-weight: 1000;
   }
 }
 .logo:hover {
-  span {
-    color: #fff;
-    font-size: 1.85rem;
-  }
-  background-color: rgba(250, 250, 250, 0.3);
+  background-color: rgba(250, 250, 250, 0.5);
   transition: color 0.3s ease-in-out;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
   transition-property: color;
-}
-.header:hover {
-  background-color: rgba(0, 0, 0, 1);
 }
 </style>

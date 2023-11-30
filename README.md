@@ -2,7 +2,9 @@
 
 # nodejs+express
 
-## :date: 2023 年 11 月 28 日 06:55:17 :sleeping:
+## :date: 2023 年 11 月 28 日 06:54:48 :sleeping:
+
+`当前微信登录组件有错误（未完善），先研究nuxt3是否有更好的父子组件通讯方式，实现form切换登录方式，子组件监听到切换操作，以停止轮询`
 
 # 安装
 
@@ -57,4 +59,3 @@ json 转 interface：
 -> crtl + shift + alt + v
 -> 输入希望生成的接口名
 -> 自动生成 interface
-?

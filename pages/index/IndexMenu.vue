@@ -56,7 +56,6 @@ const toVideoPage = () => {
 <style lang="scss" scoped>
 .menu {
   height: 25vh;
-  // position: relative;
 
   :deep(.ant-tabs-tab) {
     height: 8.33vh;

@@ -26,9 +26,6 @@ srcList.value = [
 const onSlideChange = () => {
   console.log('slide change')
 }
-const jumpUrl = () => {
-  // window.open(state.jumpToUrl);
-}
 </script>
 <template>
   <div class="box-img">
@@ -50,8 +47,9 @@ const jumpUrl = () => {
 .box-img {
   display: flex;
   background-color: #f2f4f5;
-  height: 75vh;
-  width: 100%;
+  height: 500px;
+  width: 1024px;
+  margin: 0 auto;
   .swiper-box {
     --swiper-theme-color: #4e4d53;
     --swiper-navigation-size: 40px;
