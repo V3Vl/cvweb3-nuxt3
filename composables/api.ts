@@ -2,9 +2,12 @@ import { $fetch } from 'ohmyfetch'
 import type { FetchRequest, FetchOptions } from 'ohmyfetch'
 import { IApiBase } from '../types/api'
 import { message } from 'ant-design-vue'
-
+// 请求封装方式1 - $fetch - 来自钊老师
 export const baseUrl = 'http://127.0.0.1:8080/api'
-
+/**
+ * tips: Nuxt3使用useFetch和useAsyncData请求接口，但是不利于自定义封装
+ * useFetch 和 useAsyncData 都是ohmyFetch封装的
+ */
 const _useApi = $fetch.create({
   baseURL: baseUrl,
   // 请求拦截器
@@ -22,7 +25,7 @@ const _useApi = $fetch.create({
     const data = response._data
     if (data.code !== 0) {
       if (data.code === 270004) return
-      // message.error(data.msg)
+      message.error(data.msg)
     }
   }
 })

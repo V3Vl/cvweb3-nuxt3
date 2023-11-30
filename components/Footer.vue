@@ -1,22 +1,25 @@
-<script lang="ts" setup>
-import { message } from 'ant-design-vue'
-</script>
-
 <template>
   <div class="footer">
-    <!-- <div wfull flexc>
-      <div w-1200px class="grid-three footer-href">
-        <a @click="message.warn('敬请期待')">链接1</a>
-        <a @click="message.warn('敬请期待')">链接2</a>
-        <a @click="message.warn('敬请期待')">链接3</a>
-        <a @click="message.warn('敬请期待')">链接4</a>
-      </div>
-    </div> -->
-    <a-divider />
-    <div class="copyright">
-      Copyright © 2023 Company,lnc.
-      <a href="https://www.beian.gov.cn/"> &nbsp;桂ICP备12345678号&nbsp; </a>
-      Terms
+    <div class="footer-line"></div>
+    <ul wfull flexb>
+      <li><a href="https://nuxt.com.cn/" target="_blank">友情链接1</a></li>
+      <li><a href="https://nuxt.com.cn/" target="_blank">友情链接2</a></li>
+      <li><a href="https://nuxt.com.cn/" target="_blank">友情链接3</a></li>
+      <li><a href="https://nuxt.com.cn/" target="_blank">友情链接4</a></li>
+      <li><a href="https://nuxt.com.cn/" target="_blank">友情链接5</a></li>
+    </ul>
+    <div class="copyright" flexb>
+      <p>
+        Copyright &nbsp;© &nbsp;2023&nbsp;我没有公司,&nbsp;&nbsp;lnc.&nbsp;&nbsp;版权所有<a
+          href="https://www.beian.gov.cn/"
+        >
+          &nbsp;桂ICP备12345678号&nbsp;
+        </a>
+        Terms
+      </p>
+      <div>其他footer内容1</div>
+      <div>其他footer内容2</div>
+      <div>language: CN</div>
     </div>
   </div>
 </template>
@@ -24,44 +27,33 @@ import { message } from 'ant-design-vue'
 <style lang="scss" scoped>
 .footer {
   // 待优化 隐藏页面滚动条后 取消绝对定位
-  // position: absolute;
-  // bottom: 0;
-  width: 100%;
-  // height: 60px;
-  background-color: #f1efef;
-
-  .footer-href a:hover {
-    color: #f38e48;
+  width: 80%;
+  margin: auto auto 0 auto;
+  .footer-line {
+    height: 10px;
+    border-radius: 0.2rem;
+    border-top: #dfe1e5 1px solid;
   }
-
-  :deep(.ant-divider-horizontal) {
-    margin: 5px 0;
-  }
-
-  .grid-three {
+  ul {
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-
-    img {
-      width: 163px;
-      height: 80px;
-      flex-shrink: 0;
-    }
-
-    .footer-href {
-      flex-shrink: 0;
-    }
-
-    .footer-qr {
-      flex-shrink: 0;
-    }
+    // margin: auto 0;
+  }
+  ul > li {
+    min-width: 50px;
+    list-style: none;
+  }
+  ul > li > a {
+    color: #59a0ce;
+  }
+  ul > li > a:hover {
+    color: #053bd1;
   }
 
   .copyright {
+    height: 50px;
     width: 100%;
-    display: flex;
-    justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
     font-size: 12px;

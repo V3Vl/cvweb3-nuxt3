@@ -1,24 +1,27 @@
 <script lang="ts" setup>
-import IndexMenu from './index/IndexMenu.vue'
 import BuyerShowList from './buyer/BuyerShowList.vue'
 const { indexType } = $(useModel())
+const description = ref('首页description')
+const keyword = ref('关键词1,关键词2,关键词3,关键词4')
 useHead({
-  title: '可以服饰 - 首页'
+  title: '可以服饰',
+  charset: 'utf-8',
+  meta: [
+    { name: 'keyword', content: keyword },
+    { name: 'description', content: description },
+    { name: 'author', content: '潘毅' }
+  ]
 })
 </script>
 
 <template>
-  <div v-if="indexType == 0" class="main-index">
-    <!-- 轮播图 -->
+  <div v-if="indexType == 1" class="main-index">
     <TopProduct></TopProduct>
-    <!-- 下端导航 -->
-    <div style="position: relative">
-      <div>
-        <IndexMenu></IndexMenu>
-      </div>
-    </div>
+    <MiddleContent></MiddleContent>
+    <ShopMenu></ShopMenu>
+    <PartnerLink></PartnerLink>
   </div>
-  <div v-if="indexType == 1" pt-56px style="height: 100vh">
+  <div v-if="indexType == 2" pt-56px style="height: 100vh">
     <BuyerShowList></BuyerShowList>
   </div>
 </template>

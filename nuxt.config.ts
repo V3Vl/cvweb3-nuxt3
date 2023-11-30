@@ -32,8 +32,8 @@ export default defineNuxtConfig({
   build: {
     // transpile是过滤打包优化，因为打包时自动优化会删除一些插件，transpile指定哪些插件不被优化
     // 打包构建使用这个配置
-    // transpile: ['lodash-es', '@babel/runtime']
+    transpile: ['lodash-es', '@babel/runtime']
     // 本地启动使用这个配置
-    transpile: ['lodash-es']
+    // transpile: ['lodash-es']
   }
 })
