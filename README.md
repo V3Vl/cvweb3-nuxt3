@@ -1,13 +1,21 @@
 # Nuxt3+vite+pinia+antdV
 
-# nodejs+express
-
-## :date: 2023 年 11 月 28 日 06:54:48 :sleeping:
+## :date: 2023 年 12 月 2 日 08:17:51 :sleeping:
 
 ### 项目方案：
 
-- `PC端`：项目近期规划 1.命名布局+响应式 2.封装 useFetch 3.骨架 4.视频 demo 5. 日/夜 + 中/英
-- 移动端：m.cvweb3.com 独立域名重定向方式 `PWA应用`
+- PC 端：
+- [] 1.命名布局+响应式
+- [x] 2.封装 useFetch
+- [] 3.骨架
+- [] 4.视频 demo
+- [] 5. 日/夜模式 + 中/英
+- 移动端：
+- [] m.cvweb3.com
+- [] 独立域名重定向方式 `PWA应用`
+- 部署：
+  - [x] 手动部署
+  - [] DevOps（有点难，暂时放着）
 
 # 安装
 
@@ -18,17 +26,19 @@ yarn install
 pnpm install
 ```
 
-# 打包生产环境
+## 打包构建
 
 将你的代码进行打包
 
 ```shell
-打包构建：yarn build
+build：yarn build
 ```
 
 ```
 访问命令 - 生成的是打包后的本地链接：node .output/server/index.mjs
 ```
+
+## docker 相关
 
 ```
 docker构建命令：docker build -f cvweb3-nuxt3.build.Dockerfile . -t cvweb3-nuxt3-image
@@ -38,13 +48,15 @@ docker构建命令：docker build -f cvweb3-nuxt3.build.Dockerfile . -t cvweb3-n
 查看构建后存储的文件位置 命令：pwd
 ```
 
-# 服务器相关配置 - 常用命令/设置
+## nginx 相关
 
 - sudo find / -type f -name nginx 查找 nginx 所在位置
 - export PATH=$PATH:/usr/local/nginx/sbin 设置全局 nginx -V 命令
-- nginx 安装位置 usr/local/nginx
-- usr/local/nginx 下的 conf 文件修改 ssl 绑定信息
-- 重启、启动 nginx：sudo /usr/local/nginx/sbin/nginx -s reload
+- 检查 nginx.conf 配置是否正确：`sudo /usr/local/nginx/sbin/nginx -t`
+- 重启 nginx：`sudo /usr/local/nginx/sbin/nginx -s reload`
+- nginx 位置： usr/local/nginx
+
+## 其他
 
 # tips
 
