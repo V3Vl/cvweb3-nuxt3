@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getCategory } from '~/api/category'
-const categoryList = await getCategory()
+// const categoryList = await getCategory()
 </script>
 
 <template>
@@ -12,10 +12,10 @@ const categoryList = await getCategory()
     </div>
   </div>
   <div class="box-b" wfull flexc>
-    <div class="category-card" v-for="(item, index) in categoryList.data">
+    <!-- <div class="category-card" v-for="(item, index) in categoryList.data">
       <div class="category-card-item" w-50 h-75></div>
       <p text-center>{{ item.name }}</p>
-    </div>
+    </div> -->
   </div>
 </template>
 

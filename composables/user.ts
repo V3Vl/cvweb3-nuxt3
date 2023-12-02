@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { message } from 'ant-design-vue'
 import { getUserInfo } from '~/api/account'
 // 存在问题 手动清除浏览器缓存时 login状态异常
 export const useUser = defineStore(
@@ -59,6 +58,5 @@ export const useUser = defineStore(
       personalInfo
     }
   },
-  //持久化储存
   { persist: true }
 )

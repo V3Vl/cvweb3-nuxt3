@@ -4,7 +4,6 @@ import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import 'ant-design-vue/es/message/style/css'
 const modules = [Pagination]
 </script>
 
@@ -38,11 +37,11 @@ const modules = [Pagination]
     font-size: 1.8rem;
     font-weight: 700;
   }
-  :deep(.ant-tabs-tab) {
-    height: 8.33vh;
-    width: 160px !important;
-    background-color: #000;
-  }
+  // :deep(.ant-tabs-tab) {
+  //   height: 8.33vh;
+  //   width: 160px !important;
+  //   background-color: #000;
+  // }
   .partner {
     padding: 10px 28px;
     height: 400px;

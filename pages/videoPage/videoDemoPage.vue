@@ -18,9 +18,9 @@ const getVideoData = () => {}
         <div mt-18px class="danmu">
           <cdn-img class="cursor-pointer h-25px bg-none mr" @click="switchDanmu()"
             src="/" />
-          <a-input mr-25px rounded-5px v-model:value="danmuContent"
+          <n-input mr-25px rounded-5px v-model:value="danmuContent"
             placeholder="请输入你要发送的弹幕" />
-          <a-button >发送</a-button>
+          <n-button >发送</n-button>
         </div>
       </div> -->
   </div>

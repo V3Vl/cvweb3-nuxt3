@@ -1,31 +1,49 @@
 <script setup lang="ts">
 const { loginModel } = $(useModel())
-const { personalInfo } = $(useUser())
+import type { DrawerPlacement } from 'naive-ui'
 const props = defineProps({
-  activeKeyEmit: String
+  _clientType: String
 })
-const activeKeyEmitOn = ref(props.activeKeyEmit)
-watch(
-  () => props.activeKeyEmit,
-  (newValue, oldValue) => {
-    activeKeyEmitOn.value = newValue
-  }
-)
+const active = ref(false)
+const placement = ref<DrawerPlacement>('right')
+const activate = (place: DrawerPlacement) => {
+  active.value = true
+  placement.value = place
+}
 const onCancel = () => {
   loginModel.base = false
 }
 </script>
 
 <template>
-  <div style="position: fixed" class="header">
-    <div class="center-tab">
-      <HeaderSearch />
+  <div class="header" wfull flexb>
+    <div class="header-left" flexb>
+      <n-button text style="font-size: 1.2rem; font-weight: bold" @click="activate('left')"
+        >&nbsp=</n-button
+      >
+      <div class="search">
+        <n-input-group>
+          <n-input style="border-radius: 20px" :style="{ width: '50%' }" />
+          <n-button style="border-radius: 20px" ghost> 搜索 </n-button>
+        </n-input-group>
+      </div>
     </div>
-    <NuxtLink class="logo" to="/" felxc>
-      <span>K e y i</span>
-    </NuxtLink>
-    <HeaderUser />
+    <div class="logo" flexb>
+      <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
+      <!-- <img src="../../assets/img/logo_cat.png" alt="" srcset="" /> -->
+      <span>Keyi</span>
+    </div>
+    <div class="header-right">
+      <ul>
+        <li>主题</li>
+        <li>语言</li>
+      </ul>
+      <HeaderUser />
+    </div>
   </div>
+  <n-drawer v-model:show="active" width="12rem" :placement="placement">
+    <n-drawer-content title="移动端"> 配置一些菜单-移动端 </n-drawer-content>
+  </n-drawer>
   <LoginModal v-if="loginModel.base" @cancel="onCancel">
     <LoginForm></LoginForm>
   </LoginModal>
@@ -33,38 +51,72 @@ const onCancel = () => {
 
 <style lang="scss" scoped>
 .header {
-  z-index: 990;
+  position: relative;
+  box-sizing: border-box;
   top: 0;
-  right: 0;
-  width: 100%;
-  height: 50px;
-  padding: 0 10px;
-  display: flex;
-  font-size: 16px;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 1);
-}
-.center-tab {
-  flex: 0.4;
-  align-items: center;
-  display: flex;
-}
-.logo {
-  flex: 0.2;
-  border-radius: 22px;
-  line-height: 36px;
-  align-items: center;
-  text-align: center;
-  background-color: rgba(250, 250, 250, 0.1);
-  span {
-    font-size: 24px;
-    margin: auto 0;
-    line-height: 34px;
-    font-weight: 1000;
-    color: #fff;
+  left: 0;
+  padding: 4px 6px;
+  height: 4rem;
+  // background-color: rgba(0, 0, 0, 0.1);
+  color: #333;
+  .header-left {
+    width: 40%;
+    /* PC 版样式 */
+    // @media screen and (min-width: 599px) {
+    //   /* PC、ipad 版样式 */
+    //   display: none;
+    // }
   }
-}
-.logo:hover {
-  background-color: rgba(250, 250, 250, 0.16);
+  .search {
+    @media screen and (max-width: 599px) {
+      /* 手机版样式 */
+      display: none;
+    }
+  }
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: aqua;
+    padding: 0 10px;
+    height: 3rem;
+    border-radius: 10px;
+    img {
+      width: 1.9rem;
+      height: 1.9rem;
+    }
+    span {
+      margin-left: 8px;
+      letter-spacing: 2px;
+    }
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .header-right {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    ul {
+      @media screen and (max-width: 599px) {
+        /* 手机版样式 */
+        display: none;
+      }
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex; /* 设置为弹性容器 */
+    }
+
+    li {
+      cursor: pointer;
+      padding: 15px;
+      text-align: center;
+      flex: 1; /* 平均分配空间 */
+      box-sizing: border-box; /* 防止 padding 影响宽度 */
+    }
+    li:hover {
+      color: lightskyblue;
+    }
+  }
 }
 </style>

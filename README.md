@@ -1,4 +1,4 @@
-# Nuxt3+vite+pinia+antdV
+# Nuxt3+vite+pinia+antdV（或会改为 Naive UI）
 
 ## :date: 2023 年 12 月 2 日 08:17:51 :sleeping:
 

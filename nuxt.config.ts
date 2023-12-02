@@ -1,18 +1,26 @@
 import Components from 'unplugin-vue-components/vite'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineNuxtConfig({
   modules: ['@unocss/nuxt', '@pinia/nuxt'],
+  // envDir: '~/xxx',   //指定env文件夹
   // 响应式转换，ref省略.value写法
   experimental: {
     reactivityTransform: true
   },
   vite: {
+    // 似乎可以删掉
     plugins: [
       Components({
-        resolvers: [AntDesignVueResolver({ importStyle: 'css', resolveIcons: true })]
+        resolvers: [NaiveUiResolver()]
       })
     ],
+    optimizeDeps: {
+      include:
+        process.env.NODE_ENV === 'development'
+          ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']
+          : []
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -22,18 +30,42 @@ export default defineNuxtConfig({
     },
     // 不需要ssr渲染的插件
     ssr: {
-      noExternal: ['moment', 'compute-scroll-into-view', 'ant-design-vue', 'lodash-es', 'dayjs']
+      noExternal: [
+        'moment',
+        'naive-ui',
+        '@css-render/vue3-ssr',
+        'compute-scroll-into-view',
+        'lodash-es',
+        'dayjs'
+      ]
     }
   },
-  // 将dayjs改为es6 module模块（因为antd底层使用了dayjs）
+  /**
+   *    转为es6 module模块（如果组件库或插件是基于非es6开发的）
+   * alias: {
+   dayjs: 'dayjs/esm'
+   },
+   */
   alias: {
     dayjs: 'dayjs/esm'
   },
   build: {
-    // transpile是过滤打包优化，因为打包时自动优化会删除一些插件，transpile指定哪些插件不被优化
-    // 打包构建使用这个配置
-    transpile: ['lodash-es', '@babel/runtime']
-    // 本地启动使用这个配置
-    // transpile: ['lodash-es']
+    /**
+     * transpile指定哪些插件不被转译
+     * 只在build时触发
+     * 过滤build时的自动转译，有可能会删除需要转译的插件，所以需要过滤掉。
+     */
+    transpile:
+      process.env.NODE_ENV === 'production'
+        ? [
+            'naive-ui',
+            'lodash-es',
+            'vueuc',
+            '@css-render/vue3-ssr',
+            '@juggle/resize-observer',
+            '@babel/runtime'
+          ]
+        : ['@juggle/resize-observer', 'lodash-es']
   }
 })
+// nuxt.config文档：https://nuxt.com.cn/docs/api/nuxt-config

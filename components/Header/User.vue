@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { message } from 'ant-design-vue'
-import type { MenuProps } from 'ant-design-vue'
+// import { useMessage } from 'naive-ui'
 import { CSSProperties } from 'vue'
 const { loginModel } = $(useModel())
 const { isLogin, personalInfo, logout } = $(useUser())
@@ -8,8 +7,8 @@ const logoutVisible = ref<boolean>(false)
 const confirmLoading = ref<boolean>(false)
 import { getRoleMenuList } from '~/api/account'
 import { IRoles } from '~/types/api'
+// const message = useMessage()
 const modalText = ref<string>(`确定退出账号${personalInfo.phone}？`)
-
 const menuItems = ref<IRoles[]>([])
 
 const getRoleMenu = async (permissions: number) => {
@@ -45,7 +44,8 @@ const drawerFooterStyle: CSSProperties = {
 const drawerBodyStyle: CSSProperties = {
   backgroundColor: ''
 }
-const handleMenuClick: MenuProps['onClick'] = async (e) => {
+// 待优化（突然换了组件库）
+const handleMenuClick: any['onClick'] = async (e) => {
   if (e.key === '1') {
     drawerVisible.value = true
   }
@@ -59,7 +59,7 @@ const handleOk = () => {
     // setTimeout(() => {
     logoutVisible.value = false
     confirmLoading.value = false
-    message.success('退出登录成功')
+    // message.success('退出登录成功')
     // }, 700)
   }
 }
@@ -69,32 +69,32 @@ const onClose = () => {
 </script>
 
 <template>
-  <div class="login-or-registory" h-11>
+  <div class="login-or-registory">
     <div v-if="isLogin">
       <div id="components-dropdown-demo-placement">
-        <a-dropdown placement="bottomRight">
-          <a-avatar
+        <!-- <n-dropdown placement="bottomRight">
+          <n-avatar
             v-if="isLogin"
             class="avatar-img"
             :src="personalInfo.head_img"
             @click="drawerVisible = true"
           />
           <template #overlay>
-            <a-menu @click="handleMenuClick">
-              <a-menu-item key="1">
+            <n-menu @click="handleMenuClick">
+              <n-menu-item key="1">
                 <a target="_blank" rel="noopener noreferrer">个人中心</a>
-              </a-menu-item>
-              <a-menu-item key="2">
+              </n-menu-item>
+              <n-menu-item key="2">
                 <a target="_blank" rel="noopener noreferrer" @click="logoutVisible = true"
                   >退出登录</a
                 >
-              </a-menu-item>
-            </a-menu>
+              </n-menu-item>
+            </n-menu>
           </template>
-        </a-dropdown>
+        </n-dropdown> -->
       </div>
       <br />
-      <a-modal
+      <n-modal
         width="320px"
         v-model:visible="logoutVisible"
         title="确认提示"
@@ -105,8 +105,8 @@ const onClose = () => {
         okText="确认退出"
       >
         <p>{{ modalText }}</p>
-      </a-modal>
-      <a-drawer
+      </n-modal>
+      <n-drawer
         flexc
         :bodyStyle="drawerBodyStyle"
         :footerStyle="drawerFooterStyle"
@@ -116,7 +116,7 @@ const onClose = () => {
         @close="onClose"
       >
         <div>
-          <a-avatar
+          <n-avatar
             style="
               display: block;
               margin: 0 auto;
@@ -133,12 +133,12 @@ const onClose = () => {
           <span class="block text-center"><tablet-two-tone /> {{ personalInfo.phone }}</span>
           <bank-two-tone /><span style="font-size: 0.6rem">地址 - {{ personalInfo.city }}</span>
         </div>
-        <a-divider />
-        <a-card class="vip-card" hoverable style="width: 310px">
+        <n-divider />
+        <n-card class="vip-card" hoverable style="width: 310px">
           <div text-center>VIP</div>
-        </a-card>
+        </n-card>
         <div class="user-menu">
-          <a-card-grid
+          <!-- <n-card-grid
             text-center
             v-for="(item, index) in menuItems"
             :key="index"
@@ -146,31 +146,27 @@ const onClose = () => {
           >
             <account-book-filled />
             {{ item.name }}
-          </a-card-grid>
-          <!-- <a-card class="user-menu">
-          <a-card-grid v-for="(item, index) in menuItems" class="menu-item" :key="index">
+          </n-card-grid> -->
+          <!-- <n-card class="user-menu">
+          <n-card-grid v-for="(item, index) in menuItems" class="menu-item" :key="index">
             {{ item.name }}
-          </a-card-grid>
-        </a-card> -->
+          </n-card-grid>
+        </n-card> -->
         </div>
         <template #footer>
           <div lh-20>
-            <a-button @click="logoutVisible = true">退出登录</a-button>
+            <n-button @click="logoutVisible = true">退出登录</n-button>
           </div>
         </template>
-      </a-drawer>
+      </n-drawer>
     </div>
-    <a-button m="9px 4px 0 0" v-if="!isLogin" @click="loginModel.base = true">
-      <template #icon><user-outlined /></template>
-      登录
-    </a-button>
+    <n-button v-if="!isLogin" @click="loginModel.base = true"> 登录 </n-button>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .login-or-registory {
   position: relative;
-  flex: 0.4;
   display: flex;
   justify-content: flex-end;
 
@@ -194,11 +190,11 @@ const onClose = () => {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
-  :deep(.ant-card-grid) {
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 6px;
-  }
+  // :deep(.ant-card-grid) {
+  //   cursor: pointer;
+  //   padding: 10px;
+  //   border-radius: 6px;
+  // }
   .menu-item {
     // background-color: #b9ebff;
     color: #333;

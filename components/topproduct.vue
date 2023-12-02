@@ -4,13 +4,13 @@ import { Navigation, Autoplay, Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import 'ant-design-vue/es/message/style/css'
 interface ISrcListType {
   src: string
   fallbackSrc?: string
   jumpToUrl?: string
 }
 const srcList = ref<Array<ISrcListType>>([])
+console.log('NODE_ENV:', process.env.NODE_ENV)
 
 srcList.value = [
   {
@@ -34,7 +34,7 @@ srcList.value = [
       <h2>H2：女装，商务，休闲，宴服</h2>
       <h3>H3：低调，奢华，有内涵</h3>
       <h4>P：谷哥度哥请爬取</h4>
-      <a-button class="more-btn">查看更多</a-button>
+      <n-button class="more-btn">查看更多</n-button>
     </div>
     <swiper
       class="swiper-box"

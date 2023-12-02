@@ -2,16 +2,17 @@
   <div>
     <div mt-10px mb-20px>
       <!-- {{ parentLoginType }} -->
-      <a-image style="cursor: pointer" :width="180" :height="180" :src="qrcodeUrl" />
+      <n-image style="cursor: pointer" :width="180" :height="180" :src="qrcodeUrl" />
     </div>
     <h3 fs-50 class="font-bold">使用微信扫描二维码</h3>
   </div>
 </template>
 <script setup lang="ts">
-import { message } from 'ant-design-vue'
+import { useMessage } from 'naive-ui'
 import { getWechat, checkScan } from '~/api/wechat'
 const { loginModel } = $(useModel())
 const { setLoginSuccState } = $(useUser())
+const message = useMessage()
 props: {
   parentLoginType: String
 }

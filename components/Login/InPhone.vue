@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { register, login, forget } from '../../api/account'
 import { sendCode } from '~/api/notify'
-import { message } from 'ant-design-vue'
 const { loginModel } = $(useModel())
 const { setLoginSuccState } = $(useUser())
-
+import { useMessage } from 'naive-ui'
+const message = useMessage()
 interface IState {
   isLogin: boolean
   isPwd: boolean
@@ -78,13 +78,13 @@ const getCode = async () => {
     // 手机号正则([1开头][第二位][后面9位0-9])
     const phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/
     if (!phoneReg.test(formState.username)) {
-      message.warn('请输入正确的手机号')
+      message.warning('请输入正确的手机号')
       return
     }
   } else {
-    message.warn('请输入手机号')
+    message.warning('请输入手机号')
   }
-  if (!formState.captcha) return message.warn('请输入图形验证码')
+  if (!formState.captcha) return message.warning('请输入图形验证码')
   const type: string = state.forgetPwd ? 'change' : state.isLogin ? 'login' : 'register'
   const res = await sendCode(formState.username, formState.captcha, type)
   if (res.code === 0) {
@@ -158,74 +158,75 @@ onBeforeMount(() => {
 </script>
 <template>
   <div m="0 auto" w="80" class="test-login">
-    <a-form
+    <n-form
       :model="formState"
       name="normal_login"
       class="login-form"
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <a-form-item
+      <!-- 待优化 换了组件库 -->
+      <!-- <n-form-item
         name="username"
         :rules="[{ required: true, message: 'Please input your username!' }]"
       >
-        <a-input v-model:value="formState.username" placeholder="请输入手机号">
+        <n-input v-model:value="formState.username" placeholder="请输入手机号">
           <template #prefix>
             <UserOutlined class="site-form-item-icon" />
           </template>
-        </a-input>
-      </a-form-item>
-      <a-form-item
+        </n-input>
+      </n-form-item> -->
+      <!-- <n-form-item
         v-show="(state.isLogin === true && state.isPwd === true) || state.forgetPwd"
         name="password"
         :rules="[{ required: true, message: '请输入密码!' }]"
       >
-        <a-input type="password" v-model:value="formState.password" placeholder="请输入密码">
+        <n-input type="password" v-model:value="formState.password" placeholder="请输入密码">
           <template #prefix>
             <UserOutlined class="site-form-item-icon" />
           </template>
-        </a-input>
-      </a-form-item>
-      <a-form-item
+        </n-input>
+      </n-form-item> -->
+      <!-- <n-form-item
         v-show="state.isLogin === false || state.isPwd === false"
         name="captcha"
         :rules="[{ required: true, message: '请输入图形验证码!' }]"
       >
-        <a-input-group compact>
-          <a-input
+        <n-input-group compact>
+          <n-input
             v-model:value="formState.captcha"
             style="float: left; width: 67%"
             placeholder="请输入图形验证码"
           />
           <img :src="captchaSrc" style="height: 34px" @click="resetCaptcha('')" />
-        </a-input-group>
-      </a-form-item>
+        </n-input-group>
+      </n-form-item> -->
       <!-- 验证码 -->
-      <a-form-item
+      <!-- <n-form-item
         v-show="state.isLogin === false || state.isPwd === false"
         name="password"
         :rules="[{ required: true, message: '请输入手机验证码!' }]"
       >
-        <a-input-group compact>
-          <a-input v-model:value="formState.code" style="float: left; width: 60%" />
-          <a-button type="primary" @click="getCode" :disabled="isDisable">{{
+        <n-input-group compact>
+          <n-input v-model:value="formState.code" style="float: left; width: 60%" />
+          <n-button type="primary" @click="getCode" :disabled="isDisable">{{
             isDisable ? `${countDown}s后重新获取` : '获取验证码'
-          }}</a-button>
-        </a-input-group>
-      </a-form-item>
+          }}</n-button>
+        </n-input-group>
+      </n-form-item> -->
 
-      <a-form-item v-show="state.isLogin === true && state.isPwd === true">
+      <n-form-item v-show="state.isLogin === true && state.isPwd === true">
         <a class="login-form-forgot" @click="pwdOrCode(false)">手机验证码登录</a>
-      </a-form-item>
-      <a-form-item v-show="state.forgetPwd === false && state.isLogin !== state.isPwd">
+      </n-form-item>
+      <n-form-item v-show="state.forgetPwd === false && state.isLogin !== state.isPwd">
         <a class="login-form-forgot" @click="pwdOrCode(true)"> 密码登录 </a>
-      </a-form-item>
-      <a-form-item v-show="state.isPwd === true && state.isLogin === true">
+      </n-form-item>
+      <n-form-item v-show="state.isPwd === true && state.isLogin === true">
         <a class="login-form-forgot" @click="forgetPwdSet">忘记密码</a>
-      </a-form-item>
+      </n-form-item>
 
-      <a-form-item>
-        <a-button
+      <n-form-item>
+        <n-button
           v-show="state.isLogin && state.forgetPwd === false"
           :disabled="disabled"
           type="primary"
@@ -234,8 +235,8 @@ onBeforeMount(() => {
           @click="loginBtn"
         >
           登录
-        </a-button>
-        <a-button
+        </n-button>
+        <n-button
           v-show="state.isLogin === false && state.forgetPwd === false"
           :disabled="disabled"
           type="primary"
@@ -244,8 +245,8 @@ onBeforeMount(() => {
           @click="registerBtn"
         >
           注册
-        </a-button>
-        <a-button
+        </n-button>
+        <n-button
           v-show="state.forgetPwd === true"
           :disabled="disabled"
           type="primary"
@@ -254,7 +255,7 @@ onBeforeMount(() => {
           @click="saveUserBtn"
         >
           保存
-        </a-button>
+        </n-button>
 
         <a v-show="state.forgetPwd === true" @click="state.forgetPwd = false">取消</a>
         <a
@@ -263,8 +264,8 @@ onBeforeMount(() => {
           >去注册</a
         >
         <a v-show="state.isLogin === false" @click="changeLoginOrReg(true)">去登录</a>
-      </a-form-item>
-    </a-form>
+      </n-form-item>
+    </n-form>
   </div>
 </template>
 <style lang="scss" scoped></style>

@@ -45,14 +45,14 @@ const rigisterSucc = () => {}
     <div w="30%" h-50 class="login-type" flex>
       <!-- 待添加图标 未明确动态添加的方式 -->
       <!--
-        <a-button :icon="h(FacebookOutlined)" />
+        <n-button :icon="h(FacebookOutlined)" />
        -->
-      <a-button v-for="item in loginTypeList" @click="changeLoginType(item.type)">
+      <n-button v-for="item in loginTypeList" @click="changeLoginType(item.type)">
         {{ item.content }}
-      </a-button>
+      </n-button>
     </div>
     <!-- 登录信息表单 -->
-    <a-divider type="vertical" orientation="left" style="height: 256px; color: #e3e3e3" dashed />
+    <n-divider type="vertical" orientation="left" style="height: 256px; color: #e3e3e3" dashed />
     <div w="65%" h-74 class="user-form" p="t-5 b-5" text-center>
       <!-- 测试登录 -->
       <div v-show="state.loginType === 'phone'">

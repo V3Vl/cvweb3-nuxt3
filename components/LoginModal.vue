@@ -18,10 +18,9 @@ const closeLoginModal = () => {
         src="/images/svg/close_icon.svg"
         class="colse-btn cursor-pointer select-none w-20px! h-20px!"
       />
-      <a-divider orientation="left" style="border-color: #e3e3e3"
-        ><span fs-22>登录 - Keyi</span></a-divider
+      <n-divider orientation="left" style="border-color: #e3e3e3"
+        ><span fs-22>登录 - Keyi</span></n-divider
       >
-      <!-- slot 嵌套子组件 -->
       <slot />
     </div>
   </div>
