@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
+import { getPartnerList } from '~/api/banner'
 import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 const modules = [Pagination]
+const partnerList = await getPartnerList()
+console.log('>>aa>', partnerList)
 </script>
 
 <template>
   <div class="partner-box">
-    <h2>合作厂家（外链）</h2>
+    <h2>合作厂家 - 外链</h2>
     <div class="partner">
       <swiper
         :slidesPerView="4"
@@ -19,10 +22,9 @@ const modules = [Pagination]
         :grabCursor="true"
         class="mySwiper"
       >
-        <swiper-slide v-for="(item, index) in 10" :key="index">
-          <div class="partner-content" border>{{ index }}</div>
-          <a href="/" target="_blank">外链{{ index }}</a>
-          <!-- <p>外链{{ index }}</p> -->
+        <!-- <div flex> -->
+        <swiper-slide v-for="(item, index) in partnerList.data" :key="index">
+          <a :href="item.link" target="_blank">{{ item.partner }}</a>
         </swiper-slide>
       </swiper>
     </div>
@@ -31,42 +33,31 @@ const modules = [Pagination]
 
 <style lang="scss" scoped>
 .partner-box {
-  height: 26vh;
   padding-top: 60px;
   h2 {
     text-align: center;
     font-size: 1.8rem;
     font-weight: 700;
   }
-  // :deep(.ant-tabs-tab) {
-  //   height: 8.33vh;
-  //   width: 160px !important;
-  //   background-color: #000;
-  // }
   .partner {
-    padding: 10px 28px;
-    width: 100%;
-
-    .mySwiper {
-      width: 100%;
-      height: 100%;
-    }
-
     .swiper-slide {
       position: relative;
       text-align: center;
       font-size: 18px;
-      background: #fff;
-      height: 30vh;
-
+      background: rgb(150, 186, 216);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      .partner-content {
-        width: 100%;
-        height: 100%;
-        border-radius: 14px;
+      @media screen and (max-width: 599px) {
+        width: 10em !important;
+        height: 10em;
+        margin: 0 10px;
       }
+      @media screen and (min-width: 599px) {
+        width: 15em !important;
+        height: 15em;
+      }
+      border-radius: 14px;
       p {
         font-size: 1.3rem;
       }
@@ -74,7 +65,6 @@ const modules = [Pagination]
 
     .swiper-slide img {
       display: block;
-      width: 100%;
       height: 100%;
       object-fit: cover;
     }

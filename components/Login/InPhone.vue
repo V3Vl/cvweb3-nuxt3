@@ -65,11 +65,8 @@ const resetCaptcha = async (type: string) => {
   console.log(captchaSrc)
 }
 // 验证码倒计时
-let countDown = $ref(60)
-let timer = $ref(null)
 let isDisable = $ref(false)
 const disabled = computed(() => {
-  // return !(formState.username && formState.password)
   return !formState.username
 })
 // 获取手机验证码
@@ -98,13 +95,15 @@ const getCode = async () => {
     resetCaptcha(type)
   }
 }
+let countDown = $ref(60)
+let timer = $ref(null)
 const countDownFunc = () => {
   timer = setInterval(() => {
     countDown--
     if (countDown <= 0) {
       clearInterval(timer)
-      countDown = 60
       isDisable = false
+      countDown = 60
     }
   }, 1000)
 }
@@ -155,7 +154,7 @@ const saveUserBtn = async () => {
     // message.success('登录成功')
   }
 }
-onBeforeMount(() => {
+onBeforeUnmount(() => {
   clearInterval(timer)
 })
 </script>
@@ -169,11 +168,11 @@ onBeforeMount(() => {
       @finishFailed="onFinishFailed"
     >
       <!-- 待优化 换了组件库 -->
-      <n-form-item label="手机号" path="username" flexb>
+      <n-form-item label="手机号（17687500360）" path="username" flexb>
         <n-input v-model:value="formState.username" placeholder="请输入手机号" />
       </n-form-item>
       <n-form-item
-        label="密码"
+        label="密码（123456）"
         v-show="(state.isLogin === true && state.isPwd === true) || state.forgetPwd"
         name="password"
         :rules="[{ required: true, message: '请输入密码!' }]"

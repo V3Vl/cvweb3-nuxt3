@@ -5,7 +5,7 @@ const a = ref(0)
 
 <template>
   <div class="middle-content" text-center>
-    <h2 fsem-3 style="margin: 0">H2：可以服饰首页，下滑查看更多</h2>
+    <h2 fsem-3 style="margin: 0">H2：兼容了移动端，下滑查看更多</h2>
     <h3 style="margin: 0">
       H3：重新阅读了nuxt文档，数据获取和生命周期；修复了项目中隐藏的关键错误！
     </h3>

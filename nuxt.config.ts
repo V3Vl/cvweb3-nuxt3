@@ -67,5 +67,8 @@ export default defineNuxtConfig({
           ]
         : ['@juggle/resize-observer', 'lodash-es']
   }
+  // proxy: {
+  //   '/api/': {target: ''}
+  // }
 })
 // nuxt.config文档：https://nuxt.com.cn/docs/api/nuxt-config

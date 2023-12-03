@@ -33,5 +33,6 @@ useHead({
   position: relative;
   // width: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 </style>

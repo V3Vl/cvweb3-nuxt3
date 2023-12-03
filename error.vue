@@ -7,7 +7,7 @@ const pTips = ref('')
 const pDescription = ref('')
 let _errTips: any = {
   '404': () => {
-    ;(pTips.value = '404 该页面不存在'), (pDescription.value = '未开发')
+    ;(pTips.value = '404 该页面不存在'), (pDescription.value = '时间匆匆，暂未开发')
   },
   '403': () => {
     ;(pTips.value = '禁止访问'), (pDescription.value = '总有些门是对你关闭的')

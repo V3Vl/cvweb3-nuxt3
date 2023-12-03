@@ -5,3 +5,7 @@ export const getBannerList = async (location: string) => {
     params: { location }
   })
 }
+// 待优化any
+export const getPartnerList = async () => {
+  return await useApi<any>('/banner/v1/partnerList')
+}
