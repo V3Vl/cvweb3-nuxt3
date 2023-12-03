@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { getCategory } from '~/api/category'
+import { ICategoryList } from '~/types/api'
+const categoryList = ref({ data: [{ name: '1-1' }, { name: '1-2' }, { name: '1-3' }] })
 // const categoryList = await getCategory()
 </script>
 
 <template>
   <h1 text-center mt-20>商品分类</h1>
+  <h2 text-center>此处布局暂未做移动端兼容, 静态数据, 还在研究部署后端</h2>
   <div class="box-t" wfull flexc>
     <div class="category" w-30 h-30 v-for="(item, index) in 5">
       <div class="category-img"></div>
@@ -12,10 +15,15 @@ import { getCategory } from '~/api/category'
     </div>
   </div>
   <div class="box-b" wfull flexc>
-    <!-- <div class="category-card" v-for="(item, index) in categoryList.data">
-      <div class="category-card-item" w-50 h-75></div>
+    <div class="category-card" v-for="(item, index) in categoryList.data">
+      <div
+        class="category-card-item"
+        w-50
+        h-75
+        @click="navigateTo(`/shopListPage?id=${index}`)"
+      ></div>
       <p text-center>{{ item.name }}</p>
-    </div> -->
+    </div>
   </div>
 </template>
 

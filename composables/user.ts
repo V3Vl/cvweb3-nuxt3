@@ -5,7 +5,8 @@ export const useUser = defineStore(
   'user',
   () => {
     const token = ref('')
-    const isLogin = ref(true)
+    const isLogin = ref(false)
+    console.log('isLogon>>>', isLogin.value)
     // 数据结构对应数据库个人信息表
     const personalInfo = ref({
       id: null,

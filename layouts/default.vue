@@ -4,7 +4,7 @@ const { clientType } = $(useClient())
 
 <template>
   <Header :_clientType="clientType" />
-  <div>
+  <div mt-4rem>
     <slot />
   </div>
   <Footer />

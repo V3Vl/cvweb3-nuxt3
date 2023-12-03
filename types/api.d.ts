@@ -32,7 +32,7 @@ export interface ICategoryList {
   gmt_create: string
   gmt_modified: string
   level: number
-  subCategoryList?: ICategoryList[]
+  subCategoryList: ICategoryList[]
 }
 /**
  * 个人信息

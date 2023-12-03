@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { loginModel } = $(useModel())
 import type { DrawerPlacement } from 'naive-ui'
+const { isLogin, personalInfo, logout } = $(useUser())
 const props = defineProps({
   _clientType: String
 })
@@ -13,6 +14,7 @@ const activate = (place: DrawerPlacement) => {
 const onCancel = () => {
   loginModel.base = false
 }
+const showModal = ref(false)
 </script>
 
 <template>
@@ -30,7 +32,6 @@ const onCancel = () => {
     </div>
     <div class="logo" flexb>
       <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
-      <!-- <img src="../../assets/img/logo_cat.png" alt="" srcset="" /> -->
       <span>Keyi</span>
     </div>
     <div class="header-right">
@@ -39,33 +40,39 @@ const onCancel = () => {
         <li>语言</li>
       </ul>
       <HeaderUser />
+      <n-button v-if="!isLogin" @click="loginModel.base = true"> 登录 </n-button>
     </div>
   </div>
-  <n-drawer v-model:show="active" width="12rem" :placement="placement">
-    <n-drawer-content title="移动端"> 配置一些菜单-移动端 </n-drawer-content>
+  <n-drawer v-model:show="active" width="14rem" :placement="placement">
+    <n-drawer-content title="暂无内容"> 配置一些菜单 </n-drawer-content>
   </n-drawer>
-  <LoginModal v-if="loginModel.base" @cancel="onCancel">
-    <LoginForm></LoginForm>
-  </LoginModal>
+  <n-modal v-model:show="loginModel.base" transform-origin="center">
+    <n-card
+      style="width: 599px"
+      title="登录, 样式暂时不管..."
+      :bordered="false"
+      size="huge"
+      role="dialog"
+      aria-modal="true"
+    >
+      <LoginForm />
+    </n-card>
+  </n-modal>
 </template>
 
 <style lang="scss" scoped>
 .header {
-  position: relative;
+  position: fixed;
+  z-index: 999;
   box-sizing: border-box;
   top: 0;
   left: 0;
   padding: 4px 6px;
   height: 4rem;
-  // background-color: rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   color: #333;
   .header-left {
     width: 40%;
-    /* PC 版样式 */
-    // @media screen and (min-width: 599px) {
-    //   /* PC、ipad 版样式 */
-    //   display: none;
-    // }
   }
   .search {
     @media screen and (max-width: 599px) {

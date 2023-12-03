@@ -32,6 +32,18 @@ export default defineConfig({
         width: `${d}px`,
         height: `${d}px`
       })
+    ],
+    [
+      /^fsem-(\d+)$/,
+      ([, d]) => ({
+        'font-size': `${d}em`
+      })
+    ],
+    [
+      /^fspx-(\d+)$/,
+      ([, d]) => ({
+        'font-size': `${d}px`
+      })
     ]
   ]
 })

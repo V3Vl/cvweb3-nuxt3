@@ -9,7 +9,7 @@ const modules = [Pagination]
 
 <template>
   <div class="partner-box">
-    <h2>合作厂家（外链优化SEO）</h2>
+    <h2>合作厂家（外链）</h2>
     <div class="partner">
       <swiper
         :slidesPerView="4"
@@ -20,7 +20,7 @@ const modules = [Pagination]
         class="mySwiper"
       >
         <swiper-slide v-for="(item, index) in 10" :key="index">
-          <div class="partner-content"></div>
+          <div class="partner-content" border>{{ index }}</div>
           <a href="/" target="_blank">外链{{ index }}</a>
           <!-- <p>外链{{ index }}</p> -->
         </swiper-slide>
@@ -31,6 +31,7 @@ const modules = [Pagination]
 
 <style lang="scss" scoped>
 .partner-box {
+  height: 26vh;
   padding-top: 60px;
   h2 {
     text-align: center;
@@ -44,9 +45,9 @@ const modules = [Pagination]
   // }
   .partner {
     padding: 10px 28px;
-    height: 400px;
+    width: 100%;
 
-    .swiper {
+    .mySwiper {
       width: 100%;
       height: 100%;
     }
@@ -56,14 +57,14 @@ const modules = [Pagination]
       text-align: center;
       font-size: 18px;
       background: #fff;
+      height: 30vh;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
       .partner-content {
         width: 100%;
-        height: 88%;
-        background: #eeeeee;
+        height: 100%;
         border-radius: 14px;
       }
       p {

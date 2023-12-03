@@ -31,8 +31,7 @@ useHead({
 
 .main-index {
   position: relative;
-  width: 100%;
-  min-width: 1200px;
+  // width: 100vh;
   overflow-y: scroll;
 }
 </style>

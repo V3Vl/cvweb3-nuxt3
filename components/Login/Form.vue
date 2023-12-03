@@ -1,14 +1,5 @@
 <script setup lang="ts">
 // import { sendCode } from '~~/api/notify'
-// import { message } from 'ant-design-vue'
-// import {
-//   SmileOutlined,
-//   MobileOutlined,
-//   WechatOutlined,
-//   GoogleOutlined,
-//   FacebookOutlined
-// } from '@ant-design/icons-vue'
-
 // const emit = defineEmits(['loginOrReg'])
 interface State {
   isLogin: boolean
@@ -16,7 +7,7 @@ interface State {
   checked: boolean
 }
 const state = reactive<State>({
-  loginType: 'wechat',
+  loginType: 'phone',
   isLogin: true,
   checked: false
 })
@@ -41,35 +32,28 @@ const rigisterSucc = () => {}
 </script>
 
 <template>
-  <div p="t-6px b-20px r-10px l-10px" flexc>
-    <div w="30%" h-50 class="login-type" flex>
-      <!-- 待添加图标 未明确动态添加的方式 -->
-      <!--
-        <n-button :icon="h(FacebookOutlined)" />
-       -->
+  <div p="t-6px b-20px r-10px l-10px">
+    <div class="login-type" flex>
       <n-button v-for="item in loginTypeList" @click="changeLoginType(item.type)">
         {{ item.content }}
       </n-button>
     </div>
     <!-- 登录信息表单 -->
-    <n-divider type="vertical" orientation="left" style="height: 256px; color: #e3e3e3" dashed />
-    <div w="65%" h-74 class="user-form" p="t-5 b-5" text-center>
+    <div wfull p="t-5 b-5" text-center>
       <!-- 测试登录 -->
       <div v-show="state.loginType === 'phone'">
-        <span>手机号登录</span>
+        <!-- <span>手机号登录</span> -->
         <LoginInPhone :parentLoginType="state.loginType" />
       </div>
       <!-- 微信扫码登录 -->
       <div v-show="state.loginType === 'wechat'">
-        <span>微信登录</span>
+        <!-- <span>微信登录</span> -->
         <LoginInWechat :parentLoginType="state.loginType" />
       </div>
       <div v-show="state.loginType === 'google'">
-        <span>google</span>
         <div class="wx-qrcode" w-40 h-40 bd></div>
       </div>
       <div v-show="state.loginType === 'facebook'">
-        <span>facebook</span>
         <div class="wx-qrcode" w-40 h-40 bd></div>
       </div>
     </div>

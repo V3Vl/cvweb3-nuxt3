@@ -8,11 +8,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useMessage } from 'naive-ui'
+// import { useMessage } from 'naive-ui'
 import { getWechat, checkScan } from '~/api/wechat'
 const { loginModel } = $(useModel())
 const { setLoginSuccState } = $(useUser())
-const message = useMessage()
+// const message = useMessage()
 props: {
   parentLoginType: String
 }
@@ -45,7 +45,7 @@ const watchCheckScan = async (ticket: string) => {
     console.log('已扫码', timer, res)
     setLoginSuccState(res.data)
     loginModel.base = false
-    message.success('登录成功')
+    // message.success('登录成功')
   }
 }
 onMounted(() => {

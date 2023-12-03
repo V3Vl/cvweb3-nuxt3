@@ -5,25 +5,26 @@ const closeLoginModal = () => {
   loginModel.base = false
   emit('cancel')
 }
+const showModal = ref(false)
 </script>
 
 <template>
-  <!-- <div b="b white" m="t-6px b-10px" w-200px></div> -->
-  <!-- <span text-white text-16px font-600 tracking-8px ml-8px text-center
-  >让技术不再难学习</span> -->
-  <div class="login-modal">
-    <div class="content wfull" p="8px 8px">
-      <img
-        @click="closeLoginModal"
-        src="/images/svg/close_icon.svg"
-        class="colse-btn cursor-pointer select-none w-20px! h-20px!"
-      />
-      <n-divider orientation="left" style="border-color: #e3e3e3"
-        ><span fs-22>登录 - Keyi</span></n-divider
-      >
-      <slot />
-    </div>
-  </div>
+  <n-modal v-model:show="loginModel.base">
+    <n-card
+      style="width: 600px"
+      title="登录"
+      :bordered="false"
+      size="huge"
+      role="dialog"
+      aria-modal="true"
+    >
+      <!-- <slot /> -->
+      <template #footer>
+        <n-button>登录</n-button>
+        <n-button>注册</n-button>
+      </template>
+    </n-card>
+  </n-modal>
 </template>
 
 <style lang="less" scoped>
