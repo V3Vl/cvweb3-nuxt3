@@ -67,7 +67,6 @@ const options = ref([
   }
 ])
 const handleSelect = (key: string | number) => {
-  console.log(key)
   if (key === 'stmt3') {
     showModal.value = true
   }

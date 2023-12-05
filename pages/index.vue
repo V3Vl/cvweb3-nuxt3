@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import BuyerShowList from './buyer/BuyerShowList.vue'
 const { indexType } = $(useModel())
 const description = ref('这里是动态返回的，或许可以用SEO后台管理系统控制')
 const keyword = ref('关键词1,关键词2,关键词3,关键词4')
@@ -19,6 +18,7 @@ useHead({
   <div class="main-index">
     <TopProduct></TopProduct>
     <MiddleContent></MiddleContent>
+    <IndexVideo></IndexVideo>
     <ShopMenu></ShopMenu>
     <PartnerLink></PartnerLink>
   </div>

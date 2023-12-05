@@ -3,6 +3,8 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "mjs": " node .output/server/index.mjs",
+    "start": "nuxt build && node .output/server/index.mjs",
     "eslint": "eslint --ext .js,.vue, src",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

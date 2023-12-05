@@ -3,8 +3,6 @@ import { getCategory } from '~/api/category'
 import { ICategoryList } from '~/types/api'
 // const categoryList = ref({ data: [{ name: '1-1' }, { name: '1-2' }, { name: '1-3' }] })
 const categoryList = await getCategory()
-
-console.log('>>>', categoryList)
 </script>
 
 <template>

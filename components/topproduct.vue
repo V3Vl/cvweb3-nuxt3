@@ -10,7 +10,6 @@ interface ISrcListType {
   jumpToUrl?: string
 }
 const srcList = ref<Array<ISrcListType>>([])
-console.log('NODE_ENV:', process.env.NODE_ENV)
 
 srcList.value = [
   {
@@ -36,7 +35,7 @@ srcList.value = [
         <h3 fspx-30 style="margin: 0">H3：低调，奢华，有内涵</h3>
         <p fspx-18>P：促销，抢购，新品，限量</p>
       </div>
-      <NuxtLink class="more-btn" to="/666">进入商城</NuxtLink>
+      <NuxtLink class="more-btn" to="/buyer/BuyerShowList">进入商城</NuxtLink>
     </div>
     <swiper
       class="swiper-box"

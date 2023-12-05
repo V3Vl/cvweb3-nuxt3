@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { getPartnerList } from '~/api/banner'
+import { getBannerList, getPartnerList } from '~/api/banner'
 import { Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 const modules = [Pagination]
+// const partnerList = ref({ data: [{ link: '', partner: '' }] })
 const partnerList = await getPartnerList()
 console.log('>>aa>', partnerList)
 </script>

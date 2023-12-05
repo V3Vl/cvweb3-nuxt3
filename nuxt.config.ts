@@ -66,9 +66,9 @@ export default defineNuxtConfig({
             '@babel/runtime'
           ]
         : ['@juggle/resize-observer', 'lodash-es']
+  },
+  proxy: {
+    '/api/': { target: 'https://api.cvweb3.com', pathRewrite: { '^/api/': '' } }
   }
-  // proxy: {
-  //   '/api/': {target: ''}
-  // }
 })
 // nuxt.config文档：https://nuxt.com.cn/docs/api/nuxt-config
