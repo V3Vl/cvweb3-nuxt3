@@ -55,3 +55,7 @@ export interface IRoles {
   name: string
   permissions: number
 }
+export interface IVideoList {
+  playResult: string
+  episodeId: string
+}

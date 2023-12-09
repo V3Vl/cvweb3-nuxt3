@@ -15,7 +15,8 @@ import { IApiBase } from '../types/api'
 //   process.env.NODE_ENV === 'development'
 //     ? 'http://127.0.0.1:8080/api'
 //     : 'https://api.cvweb3.com/api'
-export const baseUrl = 'https://api.cvweb3.com/api'
+// export const baseUrl = 'https://api.cvweb3.com/api'
+export const baseUrl = 'http://127.0.0.1:8080/api'
 /**
  * tips: Nuxt3使用useFetch和useAsyncData请求接口，但是不利于自定义封装
  * useFetch 和 useAsyncData 都是ohmyFetch封装的
