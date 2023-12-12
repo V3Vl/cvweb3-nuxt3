@@ -88,10 +88,11 @@ const onClose = () => {
 
 <template>
   <div v-if="isLogin" class="login-or-registory">
+    <!-- <ClientOnly> -->
     <n-dropdown trigger="hover" @select="handleSelect" :options="options">
       <n-avatar class="avatar-img" round :size="48" :src="personalInfo.head_img" />
-      <!-- <n-button>用户资料</n-button> -->
     </n-dropdown>
+    <!-- </ClientOnly> -->
     <n-modal
       v-model:show="showModal"
       preset="dialog"

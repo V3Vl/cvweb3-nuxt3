@@ -8,7 +8,6 @@ import 'swiper/css/pagination'
 const modules = [Pagination]
 // const partnerList = ref({ data: [{ link: '', partner: '' }] })
 const partnerList = await getPartnerList()
-console.log('>>aa>', partnerList)
 </script>
 
 <template>

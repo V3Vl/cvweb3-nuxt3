@@ -1,15 +1,16 @@
 <script setup>
-// import 'swiper/css'
-// import 'swiper/css/navigation'
-// import 'swiper/css/pagination'
-
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import { io } from 'socket.io-client'
 // socketio链接
-// const { initialize } = $(useSocket())
-// initialize()
+const { initialize } = $(useSocket())
+
+initialize()
 
 // 同步用户数据
-const { asyncUserInfo } = $(useUser())
-await asyncUserInfo()
+// const { asyncUserInfo } = $(useUser())
+// await asyncUserInfo()
 
 useHead({
   title: '可以服饰',

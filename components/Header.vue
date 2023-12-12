@@ -1,10 +1,7 @@
 <script setup lang="ts">
 const { loginModel } = $(useModel())
 import type { DrawerPlacement } from 'naive-ui'
-const { isLogin, personalInfo, logout } = $(useUser())
-const props = defineProps({
-  _clientType: String
-})
+const { isLogin } = $(useUser())
 const active = ref(false)
 const placement = ref<DrawerPlacement>('right')
 const activate = (place: DrawerPlacement) => {
@@ -14,7 +11,6 @@ const activate = (place: DrawerPlacement) => {
 const onCancel = () => {
   loginModel.base = false
 }
-const showModal = ref(false)
 </script>
 
 <template>
@@ -39,8 +35,8 @@ const showModal = ref(false)
         <li>主题</li>
         <li>语言</li>
       </ul>
-      <HeaderUser />
       <n-button v-if="!isLogin" @click="loginModel.base = true"> 登录 </n-button>
+      <HeaderUser v-else />
     </div>
   </div>
   <n-drawer v-model:show="active" width="14rem" :placement="placement">

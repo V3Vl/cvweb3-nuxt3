@@ -30,7 +30,8 @@ const categoryList = await getCategory()
 <style lang="scss" scoped>
 .box-t,
 .box-b {
-  width: 96%;
+  // box-sizing: border-box;
+  width: 100%;
   padding: 18px 0;
   margin: 20px auto;
   flex-wrap: wrap;

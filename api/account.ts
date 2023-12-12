@@ -29,9 +29,23 @@ export const getRoleMenuList = async function (permissions: number): Promise<IRo
   const response = await useApi<IRoles[]>('/user/v1/roles', {
     params: { permissions }
   })
-  if (response.code === -1) {
-    console.log(response.msg)
-    return
-  }
+  // if (response.code === -1) {
+  //   console.log(response.msg)
+  //   return
+  // }
   return response.data
+}
+/**
+ * 上报学习时长
+ * @param params 请求参数 productId-视频ID episodeId-集ID duration-视频时长
+ */
+export const add = async function (params: {
+  productId: number
+  episodeId: number
+  duration: number
+}) {
+  return await useApi<null>('/user/v1/duration_record', {
+    method: 'POST',
+    body: params
+  })
 }
