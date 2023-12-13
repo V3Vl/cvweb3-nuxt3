@@ -19,6 +19,11 @@ const getVideoData = async (id?: number) => {
   }
 }
 // 发送弹幕
+// const _global = ref(false)
+let { global } = $(useDanmuState())
+const switchDanmu = (value: boolean) => {
+  global = value
+}
 let danmuContent = $ref('')
 function sendDanmu() {
   indexPlayer.sendDanmu(danmuContent)
@@ -49,12 +54,11 @@ onMounted(() => {
         ></VideosPlayer>
       </ClientOnly>
       <div class="danmu" flexb>
-        <n-switch>
-          <template #checked>关</template>
-          <template #unchecked>开</template>
+        <n-switch v-model:value="global" size="medium" @update:value="switchDanmu">
+          <template #icon> 🤔 </template>
         </n-switch>
         <n-input
-          style="width: 80%"
+          style="width: 78%"
           @keypress.enter.native="sendDanmu()"
           v-model:value="danmuContent"
         ></n-input>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// import { sendCode } from '~~/api/notify'
-// const emit = defineEmits(['loginOrReg'])
 interface State {
   isLogin: boolean
   loginType: string
@@ -32,40 +30,39 @@ const rigisterSucc = () => {}
 </script>
 
 <template>
-  <div p="t-6px b-20px r-10px l-10px">
-    <div class="login-type" flex>
-      <n-button v-for="item in loginTypeList" @click="changeLoginType(item.type)">
-        {{ item.content }}
-      </n-button>
-    </div>
-    <!-- 登录信息表单 -->
-    <div wfull p="t-5 b-5" text-center>
-      <!-- 测试登录 -->
-      <div v-show="state.loginType === 'phone'">
-        <!-- <span>手机号登录</span> -->
-        <LoginInPhone :parentLoginType="state.loginType" />
-      </div>
-      <!-- 微信扫码登录 -->
-      <div v-show="state.loginType === 'wechat'">
-        <!-- <span>微信登录</span> -->
-        <LoginInWechat :parentLoginType="state.loginType" />
-      </div>
-      <div v-show="state.loginType === 'google'">
-        <div class="wx-qrcode" w-40 h-40 bd></div>
-      </div>
-      <div v-show="state.loginType === 'facebook'">
-        <div class="wx-qrcode" w-40 h-40 bd></div>
-      </div>
-    </div>
+  <div class="login-form" wfull text-center>
+    <LoginInPhone v-if="state.loginType === 'phone'" :parentLoginType="state.loginType" />
+    <LoginInWechat v-if="state.loginType === 'wechat'" :parentLoginType="state.loginType" />
+    <div v-show="state.loginType === 'google'"></div>
+    <div v-show="state.loginType === 'facebook'"></div>
+  </div>
+  <n-divider title-placement="center"> OR </n-divider>
+  <div class="login-type" wfull flexc>
+    <n-button text-center v-for="item in loginTypeList" @click="changeLoginType(item.type)">
+      {{ item.content }}
+    </n-button>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.login-form {
+  position: relative;
+  // height: 60%;
+  margin: auto 0;
+}
 .login-type {
   flex-wrap: wrap;
-}
-
-.wx-qrcode {
-  margin: 0 auto;
+  gap: 6px;
+  .n-button {
+    width: 70%;
+    height: 3em;
+    @media screen and (max-height: 667px) {
+      height: 2.5em;
+      border-radius: 2.5em;
+    }
+    border-radius: 3em;
+    border: 0.2em solid #2b3035;
+    color: #2b3035;
+  }
 }
 </style>

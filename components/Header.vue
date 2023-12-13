@@ -43,14 +43,7 @@ const onCancel = () => {
     <n-drawer-content title="暂无内容"> 配置一些菜单 </n-drawer-content>
   </n-drawer>
   <n-modal v-model:show="loginModel.base" transform-origin="center">
-    <n-card
-      style="width: 599px"
-      title="登录, 样式暂时不管..."
-      :bordered="false"
-      size="huge"
-      role="dialog"
-      aria-modal="true"
-    >
+    <n-card class="loginModal" :bordered="false" size="huge" role="dialog" aria-modal="true">
       <LoginForm />
     </n-card>
   </n-modal>
@@ -120,6 +113,18 @@ const onCancel = () => {
     li:hover {
       color: lightskyblue;
     }
+  }
+}
+.loginModal {
+  width: 420px;
+  height: 80vh;
+  --n-padding-left: 0 !important;
+  --n-padding-bottom: 0 !important;
+  padding: 2rem 1rem;
+  border-radius: 1.5rem;
+  @media screen and (max-width: 599px) {
+    height: 78vh;
+    width: 92%;
   }
 }
 </style>

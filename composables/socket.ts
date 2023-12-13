@@ -5,7 +5,7 @@ export const useSocket = defineStore('socket', () => {
   let socket = $ref(null)
   let videoDanmuList = $ref([])
   const initialize = () => {
-    // 建立传输链接 ws://127....:8080
+    // 建立传输链接
     socket = io('wss://api.cvweb3.com', {
       reconnectionDelay: 5000, // 重连时的初始延迟
       reconnectionDelayMax: 10000,

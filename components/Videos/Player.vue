@@ -18,9 +18,9 @@ let danmakuRef = $ref<InstanceType<typeof vueDanmaku>>() // 弹幕插件
 /**
  * 弹幕逻辑
  */
-
+let { global } = $(useDanmuState())
 async function getDanmuData(push?: boolean) {
-  // if (!global) return
+  if (!global) return
   const currentTime = Math.floor(oVideoPlayer.currentTime)
   if (!push) {
     // 初始弹幕
@@ -154,7 +154,7 @@ const onPlayerReady = async function () {
     oDanmu.style.pointerEvents = 'none'
   })
   // 视频自动播放
-  player.play()
+  // player.play()
   // // 设置播放速度
   player.playbackRate(playBackRate)
   speed = true
@@ -163,6 +163,13 @@ function nextEpisode() {
   console.log('结束了')
 }
 const { personalInfo } = $(useUser())
+// 监听弹幕开关变量控制显示隐藏
+watch(
+  () => global,
+  (val) => {
+    val ? danmakuRef.show() : danmakuRef.hide()
+  }
+)
 // 监听videoDanmuList数据变化，增加弹幕
 const { videoDanmuList, handleAddDanmu } = $(useSocket())
 watch(

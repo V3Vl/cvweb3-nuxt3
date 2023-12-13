@@ -11,12 +11,10 @@ import { IApiBase } from '../types/api'
  * $fetch会发起两次请求，1次是服务端，一次是客户端，asyncData只在服务端发起，但是官方推荐$fetch
  * 最优方案等待深入研究
  */
-// export const baseUrl =
-//   process.env.NODE_ENV === 'development'
-//     ? 'http://127.0.0.1:8080/api'
-//     : 'https://api.cvweb3.com/api'
-export const baseUrl = 'https://api.cvweb3.com/api'
-// export const baseUrl = 'http://127.0.0.1:8080/api'
+export const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://127.0.0.1:8080/api'
+    : 'https://api.cvweb3.com/api'
 /**
  * tips: Nuxt3使用useFetch和useAsyncData请求接口，但是不利于自定义封装
  * useFetch 和 useAsyncData 都是ohmyFetch封装的

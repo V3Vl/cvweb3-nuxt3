@@ -5,27 +5,14 @@ const { loginModel } = $(useModel())
 const { setLoginSuccState } = $(useUser())
 // import { useMessage } from 'naive-ui'
 // const message = useMessage()
-interface IState {
-  isLogin: boolean
-  isPwd: boolean
-  checked: boolean
-  forgetPwd: boolean
-}
-const state = reactive<IState>({
+import { ILoginFormState, ILoginState } from '~/types/api'
+const state = reactive<ILoginState>({
   isLogin: true,
   isPwd: true,
   checked: false,
   forgetPwd: false
 })
-interface IFormState {
-  username: string
-  nickname: string
-  password: string
-  captcha: string
-  code: string
-  remember: boolean
-}
-const formState: IFormState = reactive({
+const formState: ILoginFormState = reactive({
   username: '',
   nickname: '',
   password: '',
@@ -58,11 +45,10 @@ const resetCaptcha = async (type: string) => {
   if (type == '') {
     type = state.forgetPwd ? 'change' : state.isLogin ? 'login' : 'register'
   }
-  captchaSrc = `http://127.0.0.1:8080/api/notify/v1/captcha?type=${type}&time=${Date.now()}`
+  captchaSrc = baseUrl + '/notify/v1/captcha?' + `type=${type}&time=${Date.now()}`
   if (captchaSrc.includes('&time')) {
     captchaSrc = captchaSrc.replace(/&time=[0-9]*/, '&time=' + Date.now())
   }
-  console.log(captchaSrc)
 }
 // 验证码倒计时
 let isDisable = $ref(false)
@@ -159,80 +145,87 @@ onBeforeUnmount(() => {
 })
 </script>
 <template>
-  <div m="0 auto" w="80" class="test-login">
-    <n-form
-      :model="formState"
-      name="normal_login"
-      class="login-form"
-      @finish="onFinish"
-      @finishFailed="onFinishFailed"
+  <n-form
+    :model="formState"
+    name="normal_login"
+    class="login-form"
+    @finish="onFinish"
+    @finishFailed="onFinishFailed"
+  >
+    <n-form-item path="username">
+      <span>手机号</span>
+      <n-input v-model:value="formState.username" placeholder="请输入手机号" />
+    </n-form-item>
+    <n-form-item
+      v-show="(state.isLogin === true && state.isPwd === true) || state.forgetPwd"
+      name="password"
+      :rules="[{ required: true, message: '请输入密码!' }]"
     >
-      <!-- 待优化 换了组件库 -->
-      <n-form-item label="手机号（17687500360）" path="username" flexb>
-        <n-input v-model:value="formState.username" placeholder="请输入手机号" />
-      </n-form-item>
-      <n-form-item
-        label="密码（123456）"
-        v-show="(state.isLogin === true && state.isPwd === true) || state.forgetPwd"
-        name="password"
-        :rules="[{ required: true, message: '请输入密码!' }]"
-        flexb
+      <span>密码</span>
+      <n-input type="password" v-model:value="formState.password" placeholder="请输入密码">
+        <template #prefix>
+          <UserOutlined class="site-form-item-icon" />
+        </template>
+      </n-input>
+    </n-form-item>
+    <n-form-item
+      v-show="state.isLogin === false || state.isPwd === false"
+      name="captcha"
+      :rules="[{ required: true, message: '请输入图形验证码!' }]"
+    >
+      <n-input-group compact>
+        <span>图形验证码</span>
+        <n-input v-model:value="formState.captcha" style="width: 40%" placeholder="请输入" />
+        <img :src="captchaSrc" style="max-height: 34px; width: 31%" @click="resetCaptcha('')" />
+      </n-input-group>
+    </n-form-item>
+    <!-- 验证码 -->
+    <n-form-item
+      v-show="state.isLogin === false || state.isPwd === false"
+      name="password"
+      :rules="[{ required: true, message: '请输入手机验证码!' }]"
+    >
+      <n-input-group compact>
+        <span>短信验证码</span>
+        <n-input v-model:value="formState.code" style="width: 40%" />
+        <n-button type="primary" @click="getCode" :disabled="isDisable">{{
+          isDisable ? `${countDown}s后重新获取` : '获取验证码'
+        }}</n-button>
+      </n-input-group>
+    </n-form-item>
+    <n-form-item style="justify-content: flex-end" flex>
+      <n-button
+        v-show="state.forgetPwd === false && state.isLogin !== state.isPwd"
+        text
+        type="info"
+        class="login-form-forgot"
+        @click="pwdOrCode(true)"
       >
-        <n-input type="password" v-model:value="formState.password" placeholder="请输入密码">
-          <template #prefix>
-            <UserOutlined class="site-form-item-icon" />
-          </template>
-        </n-input>
-      </n-form-item>
-      <n-form-item
-        label=""
-        v-show="state.isLogin === false || state.isPwd === false"
-        name="captcha"
-        :rules="[{ required: true, message: '请输入图形验证码!' }]"
+        密码登录
+      </n-button>
+      <n-button
+        v-show="state.isLogin === true && state.isPwd === true"
+        text
+        type="info"
+        dashed
+        @click="pwdOrCode(false)"
       >
-        <n-input-group compact>
-          <n-input
-            v-model:value="formState.captcha"
-            style="float: left; width: 67%"
-            placeholder="请输入图形验证码"
-          />
-          <img :src="captchaSrc" style="height: 34px" @click="resetCaptcha('')" />
-        </n-input-group>
-      </n-form-item>
-      <!-- 验证码 -->
-      <n-form-item
-        v-show="state.isLogin === false || state.isPwd === false"
-        name="password"
-        :rules="[{ required: true, message: '请输入手机验证码!' }]"
-      >
-        <n-input-group compact>
-          <n-input v-model:value="formState.code" style="float: left; width: 60%" />
-          <n-button type="primary" @click="getCode" :disabled="isDisable">{{
-            isDisable ? `${countDown}s后重新获取` : '获取验证码'
-          }}</n-button>
-        </n-input-group>
-      </n-form-item>
-
-      <n-form-item v-show="state.forgetPwd === false && state.isLogin !== state.isPwd">
-        <n-button class="login-form-forgot" @click="pwdOrCode(true)"> 密码登录 </n-button>
-      </n-form-item>
-      <div flexb>
-        <n-form-item v-show="state.isLogin === true && state.isPwd === true">
-          <n-button type="info" dashed @click="pwdOrCode(false)"> 手机验证码登录 </n-button>
-        </n-form-item>
-        <n-form-item v-show="state.isPwd === true && state.isLogin === true">
-          <n-button type="warning" dashed @click="forgetPwdSet"> 忘记密码 </n-button>
-          <!-- <a class="login-form-forgot" @click="forgetPwdSet"></a> -->
-        </n-form-item>
-      </div>
-
-      <n-form-item>
+        手机验证码登录
+      </n-button>
+    </n-form-item>
+    <n-form-item
+      style="justify-content: flex-end"
+      v-show="state.isPwd === true && state.isLogin === true"
+    >
+      <n-button text type="warning" dashed @click="forgetPwdSet"> 忘记密码 </n-button>
+    </n-form-item>
+    <n-form-item flexc>
+      <div flexc class="btn-box">
         <n-button
           v-show="state.isLogin && state.forgetPwd === false"
           :disabled="disabled"
           type="primary"
           html-type="submit"
-          class="login-form-button"
           @click="loginBtn"
         >
           登录
@@ -242,8 +235,8 @@ onBeforeUnmount(() => {
           :disabled="disabled"
           type="primary"
           html-type="submit"
-          class="login-form-button"
           @click="registerBtn"
+          style="width: 120px"
         >
           注册
         </n-button>
@@ -252,19 +245,17 @@ onBeforeUnmount(() => {
           :disabled="disabled"
           type="primary"
           html-type="submit"
-          class="login-form-button"
           @click="saveUserBtn"
         >
           保存
         </n-button>
-
         <a v-show="state.forgetPwd === true" @click="state.forgetPwd = false">取消</a>
         <n-button
-          mr-2
           @click="changeLoginOrReg(false)"
           v-show="state.isLogin === true && state.forgetPwd === false"
           type="success"
           dashed
+          text
         >
           去注册
         </n-button>
@@ -272,16 +263,38 @@ onBeforeUnmount(() => {
           v-show="state.isLogin === false"
           type="success"
           @click="changeLoginOrReg(true)"
-          dashed
+          text
         >
           去登录
         </n-button>
-      </n-form-item>
-    </n-form>
-  </div>
+      </div>
+    </n-form-item>
+  </n-form>
 </template>
 <style lang="scss" scoped>
 .n-form-item {
-  margin: 10px 0;
+  width: 100%;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  span {
+    display: block;
+    color: #333;
+    text-align: left;
+    width: 110px;
+    margin: auto 0;
+  }
+  .btn-box {
+    width: 100%;
+    .n-button {
+      margin: 0 20px;
+      width: 100px;
+      height: 3em;
+      border-radius: 3em;
+    }
+  }
 }
+// :v-deep(.n-form-item .n-form-item-label) {
+//   width: 110px !important;
+// }
 </style>

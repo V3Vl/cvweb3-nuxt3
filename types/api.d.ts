@@ -55,6 +55,20 @@ export interface IRoles {
   name: string
   permissions: number
 }
+export interface ILoginFormState {
+  username: string
+  nickname: string
+  password: string
+  captcha: string
+  code: string
+  remember: boolean
+}
+export interface ILoginState {
+  isLogin: boolean
+  isPwd: boolean
+  checked: boolean
+  forgetPwd: boolean
+}
 export interface IVideoList {
   playResult: string
   episodeId: string

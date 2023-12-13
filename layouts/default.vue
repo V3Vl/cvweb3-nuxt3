@@ -7,6 +7,7 @@ const { clientType } = $(useClient())
   <div mt-4rem>
     <slot />
   </div>
+  <AISupport />
   <Footer />
 </template>
 
