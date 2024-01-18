@@ -11,7 +11,21 @@ interface ISrcListType {
   jumpToUrl?: string
 }
 const srcList = ref<Array<ISrcListType>>([])
-
+const toolList = ref<Array<ISrcListType>>([])
+const rankList = ref<Array<ISrcListType>>([])
+rankList.value = [
+  { src: '', altContent: '商品' },
+  { src: '', altContent: '汽车' },
+  { src: '', altContent: '学校' },
+  { src: '', altContent: '景区' },
+  { src: '', altContent: '餐馆' },
+  { src: '', altContent: '名人' },
+  { src: '', altContent: '企业' }
+]
+toolList.value = [
+  { src: '', altContent: '装修预算清单' },
+  { src: '', altContent: '自助装机清单' }
+]
 srcList.value = [
   {
     src: 'https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_STILL_LIFE_RGB_CROPPED_2880x1620_10.jpg',
@@ -34,13 +48,37 @@ srcList.value = [
 <template>
   <div class="box">
     <div class="box-l">
-      <div wfull>
-        <h1 fsem-4 style="margin: 0">H1：可以官方网站</h1>
-        <h2 fsem-3>H2：女装，商务，休闲，宴服</h2>
-        <h3 fspx-30 style="margin: 0">H3：低调，奢华，有内涵</h3>
-        <p fspx-18>P：促销，抢购，新品，限量</p>
+      <!-- <div > -->
+      <h3>购前指南，专业排行！</h3>
+      <div wfull flexb flex-wrap>
+        <NuxtLink
+          class="rank-button"
+          v-for="(item, index) in rankList"
+          to="/buyer/BuyerShowList"
+          :key="index"
+        >
+          <h4 fspx-30 style="margin: 0">{{ item.altContent }}</h4>
+          <p>排行榜</p>
+        </NuxtLink>
       </div>
-      <NuxtLink class="more-btn" to="/buyer/BuyerShowList">前往选购</NuxtLink>
+      <h4>预算清单，提前规划</h4>
+      <div wfull flexb>
+        <NuxtLink
+          class="tool-button"
+          v-for="(item, index) in toolList"
+          to="/buyer/BuyerShowList"
+          :key="index"
+        >
+          <p fspx-30 style="margin: 0">{{ item.altContent }}</p>
+        </NuxtLink>
+      </div>
+
+      <!-- <h1 fsem-4 style="margin: 0">理想清单</h1>
+        <h2 fsem-3>女装，商务，休闲，宴服</h2>
+        <h3 fspx-30 style="margin: 0">低调，奢华，有内涵</h3>
+        <p fspx-18>促销，抢购，新品，限量</p> -->
+      <!-- </div> -->
+      <!-- <NuxtLink class="more-btn" to="/buyer/BuyerShowList">前往选购</NuxtLink> -->
     </div>
     <swiper
       class="swiper-box"
@@ -69,6 +107,15 @@ srcList.value = [
     height: 72vh;
     .box-l {
       width: 34%;
+      h3 {
+        font-size: 2em;
+      }
+      h4 {
+        font-size: 1.6em;
+      }
+      p {
+        font-size: 1.2em;
+      }
     }
     .swiper-box {
       width: 65%;
@@ -86,6 +133,9 @@ srcList.value = [
       h3 {
         font-size: 1.8em;
       }
+      h4 {
+        font-size: 1.4em;
+      }
       p {
         font-size: 1.2em;
       }
@@ -102,16 +152,19 @@ srcList.value = [
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    .more-btn {
-      cursor: pointer;
-      background-color: cyan;
-      padding: 0.3rem 2rem;
-      margin: 0 auto;
-      font-size: 2.2em;
-      border-radius: 1rem;
+    .rank-button {
+      background-color: rgb(30, 255, 0);
+      margin: 0.2rem 0;
+      width: 29%;
+      border-radius: 0.5rem;
     }
-    .more-btn:hover {
-      color: #fff;
+    .tool-button {
+      background-color: aqua;
+      // margin: 1rem auto;
+      width: 48%;
+      height: 3rem;
+      line-height: 3rem;
+      border-radius: 0.6rem;
     }
   }
   .swiper-box {

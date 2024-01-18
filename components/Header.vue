@@ -15,21 +15,21 @@ const onCancel = () => {
 
 <template>
   <div class="header" wfull flexb>
-    <div class="header-left" flexb>
+    <div>
       <n-button text style="font-size: 1.2rem; font-weight: bold" @click="activate('left')"
         >&nbsp=</n-button
       >
-      <div class="search">
-        <n-input-group>
-          <n-input style="border-radius: 20px" :style="{ width: '50%' }" />
-          <n-button style="border-radius: 20px" ghost> 搜索 </n-button>
-        </n-input-group>
-      </div>
     </div>
-    <div class="logo" flexb>
+    <div class="search">
+      <n-input-group>
+        <n-input style="border-radius: 20px" :style="{ width: '70%' }" />
+        <n-button style="border-radius: 20px" ghost> 搜索 </n-button>
+      </n-input-group>
+    </div>
+    <!-- <div class="logo" flexb>
       <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
       <span>Keyi</span>
-    </div>
+    </div> -->
     <div class="header-right">
       <ul>
         <li>主题</li>
@@ -60,34 +60,43 @@ const onCancel = () => {
   height: 4rem;
   background-color: #fff;
   color: #333;
-  .header-left {
-    width: 40%;
-  }
+  // .header-left {
+  //   width: 40%;
+  // }
   .search {
-    @media screen and (max-width: 599px) {
-      /* 手机版样式 */
-      display: none;
-    }
-  }
-  .logo {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    background-color: aqua;
-    padding: 0 10px;
-    height: 3rem;
-    border-radius: 10px;
-    img {
-      width: 1.9rem;
-      height: 1.9rem;
+    @media screen and (max-width: 599px) {
+      /* 手机版样式 */
+      width: 60%;
+      // display: none;
     }
-    span {
-      margin-left: 8px;
-      letter-spacing: 2px;
+    @media screen and (min-width: 599px) {
+      /* PC版样式 */
+      width: 30%;
+      // display: none;
     }
-    font-size: 1.1rem;
-    font-weight: 600;
   }
+  // .logo {
+  //   position: absolute;
+  //   left: 50%;
+  //   transform: translate(-50%);
+  //   background-color: aqua;
+  //   padding: 0 10px;
+  //   height: 3rem;
+  //   border-radius: 10px;
+  //   img {
+  //     width: 1.9rem;
+  //     height: 1.9rem;
+  //   }
+  //   span {
+  //     margin-left: 8px;
+  //     letter-spacing: 2px;
+  //   }
+  //   font-size: 1.1rem;
+  //   font-weight: 600;
+  // }
   .header-right {
     display: flex;
     justify-content: end;

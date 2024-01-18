@@ -3,7 +3,7 @@ const { indexType } = $(useModel())
 const description = ref('这里是动态返回的，或许可以用SEO后台管理系统控制')
 const keyword = ref('关键词1,关键词2,关键词3,关键词4')
 useHead({
-  title: '可以服饰',
+  title: '选购指南',
   charset: 'utf-8',
   meta: [
     { name: 'keyword', content: keyword },
