@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const route = useRoute()
 const { loginModel } = $(useModel())
 import type { DrawerPlacement } from 'naive-ui'
 const { isLogin } = $(useUser())
@@ -20,16 +21,17 @@ const onCancel = () => {
         >&nbsp=</n-button
       >
     </div>
+    <!-- <div class="title" flexb>
+      <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
+      <span>Keyi</span>
+    </div> -->
     <div class="search">
       <n-input-group>
         <n-input style="border-radius: 20px" :style="{ width: '70%' }" />
         <n-button style="border-radius: 20px" ghost> 搜索 </n-button>
       </n-input-group>
     </div>
-    <!-- <div class="logo" flexb>
-      <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
-      <span>Keyi</span>
-    </div> -->
+
     <div class="header-right">
       <ul>
         <li>主题</li>
@@ -78,25 +80,25 @@ const onCancel = () => {
       // display: none;
     }
   }
-  // .logo {
-  //   position: absolute;
-  //   left: 50%;
-  //   transform: translate(-50%);
-  //   background-color: aqua;
-  //   padding: 0 10px;
-  //   height: 3rem;
-  //   border-radius: 10px;
-  //   img {
-  //     width: 1.9rem;
-  //     height: 1.9rem;
-  //   }
-  //   span {
-  //     margin-left: 8px;
-  //     letter-spacing: 2px;
-  //   }
-  //   font-size: 1.1rem;
-  //   font-weight: 600;
-  // }
+  .title {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: aqua;
+    padding: 0 10px;
+    height: 3rem;
+    border-radius: 10px;
+    img {
+      width: 1.9rem;
+      height: 1.9rem;
+    }
+    span {
+      margin-left: 8px;
+      letter-spacing: 2px;
+    }
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
   .header-right {
     display: flex;
     justify-content: end;

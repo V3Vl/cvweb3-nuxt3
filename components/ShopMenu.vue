@@ -6,8 +6,7 @@ const categoryList = await getCategory()
 </script>
 
 <template>
-  <h1 text-center mt-20>商品分类</h1>
-  <p text-center>还没买cdn，所以没有图片</p>
+  <h1 text-center mt-20>分类</h1>
   <!-- <div class="box-t" wfull flexc>
     <div class="category" w-30 h-30 v-for="(item, index) in 5">
       <div class="category-img"></div>

@@ -5,8 +5,8 @@ const a = ref(0)
 
 <template>
   <div class="middle-content" text-center>
-    <h2 fsem-3 style="margin: 0">H2：下滑查看更多</h2>
-    <h3 style="margin: 0">H3：NuxtNuxtNuxt</h3>
+    <h2 fsem-3 style="margin: 0">NuxtNuxtNuxt</h2>
+    <h3 style="margin: 0">一些测试示例</h3>
     <div class="put-down">👇</div>
   </div>
 </template>

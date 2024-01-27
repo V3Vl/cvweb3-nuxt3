@@ -12,7 +12,7 @@ const partnerList = await getPartnerList()
 
 <template>
   <div class="partner-box">
-    <h2>合作厂家 - 外链</h2>
+    <h2>合作厂家</h2>
     <div class="partner">
       <swiper
         :slidesPerView="4"

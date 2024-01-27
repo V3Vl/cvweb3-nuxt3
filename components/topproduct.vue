@@ -14,17 +14,17 @@ const srcList = ref<Array<ISrcListType>>([])
 const toolList = ref<Array<ISrcListType>>([])
 const rankList = ref<Array<ISrcListType>>([])
 rankList.value = [
-  { src: '', altContent: '商品' },
-  { src: '', altContent: '汽车' },
-  { src: '', altContent: '学校' },
-  { src: '', altContent: '景区' },
-  { src: '', altContent: '餐馆' },
-  { src: '', altContent: '名人' },
-  { src: '', altContent: '企业' }
+  { src: '', jumpToUrl: '/rank/ShopRank', altContent: '商品' },
+  { src: '', jumpToUrl: '/rank/CarRank', altContent: '汽车' },
+  { src: '', jumpToUrl: '/rank/SchoolRank', altContent: '学校' },
+  { src: '', jumpToUrl: '/rank/TravelRank', altContent: '旅游' },
+  { src: '', jumpToUrl: '/rank/CanteenRank', altContent: '餐馆' },
+  { src: '', jumpToUrl: '/rank/HumanRank', altContent: '名人' },
+  { src: '', jumpToUrl: '/rank/PowerRank', altContent: '地区资源' }
 ]
 toolList.value = [
-  { src: '', altContent: '装修预算清单' },
-  { src: '', altContent: '自助装机清单' }
+  { src: '', jumpToUrl: '/tooler/Fitmentdiy', altContent: '装修预算清单' },
+  { src: '', jumpToUrl: '/tooler/PCdiy', altContent: '自助装机清单' }
 ]
 srcList.value = [
   {
@@ -54,7 +54,7 @@ srcList.value = [
         <NuxtLink
           class="rank-button"
           v-for="(item, index) in rankList"
-          to="/buyer/BuyerShowList"
+          :to="item.jumpToUrl"
           :key="index"
         >
           <h4 fspx-30 style="margin: 0">{{ item.altContent }}</h4>
@@ -66,7 +66,7 @@ srcList.value = [
         <NuxtLink
           class="tool-button"
           v-for="(item, index) in toolList"
-          to="/buyer/BuyerShowList"
+          :to="item.jumpToUrl"
           :key="index"
         >
           <p fspx-30 style="margin: 0">{{ item.altContent }}</p>
