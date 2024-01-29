@@ -64,7 +64,7 @@ docker构建命令：docker build -f cvweb3-nuxt3.build.Dockerfile . -t cvweb3-n
 ①npm run dev
 ②腾讯云redis & navcat
 ->docker ps
-->docker exec -it **dockerid** redis-cli
+->docker exec -it **docker id** redis-cli
 ->pany110
 ```
 
