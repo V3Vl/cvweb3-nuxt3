@@ -10,6 +10,7 @@ import { IApiBase } from '../types/api'
  * 请求封装方式1 - $fetch - 待优化为https
  * $fetch会发起两次请求，1次是服务端，一次是客户端，asyncData只在服务端发起，但是官方推荐$fetch
  * 最优方案等待深入研究
+ * http://127.0.0.1:8080/api
  */
 //  http://127.0.0.1:8080/api
 export const baseUrl =
