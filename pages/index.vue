@@ -18,7 +18,10 @@ useHead({
   <div class="main-index">
     <TopProduct></TopProduct>
     <MiddleContent></MiddleContent>
-    <IndexVideo></IndexVideo>
+    <div flexb>
+      <HotNews></HotNews>
+      <IndexVideo></IndexVideo>
+    </div>
     <ShopMenu></ShopMenu>
     <PartnerLink></PartnerLink>
   </div>

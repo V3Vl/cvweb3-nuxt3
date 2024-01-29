@@ -3,17 +3,22 @@ const { clientType } = $(useClient())
 </script>
 
 <template>
-  <Header :_clientType="clientType" />
-  <div mt-4rem>
+  <Header class="layoutcss" :_clientType="clientType" />
+  <div class="layoutcss" mt-4rem>
     <slot />
   </div>
-  <AISupport />
-  <Footer />
+  <!-- <AISupport /> -->
+  <Footer class="layoutcss" />
 </template>
 
 <style lang="less" scoped>
 ::-webkit-scrollbar {
   display: none;
+}
+.layoutcss {
+  // @media screen and (min-width: 780px) {
+  //   width: 99%;
+  // }
 }
 // .ipage {
 //   overflow-x: hidden;
