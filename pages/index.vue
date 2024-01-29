@@ -18,10 +18,7 @@ useHead({
   <div class="main-index">
     <TopProduct></TopProduct>
     <MiddleContent></MiddleContent>
-    <div flexb>
-      <HotNews></HotNews>
-      <IndexVideo></IndexVideo>
-    </div>
+    <IndexVideo></IndexVideo>
     <ShopMenu></ShopMenu>
     <PartnerLink></PartnerLink>
   </div>
@@ -34,7 +31,6 @@ useHead({
 
 .main-index {
   position: relative;
-  // width: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }

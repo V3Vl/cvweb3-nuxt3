@@ -36,6 +36,7 @@ onMounted(() => {
 
 <template>
   <div class="vbox" flexc>
+    <HotNews></HotNews>
     <div
       rounded-10px
       flex="~ col"
