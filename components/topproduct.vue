@@ -26,9 +26,8 @@ const srcList = ref<Array<ISrcListType>>([])
 const toolList = ref<Array<ISrcListType>>([])
 const rankListPC = ref<Array<ISrcListType>>([])
 const rankListH5 = ref<Array<ISrcListType>>([])
-const rankListMenuPC = ref<Array<IMenuListTtype>>([])
 const tapRankListMenuPC = ref<Array<IMenuListTtype>>([])
-const tapId = ref<any>(1)
+const rankMenuPC = ref<any>()
 // const { clientType } = $(useClient())
 rankListPC.value = [
   { src: '', id: 1, jumpToUrl: '/rank/ShopRank', altContent: '电子 / 音像' },
@@ -55,7 +54,8 @@ rankListH5.value = [
 toolList.value = [
   { src: '', jumpToUrl: '/tooler/Fitmentdiy', altContent: '装修预算清单' },
   { src: '', jumpToUrl: '/tooler/PCdiy', altContent: '自助电脑配置清单' },
-  { src: '', jumpToUrl: '', altContent: '旅游攻略路书' }
+  { src: '', jumpToUrl: '', altContent: '旅游规划1' },
+  { src: '', jumpToUrl: '', altContent: '旅游计划2' }
 ]
 srcList.value = [
   {
@@ -75,41 +75,98 @@ srcList.value = [
     altContent: '女包'
   }
 ]
-rankListMenuPC.value = [
-  { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '测试' }] },
-  {
-    id: 1,
-    title: '电视',
-    rankMenuContentPC: [
-      { eId: 'miniLed', img: '', title: 'Led电视' },
-      { eId: 'miniLed', img: '', title: 'miniLed电视' },
-      { eId: 'miniLed', img: '', title: 'OLED电视' },
-      { eId: 'miniLed', img: '', title: '激光电视' }
-    ]
-  },
-  {
-    id: 1,
-    title: '手机',
-    rankMenuContentPC: [
-      { eId: 'miniLed', img: '', title: '老人手机' },
-      { eId: 'miniLed', img: '', title: '游戏手机' },
-      { eId: 'miniLed', img: '', title: '1000元档' },
-      { eId: 'miniLed', img: '', title: '3000元档' },
-      { eId: 'miniLed', img: '', title: '高端旗舰' }
-    ]
-  },
-  { id: 1, title: '电脑' },
-  { id: 1, title: '游戏设备' },
-  { id: 1, title: '摄影' },
-  { id: 1, title: '音响' },
-  { id: 1, title: '耳机' },
-  { id: 1, title: '其他' }
+rankMenuPC.value = [
+  [
+    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '测试' }] },
+    {
+      id: 1,
+      title: '电视',
+      rankMenuContentPC: [
+        { eId: 'miniLed', img: '', title: 'Led电视' },
+        { eId: 'miniLed', img: '', title: 'miniLed电视' },
+        { eId: 'miniLed', img: '', title: 'OLED电视' },
+        { eId: 'miniLed', img: '', title: '激光电视' }
+      ]
+    },
+    {
+      id: 1,
+      title: '手机',
+      rankMenuContentPC: [
+        { eId: 'miniLed', img: '', title: '老人手机' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '高端旗舰' }
+      ]
+    },
+    {
+      id: 1,
+      title: '电脑',
+      rankMenuContentPC: [
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '高端旗舰' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '高端旗舰' }
+      ]
+    },
+    { id: 1, title: '游戏设备' },
+    {
+      id: 1,
+      title: '摄影',
+      rankMenuContentPC: [
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '高端旗舰' }
+      ]
+    },
+    { id: 1, title: '音响' },
+    {
+      id: 1,
+      title: '耳机',
+      rankMenuContentPC: [
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '高端旗舰' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '游戏手机' },
+        { eId: 'miniLed', img: '', title: '1000元档' },
+        { eId: 'miniLed', img: '', title: '3000元档' },
+        { eId: 'miniLed', img: '', title: '高端旗舰' }
+      ]
+    },
+    { id: 1, title: '其他' }
+  ],
+  [
+    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '家具' }] },
+    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '家具' }] }
+  ],
+  [{ id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '游戏' }] }]
 ]
-tapRankListMenuPC.value = []
-const tapMenu = (item: ISrcListType) => {
-  // console.log(item.altContent)
-  tapId.value = item.id
-  // tapRankListMenuPC.value = rankListMenuPC
+tapRankListMenuPC.value = rankMenuPC.value[1]
+const tapMenu = (index: number) => {
+  tapRankListMenuPC.value = rankMenuPC.value[index]
 }
 </script>
 <template>
@@ -122,27 +179,40 @@ const tapMenu = (item: ISrcListType) => {
             class="rank-button"
             flex
             v-for="(item, index) in rankListPC"
-            @mouseover="tapMenu(item)"
             :key="index"
+            @mouseover="tapMenu(index)"
           >
             <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
             {{ item.altContent }}
           </div>
         </div>
-        <div border class="pc-content" flex-wrap>
-          <div class="pc-content" flex-wrap border v-for="(item, idx) in rankListMenuPC" :key="idx">
-            <p fspx-16>
-              {{ item.title }}
-            </p>
-            <div
-              border
-              flex
-              style="width: 100px"
-              v-for="(menuItem, idx) in item.rankMenuContentPC"
-              :key="idx"
-            >
-              {{ menuItem.title }}
-            </div>
+        <div wfull class="menu-list-box" flex flex-wrap>
+          <div
+            class="pc-content"
+            flex
+            flex-wrap
+            border
+            v-for="(item, idx) in tapRankListMenuPC"
+            :key="idx"
+          >
+            <block border>
+              <h4 border h-8 wfull fsem-1>{{ item.title }}</h4>
+              <n-button
+                border
+                text
+                ghost
+                h-8
+                style="padding: 0.5rem; margin: 0"
+                fspx-12
+                v-for="(menuItem, idx) in item.rankMenuContentPC"
+                :key="idx"
+              >
+                {{ menuItem.title }}
+              </n-button>
+              <n-button v-if="item.rankMenuContentPC?.length > 6" type="info" size="tiny" dashed>
+                查看更多
+              </n-button>
+            </block>
           </div>
         </div>
       </div>
@@ -174,7 +244,7 @@ const tapMenu = (item: ISrcListType) => {
         </NuxtLink>
       </div>
     </div>
-    <div border class="box-r swiper-box" fsem-14 text-center>🐔</div>
+    <div class="box-r swiper-box" fsem-14 text-center>🐔</div>
     <!-- <swiper
       class="swiper-box"
       navigation
@@ -194,7 +264,8 @@ const tapMenu = (item: ISrcListType) => {
   overflow: hidden; /* 隐藏超出容器范围的部分，保证图片不会溢出容器 */
   padding: 1px 4px;
   @media screen and (min-width: 600px) {
-    height: 72vh;
+    min-height: 70vh;
+    max-height: 1000px;
   }
   @media screen and (max-width: 600px) {
     flex-wrap: wrap;
@@ -206,15 +277,17 @@ const tapMenu = (item: ISrcListType) => {
       width: 36%;
       min-width: 568px;
       .box-l-pc {
-        height: 80%;
+        min-height: 72vh;
+        max-height: 72vh;
+        // height: 80%;
         .pc-menu {
-          width: 150px;
+          min-width: 120px;
           background-color: rgb(0, 217, 255);
           .rank-button {
             cursor: pointer;
             align-items: center;
             height: 3rem;
-            // padding-left: 3rem;
+            padding-right: 1rem;
             img {
               margin: 0 0.5rem;
               height: 2rem;
@@ -225,9 +298,18 @@ const tapMenu = (item: ISrcListType) => {
             background-color: aqua;
           }
         }
-        .pc-content {
-          width: 78%;
-          min-width: 418px;
+        .menu-list-box {
+          // background-color: antiquewhite;
+          overflow-y: scroll;
+          padding-left: 4px;
+          .pc-content {
+            // max-height: 70vh;
+            width: 100%;
+            border-radius: 6px;
+            margin: 2px 0;
+            padding: 4px 2px;
+            background-color: aliceblue;
+          }
         }
       }
       .box-l-h5 {
@@ -296,11 +378,15 @@ const tapMenu = (item: ISrcListType) => {
   }
 
   .box-r {
-    min-height: 30vh;
+    border: red 1px solid;
     min-width: 350px;
+    // overflow: hidden;
   }
 
   .swiper-box {
+    @media screen and (min-width: 600px) {
+      min-height: 70vh;
+    }
     @media screen and (max-width: 600px) {
       width: 100%;
     }
