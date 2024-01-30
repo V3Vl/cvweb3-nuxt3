@@ -191,19 +191,17 @@ const tapMenu = (index: number) => {
             class="pc-content"
             flex
             flex-wrap
-            border
             v-for="(item, idx) in tapRankListMenuPC"
             :key="idx"
           >
-            <block border>
-              <h4 border h-8 wfull fsem-1>{{ item.title }}</h4>
+            <block>
+              <h4 h-7 wfull fsem-1 style="line-height: 2em">{{ item.title }}</h4>
               <n-button
-                border
                 text
                 ghost
                 h-8
                 style="padding: 0.5rem; margin: 0"
-                fspx-12
+                fspx-14
                 v-for="(menuItem, idx) in item.rankMenuContentPC"
                 :key="idx"
               >
