@@ -35,15 +35,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="vbox" flexc>
+  <div class="vbox relative" flexc>
     <HotNews></HotNews>
     <div
+      id="video_wrapper"
+      class="video-box player relative items-center"
       rounded-10px
       flex="~ col"
-      class="video-box player relative flex items-center"
-      id="video_wrapper"
       p-10px
-      style="width: 816px; height: 100%"
     >
       <ClientOnly>
         <VideosPlayer
@@ -66,18 +65,24 @@ onMounted(() => {
         <n-button style="background-color: #fff" @click="sendDanmu">发送弹幕</n-button>
       </div>
     </div>
-    <!-- <div class="other-content" border text-center>
-      <h2>弹幕功能依然存在一些小问题待修复</h2>
-    </div> -->
   </div>
 </template>
 
 <style lang="scss" scoped>
 .vbox {
-  flex-wrap: wrap;
-  height: 500px;
+  padding: 2px 0;
+  @media screen and (min-width: 600px) {
+    height: 520px;
+  }
+  @media screen and (max-width: 600px) {
+    flex-wrap: wrap;
+    height: 1000px;
+  }
+
   .video-box {
-    box-sizing: border-box;
+    // box-sizing: border-box;
+    width: 816px;
+    height: 500px;
   }
   h2 {
     text-align: center;

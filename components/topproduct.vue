@@ -174,18 +174,20 @@ const tapMenu = (index: number) => {
     <div class="box-l">
       <h2 text-center>购前指南，专业排行！</h2>
       <div class="box-l-pc" flex>
-        <div class="pc-menu">
-          <div
-            class="rank-button"
+        <ul class="pc-menu">
+          <li
             flex
+            class="rank-button"
             v-for="(item, index) in rankListPC"
             :key="index"
             @mouseover="tapMenu(index)"
           >
             <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
-            {{ item.altContent }}
-          </div>
-        </div>
+            <a href="/">
+              <span>{{ item.altContent }}</span>
+            </a>
+          </li>
+        </ul>
         <div wfull class="menu-list-box" flex flex-wrap>
           <div
             class="pc-content"
@@ -277,7 +279,6 @@ const tapMenu = (index: number) => {
       .box-l-pc {
         min-height: 72vh;
         max-height: 72vh;
-        // height: 80%;
         .pc-menu {
           min-width: 120px;
           background-color: rgb(0, 217, 255);
@@ -285,7 +286,6 @@ const tapMenu = (index: number) => {
             cursor: pointer;
             align-items: center;
             height: 3rem;
-            padding-right: 1rem;
             img {
               margin: 0 0.5rem;
               height: 2rem;
@@ -378,7 +378,6 @@ const tapMenu = (index: number) => {
   .box-r {
     border: red 1px solid;
     min-width: 350px;
-    // overflow: hidden;
   }
 
   .swiper-box {

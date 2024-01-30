@@ -12,8 +12,10 @@ const a = ref(0)
 
 <style lang="scss" scoped>
 .hotnews {
-  width: 50%;
-  min-width: 350px;
+  margin: 2px auto;
+  min-width: 370px;
+  width: 36%;
   max-height: 500px;
+  height: 100%;
 }
 </style>
