@@ -4,7 +4,7 @@ const a = ref(0)
 </script>
 
 <template>
-  <div class="hotnews" border>
+  <div class="hotnews">
     <p fsem-10>🆕</p>
     <p fsem-10>🆕</p>
   </div>

@@ -164,15 +164,15 @@ rankMenuPC.value = [
   ],
   [{ id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '游戏' }] }]
 ]
-tapRankListMenuPC.value = rankMenuPC.value[1]
+tapRankListMenuPC.value = rankMenuPC.value[0]
 const tapMenu = (index: number) => {
   tapRankListMenuPC.value = rankMenuPC.value[index]
 }
 </script>
 <template>
+  <h2 fsem-2 text-center>购前指南，专业排行！</h2>
   <div class="box" flexb>
     <div class="box-l">
-      <h2 text-center>购前指南，专业排行！</h2>
       <div class="box-l-pc" flex>
         <ul class="pc-menu">
           <li
@@ -232,7 +232,7 @@ const tapMenu = (index: number) => {
           </NuxtLink>
         </div>
       </div>
-      <div class="tool-box" flexb flex-wrap>
+      <div mt-2 mb-2 class="tool-box" flexb flex-wrap>
         <NuxtLink
           class="tool-button"
           text-center
@@ -277,10 +277,9 @@ const tapMenu = (index: number) => {
       width: 36%;
       min-width: 568px;
       .box-l-pc {
-        min-height: 72vh;
-        max-height: 72vh;
+        height: 65vh;
         .pc-menu {
-          min-width: 120px;
+          min-width: 9em;
           background-color: rgb(0, 217, 255);
           .rank-button {
             cursor: pointer;
@@ -297,11 +296,9 @@ const tapMenu = (index: number) => {
           }
         }
         .menu-list-box {
-          // background-color: antiquewhite;
           overflow-y: scroll;
           padding-left: 4px;
           .pc-content {
-            // max-height: 70vh;
             width: 100%;
             border-radius: 6px;
             margin: 2px 0;
@@ -372,11 +369,16 @@ const tapMenu = (index: number) => {
         background-color: #1b1854;
         color: #fff;
       }
+      @media screen and (max-width: 414px) {
+        .tool-button:nth-last-child(1) {
+          margin-top: 0.5em;
+        }
+      }
     }
   }
 
   .box-r {
-    border: red 1px solid;
+    background-color: #e9e9e9;
     min-width: 350px;
   }
 

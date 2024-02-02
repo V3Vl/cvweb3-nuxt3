@@ -3,11 +3,37 @@ import { ref } from 'vue'
 const a = ref(0)
 const newsList = [
   { id: '1', title: '一个人真累', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
-  { id: '1', title: '写不下了aaaa', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
-  { id: '1', title: '写不下了阿萨', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
+  {
+    id: '1',
+    title: '写不下了aaaa',
+    date: '2024.1.31',
+    content: '红红火火恍恍惚惚哈哈哈哈红红火火恍恍惚惚哈哈哈哈'
+  },
+  {
+    id: '1',
+    title: '写不下了阿萨',
+    date: '2024.1.31',
+    content: '红红火火恍恍惚惚哈哈哈哈红红火火恍恍惚惚哈哈哈哈'
+  },
   { id: '1', title: '写不下了', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
-  { id: '1', title: '写不下了', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
+  {
+    id: '1',
+    title: '写不下了',
+    date: '2024.1.31',
+    content: '红红火火恍恍惚惚哈哈哈哈红红红火火恍恍惚惚哈哈哈哈红火火恍恍惚惚哈哈哈哈'
+  },
   { id: '1', title: '写不下了cc', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
+  {
+    id: '1',
+    title: '写不下了',
+    date: '2024.11.31',
+    content: '红红火火恍恍惚惚哈哈哈哈红红火火恍恍惚惚哈哈哈哈'
+  },
+  { id: '1', title: '写不下了', date: '2024.11.31', content: '红红火火恍恍惚惚哈哈哈哈' },
+  { id: '1', title: '写不下了', date: '2024.11.31', content: '红红火火恍恍惚惚哈哈哈哈' },
+  { id: '1', title: '写不下了', date: '2024.11.31', content: '红红火火恍恍惚惚哈哈哈哈' },
+  { id: '1', title: '写不下了', date: '2024.12.31', content: '红红火火恍恍惚惚哈哈哈哈' },
+  { id: '1', title: '写不下了', date: '2024.12.31', content: '红红火火恍恍惚惚哈哈哈哈' },
   { id: '1', title: '写不下了', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
   { id: '1', title: '写不下了', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
   { id: '1', title: '写不下了', date: '2024.1.31', content: '红红火火恍恍惚惚哈哈哈哈' },
@@ -21,8 +47,7 @@ const newsList = [
 </script>
 
 <template>
-  <div flexc flex-wrap class="middle-content" text-center>
-    <!-- <h2 wfull fsem-2>🆕Nuxt3</h2> -->
+  <div mt-2 flexc flex-wrap class="middle-content" text-center>
     <n-carousel
       effect="card"
       prev-slide-style="transform: translateX(-150%) translateZ(-800px);"
@@ -31,12 +56,6 @@ const newsList = [
       class="banner-box"
       :show-dots="false"
     >
-      <n-carousel-item :style="{ width: '60%' }">
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-        />
-      </n-carousel-item>
       <n-carousel-item :style="{ width: '60%' }">
         <img
           class="carousel-img"
@@ -57,14 +76,16 @@ const newsList = [
       </n-carousel-item>
     </n-carousel>
     <div class="middle-news">
-      <h2 text-center>热点资讯</h2>
+      <h2 h-7 text-center>热点资讯</h2>
+      <!-- <n-divider dashed> </n-divider> -->
       <ul>
         <li fsem-1 flexb v-for="(item, index) in newsList" :key="index">
-          <span w-30>{{ item.title }}{{ index + 1 }}</span>
+          <span>{{ item.title }}{{ index + 1 }}</span>
           <span fspx-12>{{ item.content }}</span>
-          <span w-36 p-0>{{ item.date }}</span>
+          <span w-18 text-right fspx-12>{{ item.date }}</span>
         </li>
       </ul>
+      <!-- <n-divider dashed> </n-divider> -->
     </div>
   </div>
 </template>
@@ -74,55 +95,60 @@ const newsList = [
   position: relative;
   padding: 0 16px;
   background: linear-gradient(180deg, #fff4e9, #f8efff);
-  // height: 23vh;
   font-family: Grotesk-Bold, Verdana-fallback-2, 'sans-serif';
+  .middle-news {
+    border-radius: 10px;
+    ul {
+      overflow-y: scroll;
+      height: 86%;
+      text-align: left;
+      padding: 0 4px;
+      span {
+        cursor: pointer;
+      }
+      span:nth-child(1) {
+        font-weight: bold;
+        color: red;
+        min-width: 80px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      span:nth-child(2) {
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        margin-left: 2px;
+        width: 100%;
+        -webkit-box-orient: vertical;
+        -webkit-box-lines: multiple;
+        display: -webkit-box;
+        overflow: hidden;
+      }
+    }
+  }
   @media screen and (min-width: 768px) {
     .banner-box {
       width: 55%;
     }
     .middle-news {
       position: absolute;
-      right: 20px;
-      height: 100%;
       min-width: 264px;
       width: 20%;
-      ul {
-        overflow-y: scroll;
-        height: 90%;
-        // padding: 20px 20px 20px 0;
-        text-align: left;
-        span {
-          cursor: pointer;
-        }
-        span:nth-child(1) {
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          font-weight: bold;
-          color: red;
-        }
-        span:nth-child(2) {
-          margin-left: 4px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-      }
+      right: 20px;
+      height: 100%;
     }
   }
   @media screen and (max-width: 768px) {
     h2 {
-      padding: 16px 0;
       font-weight: 700;
-      font-size: 2rem;
     }
     .middle-news {
-      // display: none;
       width: 80%;
       background-color: #fff;
+      margin-bottom: 20px;
       ul {
         overflow-y: scroll;
-        height: 400px;
+        max-height: 380px;
       }
     }
   }
