@@ -58,6 +58,8 @@ docker构建命令：docker build -f cvweb3-nuxt3.build.Dockerfile . -t cvweb3-n
 
 ## 其他
 
+`` github 提交 取消代理 git config --global --unset http.proxy
+
 # tips
 
 ```

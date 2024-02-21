@@ -16,7 +16,11 @@ useHead({
 
 <template>
   <div class="main-index">
-    <TopProduct></TopProduct>
+    <n-dialog-provider>
+      <n-message-provider>
+        <TopProduct></TopProduct>
+      </n-message-provider>
+    </n-dialog-provider>
     <MiddleContent></MiddleContent>
     <IndexVideo></IndexVideo>
     <ShopMenu></ShopMenu>

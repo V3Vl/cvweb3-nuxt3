@@ -48,36 +48,39 @@ const newsList = [
 
 <template>
   <div mt-2 flexc flex-wrap class="middle-content" text-center>
+    <div border class="banner-lr">
+      <h3>展位1</h3>
+    </div>
     <n-carousel
       effect="card"
       prev-slide-style="transform: translateX(-150%) translateZ(-800px);"
       next-slide-style="transform: translateX(50%) translateZ(-800px);"
-      style="height: 260px"
-      class="banner-box"
+      style="height: 264px"
+      class="banner-center-box"
       :show-dots="false"
     >
-      <n-carousel-item :style="{ width: '60%' }">
+      <n-carousel-item class="banner-center">
         <img
           class="carousel-img"
           src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
         />
       </n-carousel-item>
-      <n-carousel-item :style="{ width: '60%' }">
+      <n-carousel-item class="banner-center">
         <img
           class="carousel-img"
           src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
         />
       </n-carousel-item>
-      <n-carousel-item :style="{ width: '60%' }">
+      <n-carousel-item class="banner-center">
         <img
           class="carousel-img"
           src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
         />
       </n-carousel-item>
     </n-carousel>
-    <div class="middle-news">
+    <div border class="banner-lr"><h3>展位3</h3></div>
+    <!-- <div class="middle-news">
       <h2 h-7 text-center>热点资讯</h2>
-      <!-- <n-divider dashed> </n-divider> -->
       <ul>
         <li fsem-1 flexb v-for="(item, index) in newsList" :key="index">
           <span>{{ item.title }}{{ index + 1 }}</span>
@@ -85,15 +88,14 @@ const newsList = [
           <span w-18 text-right fspx-12>{{ item.date }}</span>
         </li>
       </ul>
-      <!-- <n-divider dashed> </n-divider> -->
-    </div>
+    </div> -->
   </div>
 </template>
 
 <style lang="scss" scoped>
 .middle-content {
   position: relative;
-  padding: 0 16px;
+  padding: 0 2px;
   background: linear-gradient(180deg, #fff4e9, #f8efff);
   font-family: Grotesk-Bold, Verdana-fallback-2, 'sans-serif';
   .middle-news {
@@ -127,8 +129,16 @@ const newsList = [
     }
   }
   @media screen and (min-width: 768px) {
-    .banner-box {
+    .banner-lr {
+      width: 22%;
+      height: 180px;
+      background-color: #fff;
+    }
+    .banner-center-box {
       width: 55%;
+      .banner-center {
+        width: 40%;
+      }
     }
     .middle-news {
       position: absolute;
@@ -139,6 +149,7 @@ const newsList = [
     }
   }
   @media screen and (max-width: 768px) {
+    padding: 4px 0;
     h2 {
       font-weight: 700;
     }
@@ -149,6 +160,16 @@ const newsList = [
       ul {
         overflow-y: scroll;
         max-height: 380px;
+      }
+    }
+    .banner-lr {
+      width: 100%;
+      height: 180px;
+      background-color: #fff;
+    }
+    .banner-center-box {
+      .banner-center {
+        width: 80%;
       }
     }
   }

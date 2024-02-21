@@ -15,9 +15,4 @@ const { clientType } = $(useClient())
 ::-webkit-scrollbar {
   display: none;
 }
-// .ipage {
-//   overflow-x: hidden;
-//   position: fixed;
-//   overflow-y: auto;
-// }
 </style>
