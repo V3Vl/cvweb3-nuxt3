@@ -392,7 +392,11 @@ const handleContent = (menuItem: any) => {
         </NuxtLink>
       </div>
     </div>
-    <div class="box-r swiper-box" fsem-3 text-center>...待开发</div>
+    <div class="box-r map-box">
+      <ClientOnly>
+        <TopMap></TopMap>
+      </ClientOnly>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -516,33 +520,18 @@ const handleContent = (menuItem: any) => {
   .box-r {
     background-color: #e9e9e9;
     min-width: 350px;
+    height: 100%; /* 让高度自适应，以保持原始比例 */
   }
 
-  .swiper-box {
+  .map-box {
     @media screen and (min-width: 600px) {
+      width: 63%;
       min-height: 70vh;
     }
     @media screen and (max-width: 600px) {
       width: 100%;
     }
-    width: 63%;
     border-radius: 10px;
-    height: 100%; /* 让高度自适应，以保持原始比例 */
-    --swiper-theme-color: #4e4d53;
-    --swiper-navigation-size: 40px;
-    :deep(.swiper-slide),
-    :deep(.swiper-slide) img {
-      cursor: pointer;
-      margin: 0 auto;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    img {
-      width: 100%; /* 图片宽度占据容器的100% */
-      height: auto; /* 让高度自适应，以保持原始比例 */
-      display: block; /* 去除底部间隙，确保图片不会受到行高的影响 */
-    }
   }
 }
 </style>

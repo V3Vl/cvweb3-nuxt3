@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     reactivityTransform: true
   },
   vite: {
-    // 似乎可以删掉
     plugins: [
       Components({
         resolvers: [NaiveUiResolver()]
@@ -59,6 +58,7 @@ export default defineNuxtConfig({
       process.env.NODE_ENV === 'production'
         ? [
             'naive-ui',
+            'echarts',
             'lodash-es',
             'vueuc',
             '@css-render/vue3-ssr',
