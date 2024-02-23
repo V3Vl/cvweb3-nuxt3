@@ -1,5 +1,7 @@
 /**
  * 接口数据类型
+ * 方法1：快捷键转换crtl+shift+alt+v 选择ts 输入接口名
+ * 方法2：自动转换工具 https://quicktype.io/
  */
 export interface IApiBase<T> {
   code: number
@@ -25,14 +27,21 @@ export interface IBannerList {
   gmt_modified: string
 }
 
+export interface IPCRankMenuContents {
+  id: number
+  pid: string
+  img: null
+  title: string
+  categoryId: null
+  isHot: string
+}
+
 export interface ICategoryList {
   id: number
-  name: string
-  pid: number
-  gmt_create: string
-  gmt_modified: string
-  level: number
-  subCategoryList: ICategoryList[]
+  title: string
+  pid: string
+  gmt_modified?: string
+  PCRankMenuContents?: IPCRankMenuContents
 }
 /**
  * 个人信息

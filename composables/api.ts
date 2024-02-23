@@ -12,10 +12,9 @@ import { IApiBase } from '../types/api'
  * 最优方案等待深入研究
  * http://127.0.0.1:8080/api
  */
-//  http://127.0.0.1:8080/api
 export const baseUrl =
   process.env.NODE_ENV === 'development'
-    ? 'https://api.cvweb3.com/api'
+    ? 'http://127.0.0.1:8080/api'
     : 'https://api.cvweb3.com/api'
 /**
  * tips: Nuxt3使用useFetch和useAsyncData请求接口，但是不利于自定义封装

@@ -119,13 +119,13 @@ const mapInit = () => {
     // 地图坐标系
     geo: {
       map: 'CHINA',
-      top: '190',
-      left: clientType === 'PC' ? '180' : 'center',
+      top: clientType === 'PC' ? '190' : '120',
+      left: clientType === 'PC' ? '170' : 'center',
       roam: true,
       zoom: 1.7,
       scaleLimit: {
-        min: 1.2,
-        max: 7
+        min: 1.6,
+        max: 5
       },
       label: {
         normal: {
@@ -195,7 +195,7 @@ onMounted(() => {
   }
   @media screen and (max-width: 600px) {
     width: 100%;
-    height: 70vh;
+    height: 50vh;
   }
 }
 </style>

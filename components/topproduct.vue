@@ -5,10 +5,12 @@ import 'swiper/css/pagination'
 import { useMessage, useDialog } from 'naive-ui'
 const message = useMessage()
 const dialog = useDialog()
-interface ISrcListType {
+import { getCategory } from '~/api/category'
+
+interface IRankCotentPC {
   src: string
   altContent: string
-  id?: number
+  gmt_modified: string
   fallbackSrc?: string
   jumpToUrl?: string
 }
@@ -23,24 +25,24 @@ interface IMenuContentType {
   title: string
   img: string
 }
-const srcList = ref<Array<ISrcListType>>([])
-const toolList = ref<Array<ISrcListType>>([])
-const rankListPC = ref<Array<ISrcListType>>([])
-const rankListH5 = ref<Array<ISrcListType>>([])
-const tapRankListMenuPC = ref<Array<IMenuListTtype>>([])
+const toolList = ref<Array<any>>([])
+const rankListPC = ref<Array<IRankCotentPC>>([])
+const tapRankListMenuPC = ref<any>([])
+const rankListH5 = ref<Array<any>>([])
 const rankMenuPC = ref<any>()
-// const { clientType } = $(useClient())
+const gmt_modified = ref<string>('huwai')
+
 rankListPC.value = [
-  { src: '', id: 5, jumpToUrl: '/rank/SchoolRank', altContent: '运动 / 户外' },
-  { src: '', id: 1, jumpToUrl: '/rank/ShopRank', altContent: '电子 / 音像' },
-  { src: '', id: 2, jumpToUrl: '/rank/ShopRank', altContent: '家居 / 家电' },
-  { src: '', id: 3, jumpToUrl: '/rank/CarRank', altContent: '游戏 / 娱乐' },
-  { src: '', id: 4, jumpToUrl: '/rank/CarRank', altContent: '装修 / 建材' },
-  { src: '', id: 6, jumpToUrl: '/rank/HumanRank', altContent: '网课 / 书籍' },
-  { src: '', id: 7, jumpToUrl: '/rank/CanteenRank', altContent: '选车 / 出行' },
-  { src: '', id: 8, jumpToUrl: '/rank/CanteenRank', altContent: '鞋服 / 饰品' },
-  { src: '', id: 9, jumpToUrl: '/rank/PowerRank', altContent: '城市 / 教育' },
-  { src: '', id: 10, jumpToUrl: '/rank/TravelRank', altContent: '旅游 / 景点' }
+  { src: '', gmt_modified: 'huwai', jumpToUrl: '/rank/SchoolRank', altContent: '运动 / 户外' },
+  { src: '', gmt_modified: 'dianzi', jumpToUrl: '/rank/ShopRank', altContent: '电子 / 音像' },
+  { src: '', gmt_modified: 'game', jumpToUrl: '/rank/CarRank', altContent: '游戏 / 娱乐' },
+  { src: '', gmt_modified: 'home', jumpToUrl: '/rank/ShopRank', altContent: '软装 / 家电' },
+  { src: '', gmt_modified: 'building', jumpToUrl: '/rank/CarRank', altContent: '硬装 / 建材' },
+  { src: '', gmt_modified: 'learn', jumpToUrl: '/rank/HumanRank', altContent: '网课 / 书籍' },
+  { src: '', gmt_modified: 'car', jumpToUrl: '/rank/CanteenRank', altContent: '选车 / 出行' },
+  { src: '', gmt_modified: 'clot', jumpToUrl: '/rank/CanteenRank', altContent: '鞋服 / 饰品' },
+  { src: '', gmt_modified: 'city', jumpToUrl: '/rank/PowerRank', altContent: '城市 / 教育' },
+  { src: '', gmt_modified: 'travel', jumpToUrl: '/rank/TravelRank', altContent: '旅游 / 景点' }
 ]
 rankListH5.value = [
   { src: '', jumpToUrl: '/rank/ShopRank', altContent: '商品' },
@@ -58,249 +60,32 @@ toolList.value = [
   { src: '', jumpToUrl: '', altContent: '旅游规划路书' },
   { src: '', jumpToUrl: '', altContent: '心愿清单' }
 ]
-srcList.value = [
-  {
-    src: 'https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_STILL_LIFE_RGB_CROPPED_2880x1620_10.jpg',
-    altContent: '鞋2'
-  },
-  {
-    src: 'https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_STILL_LIFE_RGB_CROPPED_2880x1620_28.jpg',
-    altContent: '眼镜'
-  },
-  {
-    src: 'https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_THEMES_RGB_CROPPED_2880X1620_38.jpg',
-    altContent: '围巾'
-  },
-  {
-    src: 'https://www.loewe.com.cn/media/wysiwyg/2024/ss24-preco/LOEWE_SS24_PRECO_GIFTING_STILL_LIFE_RGB_CROPPED_2880X1620_33.jpg',
-    altContent: '女包'
-  }
-]
-rankMenuPC.value = [
-  [
-    {
-      id: 1,
-      title: '热门分类',
-      rankMenuContentPC: [
-        { eId: 'hots', img: '', title: '钓鱼-纺车轮' },
-        { eId: 'hots', img: '', title: '钓鱼-路亚竿' },
-        { eId: 'hots', img: '', title: '滑雪-单板' },
-        { eId: 'hots', img: '', title: '滑雪-雪服' }
-      ]
-    },
-    {
-      id: 1,
-      title: '钓鱼',
-      rankMenuContentPC: [
-        { eId: 'hots', img: '', title: '纺车轮' },
-        { eId: 'hots', img: '', title: '鼓轮' },
-        { eId: 'hots', img: '', title: '水滴轮' },
-        { eId: 'hots', img: '', title: '路亚竿' },
-        { eId: 'hots', img: '', title: '海竿' },
-        { eId: 'hots', img: '', title: '船钓杆' },
-        { eId: 'hots', img: '', title: '传统手竿' },
-        { eId: 'hots', img: '', title: '鱼线' },
-        { eId: 'hots', img: '', title: '拟饵' },
-        { eId: 'hots', img: '', title: '钓鱼艇' },
-        { eId: 'hots', img: '', title: '路亚艇' },
-        { eId: 'hots', img: '', title: '钓鱼椅' }
-      ]
-    },
-    {
-      id: 1,
-      title: '露营',
-      rankMenuContentPC: [
-        { eId: 'hots', img: '', title: '帐篷' },
-        { eId: 'hots', img: '', title: '收纳箱' },
-        { eId: 'hots', img: '', title: '户外椅' },
-        { eId: 'hots', img: '', title: '折叠桌' },
-        { eId: 'hots', img: '', title: '旅行拖车' },
-        { eId: 'hots', img: '', title: '烧烤炉' },
-        { eId: 'hots', img: '', title: '卡式炉' }
-      ]
-    },
-    {
-      id: 1,
-      title: '自行车',
-      rankMenuContentPC: [
-        { eId: 'hots', img: '', title: '山地车' },
-        { eId: 'hots', img: '', title: '公路车' },
-        { eId: 'hots', img: '', title: '软尾山地车' },
-        { eId: 'hots', img: '', title: '瓜车' },
-        { eId: 'hots', img: '', title: '旅行车' },
-        { eId: 'hots', img: '', title: '头盔' },
-        { eId: 'hots', img: '', title: '护膝' },
-        { eId: 'hots', img: '', title: '骑行服' },
-        { eId: 'hots', img: '', title: '骑行表' },
-        { eId: 'hots', img: '', title: '车架' },
-        { eId: 'hots', img: '', title: '刹车' },
-        { eId: 'hots', img: '', title: '配件1' },
-        { eId: 'hots', img: '', title: '配件2' },
-        { eId: 'hots', img: '', title: '配件3' },
-        { eId: 'hots', img: '', title: '配件4' }
-      ]
-    },
-    {
-      id: 1,
-      title: '滑雪',
-      rankMenuContentPC: [
-        { eId: 'hots', img: '', title: '单板' },
-        { eId: 'hots', img: '', title: '双板' },
-        { eId: 'hots', img: '', title: '雪服' },
-        { eId: 'hots', img: '', title: '护镜' },
-        { eId: 'hots', img: '', title: '头盔' },
-        { eId: 'hots', img: '', title: '固定器' },
-        { eId: 'hots', img: '', title: '雪靴' }
-      ]
-    },
-    {
-      id: 1,
-      title: '潜水',
-      rankMenuContentPC: [
-        { eId: 'hots', img: '', title: '护镜' },
-        { eId: 'hots', img: '', title: '潜水服' },
-        { eId: 'hots', img: '', title: 'BCD' },
-        { eId: 'hots', img: '', title: '脚蹼' },
-        { eId: 'hots', img: '', title: '脚蹼' }
-      ]
-    },
-    {
-      id: 1,
-      title: '冲浪',
-      rankMenuContentPC: [{ eId: 'hots', img: '', title: '1' }]
-    },
-    {
-      id: 1,
-      title: '徒步',
-      rankMenuContentPC: [{ eId: 'hots', img: '', title: '1' }]
-    }
-  ],
-  [
-    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '测试' }] },
-    {
-      id: 1,
-      title: '电视',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: 'Led电视' },
-        { eId: 'miniLed', img: '', title: 'miniLed电视' },
-        { eId: 'miniLed', img: '', title: 'OLED电视' },
-        { eId: 'miniLed', img: '', title: '激光电视' }
-      ]
-    },
-    {
-      id: 1,
-      title: '电脑配件/外设',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: '显示器' },
-        { eId: 'miniLed', img: '', title: '显示器支架' },
-        { eId: 'miniLed', img: '', title: '显卡' },
-        { eId: 'miniLed', img: '', title: 'CPU' },
-        { eId: 'miniLed', img: '', title: '内存条' },
-        { eId: 'miniLed', img: '', title: '风冷散热' },
-        { eId: 'miniLed', img: '', title: '一体式水冷' },
-        { eId: 'miniLed', img: '', title: '分体式水冷' },
-        { eId: 'miniLed', img: '', title: '电源' },
-        { eId: 'miniLed', img: '', title: '路由器' },
-        { eId: 'miniLed', img: '', title: '游戏键盘' },
-        { eId: 'miniLed', img: '', title: '商务键盘' },
-        { eId: 'miniLed', img: '', title: '游戏鼠标' },
-        { eId: 'miniLed', img: '', title: '商务鼠标' }
-      ]
-    },
-    {
-      id: 1,
-      title: '笔记本电脑',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: '游戏本' },
-        { eId: 'miniLed', img: '', title: '商务本' },
-        { eId: 'miniLed', img: '', title: '工作站' }
-      ]
-    },
-    {
-      id: 1,
-      title: '手机',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: '老人手机' },
-        { eId: 'miniLed', img: '', title: '1000元档' },
-        { eId: 'miniLed', img: '', title: '3000元档' },
-        { eId: 'miniLed', img: '', title: '游戏手机' },
-        { eId: 'miniLed', img: '', title: '高端旗舰' }
-      ]
-    },
-    {
-      id: 1,
-      title: '摄影',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: 'vlog' },
-        { eId: 'miniLed', img: '', title: '运动相机' },
-        { eId: 'miniLed', img: '', title: '微单相机' },
-        { eId: 'miniLed', img: '', title: '半画幅' },
-        { eId: 'miniLed', img: '', title: '全画幅' },
-        { eId: 'miniLed', img: '', title: '镜头' },
-        { eId: 'miniLed', img: '', title: '水下摄影-相机防水壳' }
-      ]
-    },
-    {
-      id: 1,
-      title: '音频',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: '5.1音效-家庭影院方案' },
-        { eId: 'miniLed', img: '', title: '7.1音效-家庭影院方案' },
-        { eId: 'miniLed', img: '', title: '回音壁' },
-        { eId: 'miniLed', img: '', title: '前置' },
-        { eId: 'miniLed', img: '', title: '低音炮' },
-        { eId: 'miniLed', img: '', title: '声卡' }
-      ]
-    },
-    {
-      id: 1,
-      title: '游戏设备',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: '手柄' },
-        { eId: 'miniLed', img: '', title: '赛车模拟器-选购方案' },
-        { eId: 'miniLed', img: '', title: '赛车模拟器-座舱' },
-        { eId: 'miniLed', img: '', title: '赛车模拟器-基座' },
-        { eId: 'miniLed', img: '', title: '赛车模拟器-方向盘' },
-        { eId: 'miniLed', img: '', title: '赛车模拟器-刹车' },
-        { eId: 'miniLed', img: '', title: '赛车模拟器-离合' },
-        { eId: 'miniLed', img: '', title: '飞行模拟器' },
-        { eId: 'miniLed', img: '', title: '' }
-      ]
-    },
-    {
-      id: 1,
-      title: '耳机',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: '便携蓝牙耳机' },
-        { eId: 'miniLed', img: '', title: '手机耳机' },
-        { eId: 'miniLed', img: '', title: 'hifi耳机' },
-        { eId: 'miniLed', img: '', title: '监听耳机' },
-        { eId: 'miniLed', img: '', title: '游戏耳机' }
-      ]
-    },
-    {
-      id: 1,
-      title: '其他',
-      rankMenuContentPC: [
-        { eId: 'miniLed', img: '', title: '电竞椅' },
-        { eId: 'miniLed', img: '', title: '人体工学椅' },
-        { eId: 'miniLed', img: '', title: '护颈' }
-      ]
-    }
-  ],
-  [
-    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '家具' }] },
-    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '家具' }] }
-  ],
-  [{ id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '游戏' }] }],
-  [
-    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '游戏' }] },
-    { id: 1, title: '热门分类', rankMenuContentPC: [{ eId: 'hots', img: '', title: '游戏' }] }
-  ]
-]
-tapRankListMenuPC.value = rankMenuPC.value[0]
-const tapMenu = (index: number) => {
-  tapRankListMenuPC.value = rankMenuPC.value[index]
+// 记录已经获取过数据的list 避免重复获取
+const tapedList = ref<any>({})
+rankMenuPC.value = []
+const initCategoryData = async () => {
+  const res = await getCategory(gmt_modified.value)
+  rankMenuPC.value.push(res.data)
+  tapedList.value[gmt_modified.value] = true
+  tapRankListMenuPC.value = rankMenuPC.value[0]
+}
+await initCategoryData()
+const tapMenu = async (_gmt_modified: string) => {
+  let currGmt = 0
+  rankMenuPC.value.map((item: any, index: number) => {
+    item.map((itemed: any, indexed: number) => {
+      if (_gmt_modified == itemed.gmt_modified) {
+        currGmt = index
+        return
+      }
+    })
+  })
+  tapRankListMenuPC.value = rankMenuPC.value[currGmt]
+  // 用tapedList检测是否获取过数据 没获取过数据的才发起请求
+  if (tapedList.value[_gmt_modified]) return
+  tapedList.value[_gmt_modified] = true
+  const res = await getCategory(_gmt_modified)
+  rankMenuPC.value.push(res.data)
 }
 
 const handleContent = (menuItem: any) => {
@@ -330,12 +115,10 @@ const handleContent = (menuItem: any) => {
             class="rank-button"
             v-for="(item, index) in rankListPC"
             :key="index"
-            @mouseover="tapMenu(index)"
+            @mouseover="tapMenu(item.gmt_modified)"
           >
             <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
-            <!-- <a href="/"> -->
             <span>{{ item.altContent }}</span>
-            <!-- </a> -->
           </li>
         </ul>
         <div wfull class="menu-list-box" flex flex-wrap>
@@ -346,24 +129,24 @@ const handleContent = (menuItem: any) => {
             v-for="(item, idx) in tapRankListMenuPC"
             :key="idx"
           >
-            <block>
-              <h4 h-7 wfull fsem-1 style="line-height: 2em">{{ item.title }}</h4>
+            <div wfull>
+              <h4 style="height: 2em; line-height: 2em">{{ item.title }}</h4>
               <n-button
-                text
-                ghost
+                quaternary
                 h-8
-                style="padding: 0.5rem; margin: 0"
+                style="padding: 0.5rem"
                 fspx-14
-                v-for="(menuItem, idx) in item.rankMenuContentPC"
+                v-for="(menuItem, idx) in item.PCRankMenuContents"
                 @click="handleContent(menuItem)"
                 :key="idx"
               >
                 {{ menuItem.title }}
               </n-button>
-              <n-button v-if="item.rankMenuContentPC?.length > 6" type="info" size="tiny" dashed>
+              <n-text depth="3" v-if="item.PCRankMenuContents?.length === 0"> 暂无内容 </n-text>
+              <n-button v-if="item.PCRankMenuContents?.length > 6" type="info" size="tiny" dashed>
                 查看更多
               </n-button>
-            </block>
+            </div>
           </div>
         </div>
       </div>
@@ -437,6 +220,7 @@ const handleContent = (menuItem: any) => {
         }
         .menu-list-box {
           overflow-y: scroll;
+          overflow-x: hidden;
           padding-left: 4px;
           .pc-content {
             width: 100%;

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { getCategory } from '~/api/category'
+// import { getCategory } from '~/api/category'
 import { ICategoryList } from '~/types/api'
 // const categoryList = ref({ data: [{ name: '1-1' }, { name: '1-2' }, { name: '1-3' }] })
-const categoryList = await getCategory()
+// const categoryList = await getCategory()
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const categoryList = await getCategory()
     </div>
   </div> -->
   <div class="box-b" wfull flexc>
-    <div class="category-card" v-for="(item, index) in categoryList.data">
+    <!-- <div class="category-card" v-for="(item, index) in categoryList.data">
       <div
         class="category-card-item"
         w-50
@@ -22,7 +22,7 @@ const categoryList = await getCategory()
         @click="navigateTo(`/shopListPage?id=${index}`)"
       ></div>
       <p text-center>{{ item.name }}</p>
-    </div>
+    </div> -->
   </div>
 </template>
 

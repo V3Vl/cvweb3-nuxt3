@@ -7,13 +7,13 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 const modules = [Pagination]
 // const partnerList = ref({ data: [{ link: '', partner: '' }] })
-const partnerList = await getPartnerList()
+// const partnerList = await getPartnerList()
 </script>
 
 <template>
   <div class="partner-box">
     <h2>合作厂家</h2>
-    <div class="partner">
+    <!-- <div class="partner">
       <swiper
         :slidesPerView="4"
         :spaceBetween="30"
@@ -22,12 +22,11 @@ const partnerList = await getPartnerList()
         :grabCursor="true"
         class="mySwiper"
       >
-        <!-- <div flex> -->
         <swiper-slide v-for="(item, index) in partnerList.data" :key="index">
           <a :href="item.link" target="_blank">{{ item.partner }}</a>
         </swiper-slide>
       </swiper>
-    </div>
+    </div> -->
   </div>
 </template>
 

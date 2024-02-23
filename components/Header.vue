@@ -53,18 +53,15 @@ const onCancel = () => {
 
 <style lang="scss" scoped>
 .header {
+  z-index: 2;
   position: fixed;
-  z-index: 999;
+  padding: 4px 6px;
   box-sizing: border-box;
   top: 0;
   left: 0;
-  padding: 4px 6px;
-  height: 4rem;
+  height: 3rem;
   background-color: #fff;
   color: #333;
-  // .header-left {
-  //   width: 40%;
-  // }
   .search {
     position: absolute;
     left: 50%;
@@ -72,12 +69,10 @@ const onCancel = () => {
     @media screen and (max-width: 599px) {
       /* 手机版样式 */
       width: 60%;
-      // display: none;
     }
     @media screen and (min-width: 599px) {
       /* PC版样式 */
       width: 30%;
-      // display: none;
     }
   }
   .title {
