@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="footer-line"></div>
-    <ul wfull flexb>
+    <ul wfull flexb flex-wrap>
       <li><a href="https://nuxt.com.cn/" target="_blank">友情链接1</a></li>
       <li><a href="https://nuxt.com.cn/" target="_blank">友情链接2</a></li>
       <li><a href="https://nuxt.com.cn/" target="_blank">友情链接3</a></li>
@@ -38,7 +38,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    // margin: auto 0;
   }
   ul > li {
     min-width: 50px;

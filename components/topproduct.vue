@@ -3,6 +3,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { useMessage, useDialog } from 'naive-ui'
+const { clientType } = $(useClient())
 const message = useMessage()
 const dialog = useDialog()
 import { getCategory } from '~/api/category'
@@ -105,7 +106,16 @@ const handleContent = (menuItem: any) => {
 }
 </script>
 <template>
-  <h2 fsem-2 text-center>购前指南，专业排行！</h2>
+  <h2 fsem-1.5 text-center>
+    购前指南，专业排行！<span
+      style="font-weight: 500"
+      fspx-10
+      v-if="clientType == 'MOBILE'"
+      text-center
+      >暂未完全兼容手机, 建议使用电脑</span
+    >
+  </h2>
+
   <div class="box" flexb>
     <div class="box-l">
       <div class="box-l-pc" flex>
@@ -143,8 +153,14 @@ const handleContent = (menuItem: any) => {
                 {{ menuItem.title }}
               </n-button>
               <n-text depth="3" v-if="item.PCRankMenuContents?.length === 0"> 暂无内容 </n-text>
-              <n-button v-if="item.PCRankMenuContents?.length > 6" type="info" size="tiny" dashed>
-                查看更多
+              <n-button
+                v-if="item.PCRankMenuContents?.length > 6"
+                ml-2
+                type="info"
+                size="tiny"
+                dashed
+              >
+                查看更多...
               </n-button>
             </div>
           </div>
@@ -226,7 +242,7 @@ const handleContent = (menuItem: any) => {
             width: 100%;
             border-radius: 6px;
             margin: 2px 0;
-            padding: 4px 2px;
+            padding: 4px 2px 6px 6px;
             background-color: aliceblue;
           }
         }

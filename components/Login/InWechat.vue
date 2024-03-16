@@ -28,7 +28,7 @@ const getQrCode = async () => {
   }
 }
 // 调用
-// await getQrCode()
+await getQrCode()
 const watchCheckScan = async (ticket: string) => {
   const res = await checkScan({ ticket })
   loseCount.value--

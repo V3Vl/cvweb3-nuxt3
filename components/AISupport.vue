@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DrawerPlacement } from 'naive-ui'
-const { personalInfo } = $(useUser())
 const { clientType } = $(useClient())
 const placement = ref<DrawerPlacement>('right')
 const active = ref(false)

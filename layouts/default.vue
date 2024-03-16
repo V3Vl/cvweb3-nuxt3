@@ -1,13 +1,10 @@
-<script setup lang="ts">
-const { clientType } = $(useClient())
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <Header :_clientType="clientType" />
+  <Header />
   <div mt-4rem>
     <slot />
   </div>
-  <!-- <AISupport /> -->
   <Footer />
 </template>
 

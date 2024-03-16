@@ -48,8 +48,8 @@ const newsList = [
 
 <template>
   <div mt-2 flexc flex-wrap class="middle-content" text-center>
-    <div border class="banner-lr">
-      <h3>展位1</h3>
+    <div class="banner-lr">
+      <span>展位1</span>
     </div>
     <n-carousel
       effect="card"
@@ -78,7 +78,7 @@ const newsList = [
         />
       </n-carousel-item>
     </n-carousel>
-    <div border class="banner-lr"><h3>展位3</h3></div>
+    <div class="banner-lr"><span>展位3</span></div>
     <!-- <div class="middle-news">
       <h2 h-7 text-center>热点资讯</h2>
       <ul>
