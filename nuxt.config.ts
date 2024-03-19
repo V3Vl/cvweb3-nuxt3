@@ -2,6 +2,11 @@ import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineNuxtConfig({
+  app: {
+    // 过渡效果文档：https://nuxt.com.cn/docs/getting-started/transitions#%E5%B8%83%E5%B1%80%E8%BF%87%E6%B8%A1
+    layoutTransition: { name: 'layout', mode: 'out-in' },
+    pageTransition: { name: 'fade', mode: 'out-in' }
+  },
   modules: ['@unocss/nuxt', '@pinia/nuxt'],
   // envDir: '~/xxx',   //指定env文件夹
   // 响应式转换，ref省略.value写法

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NResult, NButton } from 'naive-ui'
-const props = defineProps({
+const props: any = defineProps({
   error: Object
 })
 const pTips = ref('')
@@ -13,7 +13,7 @@ let _errTips: any = {
     ;(pTips.value = '禁止访问'), (pDescription.value = '总有些门是对你关闭的')
   },
   '500': () => {
-    ;(pTips.value = '服务器错误'), (pDescription.value = '服务器出错可能说明该雇更多程序员了')
+    ;(pTips.value = '服务器错误'), (pDescription.value = '服务器出错')
   },
   '418': () => {
     ;(pTips.value = '未知错误'), (pDescription.value = '在它出现以前一般不会有人管它')

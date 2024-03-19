@@ -13,9 +13,9 @@ initialize()
 // await asyncUserInfo()
 
 useHead({
-  title: '可以服饰',
+  title: '可以排行榜',
   meta: [
-    { name: 'description', content: '可以服饰官方网站' },
+    { name: 'description', content: '可以排行榜官网' },
     { name: 'keywords', content: '关键词1,关键词2,关键词3,这里是app.vue' }
   ]
 })
@@ -23,6 +23,8 @@ useHead({
 
 <template>
   <NuxtLayout>
+    <!-- 进度条文档：https://nuxt.com.cn/docs/api/components/nuxt-loading-indicator -->
+    <NuxtLoadingIndicator />
     <NuxtPage :key="$route.fullPath" />
   </NuxtLayout>
 </template>

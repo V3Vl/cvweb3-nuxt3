@@ -82,7 +82,10 @@ const getCode = async () => {
   }
 }
 let countDown = $ref(60)
+// 待优化
 let timer = $ref(null)
+// type Timer = ReturnType<typeof setTimeout> | ReturnType<typeof setInterval> | null
+// let timer = $ref<Timer>(null)
 const countDownFunc = () => {
   timer = setInterval(() => {
     countDown--
@@ -101,7 +104,7 @@ const onFinishFailed = (errorInfo: any) => {
 }
 // 注册
 const registerBtn = async () => {
-  // 待补充 判断
+  // 待补充判断
   const res = await register({
     phone: formState.username,
     code: formState.code,
@@ -120,6 +123,13 @@ const loginBtn = async () => {
     password: formState.password,
     code: formState.code
   }
+  /**
+   * 只在客户端发起的请求方式
+   const { users } = await ofetch('/api/users', {
+     method: 'POST',
+     body: { some: 'json' }
+   })
+   */
   const res = await login(params)
   if (res.code === 0) {
     loginModel.base = false
@@ -127,6 +137,7 @@ const loginBtn = async () => {
     // message.success('登录成功')
   }
 }
+// 忘记密码 - 修改密码 - 保存
 const saveUserBtn = async () => {
   const params = {
     phone: formState.username,

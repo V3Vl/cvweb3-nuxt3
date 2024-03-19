@@ -18,7 +18,7 @@ export const baseUrl =
     : 'https://api.cvweb3.com/api'
 /**
  * tips: Nuxt3使用useFetch和useAsyncData请求接口，但是不利于自定义封装
- * useFetch 和 useAsyncData 都是ohmyFetch封装的
+ * useFetch 和 useAsyncData 都是ohmyFetch封装的（ohmyFetch就是oFetch，即$fetch）
  */
 const _useApi = $fetch.create({
   baseURL: baseUrl,

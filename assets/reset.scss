@@ -10,6 +10,15 @@ body,
   height: 100%;
   font-family: '思源黑体 CN', sans-serif;
 }
+// 布局过渡
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.4s;
+}
+.layout-enter-from,
+.layout-leave-to {
+  filter: grayscale(1);
+}
 
 input {
   border: none;
