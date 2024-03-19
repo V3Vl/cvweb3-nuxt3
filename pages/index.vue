@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-const { indexType } = $(useModel())
 const description = ref('这里是动态返回的，或许可以用SEO后台管理系统控制')
 const keyword = ref('关键词1,关键词2,关键词3,关键词4')
 useHead({
@@ -11,7 +10,6 @@ useHead({
     { name: 'author', content: '潘毅' }
   ]
 })
-// throwError('开发者故意的')
 </script>
 
 <template>

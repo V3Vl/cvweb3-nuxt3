@@ -83,6 +83,17 @@ const tapMenu = async (_gmt_modified: string) => {
       }
     })
   })
+  // currGmt = rankMenuPC.value.findIndex((item: any) => {
+  //   console.log('item>>>', _gmt_modified)
+  //   item.some((itemed: any) => {
+  //     console.log('itemed>>>', itemed.gmt_modified)
+
+  //     _gmt_modified == itemed.gmt_modified
+  //   })
+  // })
+  // console.log(currGmt)
+
+  // if (currGmt === -1) return // 如果没找到对应的gmt_modified则直接返回
   tapRankListMenuPC.value = rankMenuPC.value[currGmt]
   // 用tapedList检测是否获取过数据 没获取过数据的才发起请求
   if (tapedList.value[_gmt_modified]) return
@@ -91,23 +102,6 @@ const tapMenu = async (_gmt_modified: string) => {
   rankMenuPC.value.push(res.data)
 }
 
-/**
- * 优化后
- const tapMenu = async (_gmt_modified: string) => {
-   let currGmt = rankMenuPC.value.findIndex((item: any) => item.some((itemed: any) => _gmt_modified == itemed.gmt_modified));
-   
-   if (currGmt === -1) return; // 如果没找到对应的gmt_modified则直接返回
-   
-   tapRankListMenuPC.value = rankMenuPC.value[currGmt];
-   
-   if (tapedList.value[_gmt_modified]) return;
-   
-   tapedList.value[_gmt_modified] = true;
-   
-   const res = await getCategory(_gmt_modified);
-   rankMenuPC.value.push(res.data);
-  }
-  */
 
 const handleContent = (menuItem: any) => {
   // 有内容的页面不提示 - 数据库

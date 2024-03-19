@@ -17,13 +17,18 @@ useHead({
   meta: [
     { name: 'description', content: '可以排行榜官网' },
     { name: 'keywords', content: '关键词1,关键词2,关键词3,这里是app.vue' }
+  ],
+  script: [
+    {
+      src: '/pb_utils/BaiduSEO.js',
+      body: false
+    }
   ]
 })
 </script>
 
 <template>
   <NuxtLayout>
-    <!-- 进度条文档：https://nuxt.com.cn/docs/api/components/nuxt-loading-indicator -->
     <NuxtLoadingIndicator />
     <NuxtPage :key="$route.fullPath" />
   </NuxtLayout>
