@@ -56,10 +56,10 @@ rankListH5.value = [
   { src: '', jumpToUrl: '/rank/PowerRank', altContent: '汽车' }
 ]
 toolList.value = [
-  { src: '', jumpToUrl: '/tooler/Fitmentdiy', altContent: '装修预算清单' },
-  { src: '', jumpToUrl: '/tooler/PCdiy', altContent: '自助电脑配置清单' },
-  { src: '', jumpToUrl: '', altContent: '旅游规划路书' },
-  { src: '', jumpToUrl: '', altContent: '心愿清单' }
+  { src: '', jumpToUrl: '/tooler/Fitmentdiy', altContent: '装修预算清单' }
+  // { src: '', jumpToUrl: '/tooler/PCdiy', altContent: '自助电脑配置清单' },
+  // { src: '', jumpToUrl: '', altContent: '旅游规划路书' },
+  // { src: '', jumpToUrl: '', altContent: '心愿清单' }
 ]
 // 记录已经获取过数据的list 避免重复获取
 const tapedList = ref<any>({})
@@ -68,11 +68,13 @@ const initCategoryData = async () => {
   const res = await getCategory(gmt_modified.value)
   rankMenuPC.value.push(res.data)
   tapedList.value[gmt_modified.value] = true
+  // 默认显示[0]菜单
   tapRankListMenuPC.value = rankMenuPC.value[0]
 }
 await initCategoryData()
 const tapMenu = async (_gmt_modified: string) => {
   let currGmt = 0
+  // 待优化 不需要双循环 给事件多传一个index
   rankMenuPC.value.map((item: any, index: number) => {
     item.map((itemed: any, indexed: number) => {
       if (_gmt_modified == itemed.gmt_modified) {
@@ -88,6 +90,24 @@ const tapMenu = async (_gmt_modified: string) => {
   const res = await getCategory(_gmt_modified)
   rankMenuPC.value.push(res.data)
 }
+
+/**
+ * 优化后
+ const tapMenu = async (_gmt_modified: string) => {
+   let currGmt = rankMenuPC.value.findIndex((item: any) => item.some((itemed: any) => _gmt_modified == itemed.gmt_modified));
+   
+   if (currGmt === -1) return; // 如果没找到对应的gmt_modified则直接返回
+   
+   tapRankListMenuPC.value = rankMenuPC.value[currGmt];
+   
+   if (tapedList.value[_gmt_modified]) return;
+   
+   tapedList.value[_gmt_modified] = true;
+   
+   const res = await getCategory(_gmt_modified);
+   rankMenuPC.value.push(res.data);
+  }
+  */
 
 const handleContent = (menuItem: any) => {
   // 有内容的页面不提示 - 数据库
@@ -183,7 +203,6 @@ const handleContent = (menuItem: any) => {
         </div>
       </div>
       <div mt-2 mb-2 class="tool-box" flex flex-wrap>
-        <!-- :to="item.jumpToUrl" -->
         <NuxtLink class="tool-button" text-center v-for="(item, index) in toolList" :key="index">
           <n-button @click="handleContent(item)" strong secondary type="success">
             <p fspx-15 m-0>{{ item.altContent }}</p>

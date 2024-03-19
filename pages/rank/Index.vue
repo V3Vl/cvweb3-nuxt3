@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const a = ref(0)
-console.log('6666666666666')
+definePageMeta({
+  layout: 'rank'
+})
 </script>
 
 <template>
-  <h1>6666666666</h1>
+  <div m="0 auto" border>
+    <h1>测试</h1>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
