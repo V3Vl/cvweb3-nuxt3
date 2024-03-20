@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const description = ref('这里是动态返回的，或许可以用SEO后台管理系统控制')
+const description = ref(
+  '品牌榜 选购查排行可以排行榜，什么牌子好。'
+)
 const keyword = ref('关键词1,关键词2,关键词3,关键词4')
 useHead({
   title: '选购指南',
