@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 import { useMessage, useDialog } from 'naive-ui'
 const { clientType } = $(useClient())
 const message = useMessage()
