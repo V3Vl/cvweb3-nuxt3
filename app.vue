@@ -1,7 +1,4 @@
 <script setup>
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 import { io } from 'socket.io-client'
 // socketio链接
 const { initialize } = $(useSocket())
