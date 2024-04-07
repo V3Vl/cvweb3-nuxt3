@@ -62,7 +62,7 @@ const newsList = [
       <n-carousel-item class="banner-center">
         <img
           class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
         />
       </n-carousel-item>
       <n-carousel-item class="banner-center">
@@ -74,7 +74,7 @@ const newsList = [
       <n-carousel-item class="banner-center">
         <img
           class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
         />
       </n-carousel-item>
     </n-carousel>

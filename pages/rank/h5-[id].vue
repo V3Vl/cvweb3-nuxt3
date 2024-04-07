@@ -18,7 +18,7 @@ interface IHeadData {
   description: string
 }
 const route = useRoute()
-console.log('>>', route.params)
+console.log('>>', route)
 const headData = ref<IHeadData>()
 headData.value = {
   title: route.query.content + '排行榜',
@@ -42,7 +42,7 @@ useHead({
 </script>
 
 <template>
-  <h1>#{{ $route.query.content }}</h1>
+  <h1>#{{ $route.params.id }}</h1>
 </template>
 
 <style>
