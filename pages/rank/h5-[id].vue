@@ -18,7 +18,12 @@ interface IHeadData {
   description: string
 }
 const route = useRoute()
-console.log('>>', route)
+
+async function getData() {
+  console.log('>>', route, route.params)
+}
+getData()
+
 const headData = ref<IHeadData>()
 headData.value = {
   title: route.query.content + '排行榜',
@@ -30,7 +35,7 @@ const rankData = await getCategory(route.params.id)
 rankData.data.forEach((element: any, index: number) => {
   if (index > 0) headData.value.keyword += `${element.title}排行榜,`
 })
-console.log(headData)
+console.log(rankData.data)
 useHead({
   title: headData.value.title,
   charset: 'utf-8',
@@ -39,13 +44,70 @@ useHead({
     { name: 'description', content: headData.value.description }
   ]
 })
+// 栅格
+// 折叠后行数
+const gridCollapsedRows = ref(2)
+// 折叠flag
+const gridCollapsed = ref(false)
+// 栅格数据
+const gridItemCount = ref(20)
+// 是否显示折叠按钮
+const showSuffix = ref(true)
 </script>
 
 <template>
-  <h1>#{{ $route.params.id }}</h1>
+  <!-- <h1>{{ headData.title }}</h1> -->
+  <!-- current rank menu -->
+  <div class="rank_menu_box">
+    <n-grid cols="3 s:3 m:4" responsive="screen" :x-gap="4" :y-gap="4">
+      <n-grid-item>
+        <div class="rank_menu_btn">1</div>
+      </n-grid-item>
+      <n-grid-item>
+        <div class="rank_menu_btn">2</div>
+      </n-grid-item>
+      <n-grid-item>
+        <div class="rank_menu_btn">3</div>
+      </n-grid-item>
+      <n-grid-item>
+        <div class="rank_menu_btn">8</div>
+      </n-grid-item>
+    </n-grid>
+  </div>
+  <!-- hot brand -->
+  <div class="brand_menu_box">
+    <n-grid
+      :cols="4"
+      :collapsed="gridCollapsed"
+      :collapsed-rows="gridCollapsedRows"
+      :x-gap="4"
+      :y-gap="4"
+    >
+      <!-- <n-gi v-for="i in gridItemCount" :key="i" :class="i % 2 ? 'green' : 'rank_menu_btn'"> -->
+      <n-gi v-for="i in gridItemCount" :key="i" class="brand_btn">
+        {{ i }}
+      </n-gi>
+      <n-gi
+        border
+        v-if="showSuffix"
+        suffix
+        class="suffix"
+        #="{ overflow }"
+        @click="gridCollapsed = !gridCollapsed"
+      >
+        {{ overflow ? '展开' : '收起' }}
+      </n-gi>
+    </n-grid>
+  </div>
+  <!-- current rank news -->
+  <div class="rank_news_box">
+    <ul v-for="(item, index) in rankData.data" :key="index">
+      <li>{{ item.pid }}</li>
+    </ul>
+  </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
@@ -67,5 +129,45 @@ useHead({
 .slide-right-leave-to {
   opacity: 0;
   transform: translate(50px, 0);
+}
+
+.rank_menu_box {
+  width: 100vw;
+  min-height: 30vh;
+  background-color: #f5f6f7;
+}
+.brand_menu_box {
+  width: 100vw;
+  min-height: 30vh;
+  background-color: #f5f6f7;
+}
+.rank_news_box {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  vertical-align: baseline;
+  li {
+    margin: 0.3rem 0;
+    width: 90vw;
+    background-color: rgba(194, 20, 20, 0.555);
+  }
+}
+.rank_menu_btn {
+  height: 108px;
+  background-color: rgba(0, 128, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand_btn {
+  text-align: center;
+  height: 80px;
+  background-color: cadetblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.suffix {
+  text-align: center;
 }
 </style>

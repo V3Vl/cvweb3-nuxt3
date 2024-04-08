@@ -124,18 +124,18 @@ const handleContent = (menuItem: any) => {
       <h2 fsem-1.5 text-center>购前指南，专业排行！</h2>
       <div class="box-l-pc">
         <ul class="pc-menu">
-          <NuxtLink
-            class="rank-button"
-            v-for="(item, index) in rankListPC"
-            :key="index"
-            :to="{ path: `/rank/${item.gmt_modified}`, query: { content: item.altContent } }"
-            @mouseover="tapMenu(item.gmt_modified)"
-            @click="clickMenu(item.gmt_modified)"
-            target="_blank"
-          >
-            <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
-            <span to="/">{{ item.altContent }}</span>
-          </NuxtLink>
+          <li v-for="(item, index) in rankListPC" :key="index">
+            <NuxtLink
+              class="rank-button"
+              :to="{ path: `/rank/${item.gmt_modified}`, params: { content: item.altContent } }"
+              @mouseover="tapMenu(item.gmt_modified)"
+              @click="clickMenu(item.gmt_modified)"
+              target="_blank"
+            >
+              <!-- <img src="@/assets/img/logo_cat.png" alt="" srcset="" /> -->
+              <span>{{ item.altContent }}</span>
+            </NuxtLink>
+          </li>
         </ul>
         <div class="menu-list-box">
           <div class="pc-content" v-for="(item, idx) in tapRankListMenuPC" :key="idx">
