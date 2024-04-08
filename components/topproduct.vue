@@ -43,14 +43,14 @@ rankListPC.value = [
   { src: '', gmt_modified: 'travel', jumpToUrl: '/rank/TravelRank', altContent: '旅游 / 景点' }
 ]
 rankListH5.value = [
-  { src: '', jumpToUrl: '/rank/ShopRank', altContent: '商品' },
-  { src: '', jumpToUrl: '/rank/CarRank', altContent: '分类' },
-  { src: '', jumpToUrl: '/rank/TravelRank', altContent: '游戏' },
-  { src: '', jumpToUrl: '/rank/SchoolRank', altContent: '教育' },
-  { src: '', jumpToUrl: '/rank/CanteenRank', altContent: '名人' },
-  { src: '', jumpToUrl: '/rank/HumanRank', altContent: '旅游' },
-  { src: '', jumpToUrl: '/rank/PowerRank', altContent: '书籍' },
-  { src: '', jumpToUrl: '/rank/PowerRank', altContent: '汽车' }
+  { src: '', id: 'goods', altContent: '商品' },
+  { src: '', id: 'category', altContent: '分类' },
+  { src: '', id: 'game', altContent: '游戏' },
+  { src: '', id: 'city', altContent: '教育' },
+  { src: '', id: 'mans', altContent: '名人' },
+  { src: '', id: 'travel', altContent: '旅游' },
+  { src: '', id: 'learn', altContent: '书籍' },
+  { src: '', id: 'car', altContent: '选车' }
 ]
 toolList.value = [
   { src: '', jumpToUrl: '/tooler/Fitmentdiy', altContent: '装修预算清单' }
@@ -98,9 +98,11 @@ const tapMenu = async (_gmt_modified: string) => {
   const res = await getCategory(_gmt_modified)
   rankMenuPC.value.push(res.data)
 }
-
+const clickMenu = (item: any) => {}
 
 const handleContent = (menuItem: any) => {
+  console.log(menuItem)
+
   // 有内容的页面不提示 - 数据库
   dialog.warning({
     title: `${menuItem.title ? menuItem.title : ''} 暂无内容`,
@@ -117,41 +119,28 @@ const handleContent = (menuItem: any) => {
 }
 </script>
 <template>
-  <h2 fsem-1.5 text-center>
-    购前指南，专业排行！<span
-      style="font-weight: 500"
-      fspx-10
-      v-if="clientType == 'MOBILE'"
-      text-center
-      >暂未完全兼容手机, 建议使用电脑</span
-    >
-  </h2>
-
-  <div class="box" flexb>
+  <div class="box">
     <div class="box-l">
-      <div class="box-l-pc" flex>
+      <h2 fsem-1.5 text-center>购前指南，专业排行！</h2>
+      <div class="box-l-pc">
         <ul class="pc-menu">
-          <li
-            flex
+          <NuxtLink
             class="rank-button"
             v-for="(item, index) in rankListPC"
             :key="index"
+            :to="{ path: `/rank/${item.gmt_modified}`, query: { content: item.altContent } }"
             @mouseover="tapMenu(item.gmt_modified)"
+            @click="clickMenu(item.gmt_modified)"
+            target="_blank"
           >
             <img src="@/assets/img/logo_cat.png" alt="" srcset="" />
-            <span>{{ item.altContent }}</span>
-          </li>
+            <span to="/">{{ item.altContent }}</span>
+          </NuxtLink>
         </ul>
-        <div wfull class="menu-list-box" flex flex-wrap>
-          <div
-            class="pc-content"
-            flex
-            flex-wrap
-            v-for="(item, idx) in tapRankListMenuPC"
-            :key="idx"
-          >
+        <div class="menu-list-box">
+          <div class="pc-content" v-for="(item, idx) in tapRankListMenuPC" :key="idx">
             <div wfull>
-              <h4 style="height: 2em; line-height: 2em">{{ item.title }}</h4>
+              <h4>{{ item.title }}</h4>
               <n-button
                 quaternary
                 h-8
@@ -182,8 +171,9 @@ const handleContent = (menuItem: any) => {
           <NuxtLink
             class="rank-button"
             v-for="(item, index) in rankListH5"
-            :to="item.jumpToUrl"
+            :to="{ path: `/rank/h5-${item.id}`, query: { content: item.altContent } }"
             :key="index"
+            target="_blank"
           >
             <div class="rank-button-txt">
               {{ item.altContent }}
@@ -211,6 +201,8 @@ const handleContent = (menuItem: any) => {
 <style lang="scss" scoped>
 .box {
   overflow: hidden; /* 隐藏超出容器范围的部分，保证图片不会溢出容器 */
+  display: flex;
+  justify-content: space-between;
   padding: 1px 4px;
   @media screen and (min-width: 600px) {
     min-height: 70vh;
@@ -226,18 +218,25 @@ const handleContent = (menuItem: any) => {
       width: 36%;
       min-width: 568px;
       .box-l-pc {
+        display: flex;
         height: 65vh;
         .pc-menu {
           min-width: 9em;
           background-color: rgb(0, 217, 255);
+          a {
+            display: flex;
+          }
           .rank-button {
             cursor: pointer;
             align-items: center;
             height: 3rem;
             img {
-              margin: 0 0.5rem;
+              margin: 0 0.2rem;
               height: 2rem;
               width: 2rem;
+            }
+            span {
+              text-align: right;
             }
           }
           .rank-button:hover {
@@ -245,15 +244,24 @@ const handleContent = (menuItem: any) => {
           }
         }
         .menu-list-box {
+          display: flex;
+          flex-wrap: wrap;
           overflow-y: scroll;
           overflow-x: hidden;
+          width: 100%;
           padding-left: 4px;
           .pc-content {
+            display: flex;
+            flex-wrap: wrap;
             width: 100%;
             border-radius: 6px;
             margin: 2px 0;
             padding: 4px 2px 6px 6px;
             background-color: aliceblue;
+            h4 {
+              height: 2em;
+              line-height: 2em;
+            }
           }
         }
       }

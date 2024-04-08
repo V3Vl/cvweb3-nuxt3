@@ -19,7 +19,7 @@ const activate = (place: DrawerPlacement) => {
     </div>
     <div class="search">
       <n-input-group>
-        <n-input style="border-radius: 20px" :style="{ width: '70%' }" />
+        <n-input style="border-radius: 20px" :style="{ width: '70%' }" placeholder="查榜单/查品牌/查百科" />
         <n-button style="border-radius: 20px" ghost> 搜索 </n-button>
       </n-input-group>
     </div>
