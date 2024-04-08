@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 const description = ref(
-  '品牌榜 选购查排行可以排行榜，什么牌子好。'
+  '品牌榜 选购查排行可以排行榜，什么牌子。'
 )
 const keyword = ref('关键词1,关键词2,关键词3,关键词4')
 useHead({
-  title: '选购指南',
+  title: '可以排行榜',
   charset: 'utf-8',
   meta: [
     { name: 'keyword', content: keyword },
-    { name: 'description', content: description },
-    { name: 'author', content: '潘毅' }
+    { name: 'description', content: description }
   ]
 })
 </script>

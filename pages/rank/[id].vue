@@ -14,6 +14,7 @@ definePageMeta({
 </script>
 
 <template>
+  id页
   <h1>#{{ $route.params.id }}</h1>
 </template>
 

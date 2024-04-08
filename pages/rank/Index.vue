@@ -5,8 +5,8 @@ definePageMeta({
 </script>
 
 <template>
-  <div m="0 auto" border>
-    <h1>测试</h1>
+  <div border>
+    <h1>1</h1>
   </div>
 </template>
 
