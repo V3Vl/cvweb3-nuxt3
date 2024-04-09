@@ -53,81 +53,80 @@ const gridCollapsed = ref(true)
 // const gridItemCount = ref(20)
 // 是否显示折叠按钮
 const showSuffix = ref(true)
-
 // tabs
 // const placement = ref<NonNullable<TabsProps['placement']>>('top')
 // const type = ref<TabsProps['type']>('bar')
 const _placement = 'top'
-const _type = 'bar'
+const _type = 'card'
 </script>
 
 <template>
   <!-- <h1>{{ headData.title }}</h1> -->
   <!-- current rank menu -->
-  <div class="rank_menu_box">
-    <div>menu</div>
-    <ClientOnly>
-      <n-tabs border :type="_type" animated :placement="_placement">
-        <n-tab-pane name="oasis" tab="Oasis"> Wonderwall </n-tab-pane>
-        <n-tab-pane name="the beatles" tab="the Beatles"> Hey Jude </n-tab-pane>
-        <n-tab-pane name="jay chou" tab="Jay Chou"> Qilixiang </n-tab-pane>
-        <n-tab-pane name="oasis1" tab="Oasis1"> Wonderwall </n-tab-pane>
-        <n-tab-pane name="the beatles1" tab="the Beatles1"> Hey Jude </n-tab-pane>
-        <n-tab-pane name="jay chou1" tab="Jay Chou1"> Qilixiang </n-tab-pane>
-        <n-tab-pane name="oasis2" tab="Oasis2"> Wonderwall </n-tab-pane>
-        <n-tab-pane name="the beatles2" tab="the Beatles2"> Hey Jude </n-tab-pane>
-        <n-tab-pane name="jay chou2" tab="Jay Chou2"> Qilixiang </n-tab-pane>
-        <n-tab-pane name="oasis3" tab="Oasis3"> Wonderwall </n-tab-pane>
-        <n-tab-pane name="the beatles3" tab="the Beatles3"> Hey Jude </n-tab-pane>
-        <n-tab-pane name="jay chou3" tab="Jay Chou3"> Qilixiang </n-tab-pane>
-        <n-tab-pane name="oasis4" tab="Oasis4"> Wonderwall </n-tab-pane>
-        <n-tab-pane name="the beatles4" tab="the Beatles4"> Hey Jude </n-tab-pane>
-        <n-tab-pane name="jay chou4" tab="Jay Chou4"> Qilixiang </n-tab-pane>
-        <n-tab-pane name="oasis5" tab="Oasis5"> Wonderwall </n-tab-pane>
-        <n-tab-pane name="the beatles5" tab="the Beatles5"> Hey Jude </n-tab-pane>
-        <n-tab-pane name="jay chou5" tab="Jay Chou5"> Qilixiang </n-tab-pane>
+  <div border style="background-color: #f5f6f7">
+    <div class="rank_menu_box">
+      <div>menu</div>
+      <!-- <ClientOnly> -->
+      <n-tabs :type="_type" animated :placement="_placement">
+        <n-tab-pane
+          v-for="(item, index) in rankData.data"
+          :key="index"
+          :name="item.pid"
+          :tab="item.pid"
+        >
+          <n-grid
+            v-if="item.PCRankMenuContents.length > 0"
+            cols="2 s:3 m:4"
+            responsive="screen"
+            :x-gap="5"
+            :y-gap="5"
+          >
+            <n-grid-item v-for="(itemItem, index) in item.PCRankMenuContents" :key="index">
+              <div class="rank_menu_btn" border>{{ itemItem.id }}</div>
+            </n-grid-item>
+          </n-grid>
+          <n-empty v-else description="没有内容">
+            <template #extra>
+              <n-button size="small"> 看看别的 </n-button>
+            </template>
+          </n-empty>
+        </n-tab-pane>
       </n-tabs>
-    </ClientOnly>
-    <n-grid cols="3 s:3 m:4" responsive="screen" :x-gap="5" :y-gap="5">
-      <n-grid-item v-for="(item, index) in rankData.data" :key="index">
-        <div class="rank_menu_btn">{{ item.pid }}</div>
-      </n-grid-item>
-    </n-grid>
-  </div>
-  <!-- hot brand -->
-  <div class="brand_menu_box">
-    <div>hots</div>
-    <!-- 横向tab -->
-    <div></div>
-    <n-grid
-      :cols="4"
-      :collapsed="gridCollapsed"
-      :collapsed-rows="gridCollapsedRows"
-      :x-gap="4"
-      :y-gap="4"
-    >
-      <!-- <n-gi v-for="i in gridItemCount" :key="i" :class="i % 2 ? 'green' : 'xxx'"> -->
-      <n-gi v-for="(item, index) in rankData.data" :key="index" class="brand_btn">
-        {{ item.id }}
-      </n-gi>
-      <n-gi
-        border
-        v-if="showSuffix"
-        suffix
-        class="suffix"
-        #="{ overflow }"
-        @click="gridCollapsed = !gridCollapsed"
+      <!-- </ClientOnly> -->
+    </div>
+    <!-- hot brand -->
+    <div class="brand_menu_box">
+      <div>hots</div>
+      <n-grid
+        :cols="4"
+        :collapsed="gridCollapsed"
+        :collapsed-rows="gridCollapsedRows"
+        :x-gap="4"
+        :y-gap="4"
       >
-        {{ overflow ? '展开' : '收起' }}
-      </n-gi>
-    </n-grid>
-  </div>
-  <!-- current rank news -->
-  <div class="rank_news_box">
-    <div>news</div>
-    <ul v-for="(item, index) in rankData.data" :key="index">
-      <li>{{ item.pid }}</li>
-    </ul>
+        <!-- <n-gi v-for="i in gridItemCount" :key="i" :class="i % 2 ? 'green' : 'xxx'"> -->
+        <n-gi v-for="(item, index) in rankData.data" :key="index" class="brand_btn">
+          {{ item.pid }}
+        </n-gi>
+        <n-gi
+          border
+          v-if="rankData.data.length > 7"
+          suffix
+          class="suffix"
+          #="{ overflow }"
+          @click="gridCollapsed = !gridCollapsed"
+        >
+          {{ overflow ? '展开' : '收起' }}
+        </n-gi>
+      </n-grid>
+    </div>
+    <!-- current rank news -->
+    <div class="rank_news_box">
+      <div>news</div>
+      <ul v-for="(item, index) in rankData.data" :key="index">
+        <li>{{ item.pid }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -156,18 +155,20 @@ const _type = 'bar'
 }
 
 .rank_menu_box {
+  background-color: #fff;
   margin: 0 auto;
   width: 96vw;
-  min-height: 30vh;
-  background-color: #f5f6f7;
+  // 大于等于 2*grid高度+tab高度
+  min-height: 35vh;
 }
 .brand_menu_box {
+  background-color: #fff;
   margin: 0 auto;
   width: 96vw;
   min-height: 30vh;
-  background-color: #f5f6f7;
 }
 .rank_news_box {
+  background-color: #fff;
   min-height: 50vh;
   display: flex;
   justify-content: center;
